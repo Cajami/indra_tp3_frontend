@@ -286,6 +286,9 @@ function GenerarGrillaClientesAdendas() {
                 case 'OBSERVADO':
                     $('#btnEliminarAdenda,#btnModificarAdenda').prop('disabled', false);
                     break;
+                    case 'APROBADO':
+                    $('#btnEliminarAdenda,#btnModificarAdenda').prop('disabled', true);
+                    break;
             }
         },
         onCellSelect: function (rowid, icol, cellcontent, e) {
@@ -997,10 +1000,12 @@ function RegistrarClausulasImprimir(array, idAdenda, index) {
         MostrarLoading(false);
 
         if ($('#btnGuardarAdenda').is(":visible")) {
-            MensajeOk('Se registró', 'La Adenda en el sistema');
+            MensajeOk('Se registró', 'La Adenda se registró correctamente');
             $('#btnGuardarAdenda').prop('disabled', true);
+            $('#btnCancelarAdenda').trigger('click');
         } else if ($('#btnGuardarModificacionAdenda').is(":visible")) {
-            MensajeOk('Se modificó', 'La Adenda en el sistema');
+            MensajeOk('Se modificó', 'Los datos de la Adenda se modificacon correctamente');
+            $('#btnCancelarAdenda').trigger('click');
         }
     }
 }
@@ -1077,7 +1082,7 @@ $('#btnModificarAdenda').off().on('click', function () {
     ConsultarAdenda(registro.codigoAdenda, function () {
 
         $('#titleOpcion').html('MODIFICAR ADENDA');
-        $('#btnGuardarAdenda').hide();
+        $('#btnGuardarAdenda,#btnGuardarEliminarAdenda').hide();
         $('#btnGuardarModificacionAdenda').show();
         $('#btnBuscarContratoAdenda,#btnBuscarDialogoContratoAdenda').hide();
 
@@ -1209,7 +1214,7 @@ $('#btnGuardarModificacionAdenda').off().on('click', function () {
 $('#btnGuardarEliminarAdenda').off().on('click', function () {
     MensajeConfirmar('¿Desea realmente eliminar la adenda?',
         function () {
-            MostrarLoading(true, 'Eliminando Contrato...');
+            MostrarLoading(true, 'Eliminando Adenda...');
 
             var iCodAdenda = $('#txtNroAdendaAdenda').attr('icodadenda');
 
@@ -1230,7 +1235,7 @@ $('#btnGuardarEliminarAdenda').off().on('click', function () {
                           return;
                       }
                       MensajeOk('Adenda Eliminada',
-                          'Se eliminó la Adenda',
+                          'Se eliminó Adenda correctamente',
                           function () {
                               $('#btnCancelarAdenda').trigger('click');
                               setTimeout(function () {
@@ -1266,7 +1271,7 @@ $('#btnListoImprimirAdenda').off().on('click', function () {
                           return;
                       }
                       MensajeOk('Adenda Enviada',
-                          'La Adenda cambió de Estado a "Listo para Imprimir"');
+                          'La Adenda se envió correctamente');
 
                       $('#btnBuscarAdendasModuloPrincipal').trigger('click');
                   },

@@ -87,12 +87,12 @@ function ConsultarContrato(iCodAdenda, callBack) {
 
             console.log(resultado);
 
-            if (resultado == null) {
+            if (resultado == null || !resultado) {
                 MensajeError('Problemas con el servidor, devolvió NULL');
                 return;
             }
 
-            if (resultado.contrato.nombreContrato == null || !result) {
+            if (resultado.contrato.nombreContrato == null ) {
                 MensajeError('No se encontró el detalle del contrato buscado');
                 return;
             }
@@ -270,7 +270,7 @@ $('#btnListoImprimirContrato').off().on('click', function () {
                           return;
                       }
                       MensajeOk('Contrato Enviado',
-                          'El contrato cambió de Estado a "Listo para Imprimir"');
+                          'El contrato se envió correctamente');
 
                       $('#btnBuscarContratosModuloPrincipal').trigger('click');
                   },
@@ -384,7 +384,7 @@ $('#btnEliminarNuevoContrato').off().on('click', function () {
                           return;
                       }
                       MensajeOk('Contrato Eliminado',
-                          'Se eliminó el contrato',
+                          'El Contrato se eliminó correctamente',
                           function () {
                               $('#btnCancelarNuevoContrato').trigger('click');
                               setTimeout(function () {
@@ -517,8 +517,9 @@ function RegistrarPagosDetalles(array, idAdenda, index) {
             });
     } else {
         MostrarLoading(false);
-        MensajeOk('Se registró', 'El Contrato en el sistema');
+        MensajeOk('Se registró', 'El Contrato se registró correctamente');
         $('#btnGuardarNuevoContrato,#btnSubirArchivoRequerimientoPrograma').prop('disabled', true);
+        $('#btnCancelarNuevoContrato').trigger('click');
     }
 }
 
@@ -1040,6 +1041,9 @@ function GenerarGrillaClientesContratos() {
                     break;
                 case 'OBSERVADO':
                     $('#btnEliminarContrato').prop('disabled', false);
+                    break;
+                    case 'APROBADO':
+                    $('#btnEliminarContrato').prop('disabled', true);
                     break;
             }
         },
