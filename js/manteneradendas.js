@@ -67,7 +67,7 @@ function ConsultarAdenda(iCodAdenda, callBack, evento) {
 
             console.log(resultado);
 
-            if (resultado == null) {
+            if (resultado == null  || !resultado) {
                 MostrarLoading(false);
                 MensajeError('Problemas con el servidor, devolvió NULL');
                 return;
@@ -339,7 +339,6 @@ $('#btnAbrirDialogoClienteBuscar').off().on('click', function () {
 
 $('#btnSeleccionarClienteDialogo').off().on('click', function () {
     var registro = GetRowSelectJqGrid('tablaClientesDialogo');
-
     if (registro == null) {
         MensajeError('Debe seleccionar un Cliente');
         return;
@@ -357,8 +356,8 @@ $('#btnSeleccionarClienteDialogo').off().on('click', function () {
 
 $('#btnSeleccionarContratoDialogo').off().on('click', function () {
     var registro = GetRowSelectJqGrid('tablaBusquedaContratosDialogo');
-
-    if (registro == null) {
+debugger;
+    if (registro == null ) {
         MensajeError('Debe seleccionar un Cliente');
         return;
     }
@@ -404,7 +403,7 @@ $('#btnBuscarContratoDialogo').off().on('click', function () {
          function (resultado) {
              MostrarLoading(false);
 
-             if (resultado == null) {
+             if (resultado == null ) {
                  MensajeError('Problemas con el servidor, devolvió NULL');
                  return;
              }
@@ -1249,7 +1248,7 @@ $('#btnGuardarEliminarAdenda').off().on('click', function () {
 $('#btnListoImprimirAdenda').off().on('click', function () {
     var registro = GetRowSelectJqGrid('tablaClientesAdendas');
 
-    if (registro == null) {
+    if (registro == null ) {
         MensajeError('Debe seleccionar una Adenda');
         return;
     }

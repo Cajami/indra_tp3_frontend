@@ -92,7 +92,7 @@ function ConsultarContrato(iCodAdenda, callBack) {
                 return;
             }
 
-            if (resultado.contrato.nombreContrato == null) {
+            if (resultado.contrato.nombreContrato == null || !result) {
                 MensajeError('No se encontró el detalle del contrato buscado');
                 return;
             }
@@ -209,7 +209,7 @@ $('#btnNuevoContrato').off().on('click', function () {
 $('#btnConsultarContrato').off().on('click', function () {
     var registro = GetRowSelectJqGrid('tablaIngresoStock');
 
-    if (registro == null) {
+    if (registro == null ) {
         MensajeError('Debe seleccionar un Contrato');
         return;
     }
@@ -938,7 +938,7 @@ function ReaderExcel(dataFile) {
             dniRuc: data.PRINCIPAL[0].RUC_DNI_CLIENTE//'45265162'// 
         },
         function (result) {
-            if (result == null) {
+            if (!result) {
                 MostrarLoading(false);
                 MensajeError('No se pudo recuperar el cliente indicado');
                 return;
@@ -962,7 +962,7 @@ function ReaderExcel(dataFile) {
 
                     console.log(result);
 
-                    if (result == null) {
+                    if (result == null ) {
                         MensajeError('No se pudo recuperar informacion del siguiente contrato');
                         return;
                     }
@@ -989,6 +989,7 @@ function ReaderExcel(dataFile) {
 
 $('#subirArchivosXLSX').off().on('change', function () {
     var arrayFile = document.querySelector('#subirArchivosXLSX').files;
+    debugger;
     leerArchivoExcel(arrayFile, ReaderExcel);
     document.querySelector('#subirArchivosXLSX').value = "";
 });
@@ -1133,7 +1134,7 @@ function PageInit_MantenerContrato() {
             MostrarLoading(false);
             //
 
-            if (result == null) {
+            if (result == null ) {
                 MensajeError('Servidor devolvió Error de Datos');
                 return;
             }
