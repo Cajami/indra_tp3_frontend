@@ -1,0 +1,636 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Indra web</title>
+    <link href="plugins/bootstrap-4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootswatch.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+
+    <link href="plugins/waitMe-31.10.17/waitMe.min.css" rel="stylesheet" />
+
+    <!--JQUERY-UI -->
+    <link href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
+
+    <!--JQGRID -->
+    <link href="plugins/Guriddo_jqGrid_JS_5.1.0/css/ui.jqgrid-bootstrap.css" rel="stylesheet" />
+    <link href="plugins/Guriddo_jqGrid_JS_5.1.0/css/ui.jqgrid-bootstrap-ui.css" rel="stylesheet" />
+    <link href="plugins/Guriddo_jqGrid_JS_5.1.0/css/ui.jqgrid.css" rel="stylesheet" />
+
+    <link rel='stylesheet' href='https://www.jqueryscript.net/demo/Themeable-jQuery-Tabs-Plugin-CardTabs/jquery.cardtabs.css'>
+
+    <!-- DATETIMEPICKER -->
+    <link href="plugins/datetimepicker/jquery.datetimepicker.css" rel="stylesheet" />
+    <!-- ALERT -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+
+    <link href="css/stylos.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="image/logoindra.png" class="img-thumbnail" style="margin-top: -10px;margin-bottom: -10px;width: 90px;" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        <i class="far fa-images"></i>
+
+                        Mantenimiento de Contratos<span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-user"></i>
+                        Usuario
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="container mt-3">
+        <div id="CarruselModuloContrato" data-interval="false" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="overflow-y:auto;">
+
+                    <!-- PANTALLA PRINCIPAL -->
+                    <div class="container mt-3">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span class="etiqueta">
+                                    Cliente
+                                </span>
+                                <div class="input-group mb-3">
+                                    <input type="hidden" id="hCodigoFirmanteSeleccionadoModuloPrincipalContratos" />
+                                    <input type="text" readonly class="form-control" id="txtClienteModuloPrincipalContratos" />
+                                    <div class="input-group-append">
+                                        <button class="btn btn-secondary" type="button" title="Buscar Cliente" id="btnAbrirDialogoClienteBuscar">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <span class="etiqueta">
+                                    Fecha Inicio:
+                                </span>
+                                <input type="text" class="form-control" id="txtFechaInicioModuloPrincipal" />
+                            </div>
+                            <div class="col-sm-2">
+                                <span class="etiqueta">
+                                    Fecha Fin:
+                                </span>
+                                <input type="text" class="form-control" id="txtFechaFinalModuloPrincipal" />
+                            </div>
+
+                            <div class="col-sm-2">
+                                <br />
+                                <button class="btn btn-success float-right btn-sm" id="btnBuscarContratosModuloPrincipal">
+                                    <i class="fas fa-search"></i>
+                                    Buscar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-sm-12">
+                                <table id="tablaIngresoStock"></table>
+                                <div id="pagertablaIngresoStock"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+
+                                <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnListoImprimirContrato">
+                                    <i class="far fa-share-square"></i>
+
+                                    Listo para Imprimir
+                                </button>
+                                <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnEliminarContrato">
+                                    <i class="far fa-trash-alt"></i>
+                                    Eliminar
+                                </button>
+                                <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnConsultarContrato">
+                                    <i class="fas fa-search-plus"></i>
+                                    Consultar
+                                </button>
+                                <button class="btn btn-secondary float-right btn-sm" id="btnNuevoContrato">
+                                    <i class="far fa-file"></i>
+                                    Nuevo
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="carousel-item">
+                    <!--NUEVO CONTRATO  -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 font-weight-bold bg-light p-2 text-body" id="titleOpcion">
+                                NUEVO CONTRATO
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+
+                            <div class="col-sm-10">
+                                <div style="overflow-y:auto;overflow-x:hidden;" id="contenedorColumna10NuevoContrato">
+                                    <div class='tabsholder4'>
+                                        <div data-tab="Principal" class="tabContenedor">
+                                            <div class="row">
+                                                <input type="hidden" id="hArchivoCorrectoNuevoContrato" />
+                                                <input type="hidden" id="iCodigoAdendaNuevoContrato" />
+                                                <div class="col-sm-4">
+                                                    <span class="etiqueta">
+                                                        Pais:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtPaisNuevoContrato" />
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <span class="etiqueta">
+                                                        Departamento:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtDepartamentoNuevoContrato" />
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <span class="etiqueta">
+                                                        Provincia:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtProvinciaNuevoContrato" />
+                                                </div>
+
+                                            </div>
+                                            <div class="row mt-1">
+                                                <div class="col-sm-4">
+                                                    <span class="etiqueta">
+                                                        Tipo Contrato:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtTipoContratoNuevoContrato" />
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <span class="etiqueta">
+                                                        Tipo Servicio:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtServicioNuevoContrato" />
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <span class="etiqueta">
+                                                        Distrito:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtDistritoNuevoContrato" />
+                                                </div>
+                                            </div>
+                                            <div class="row mt-1">
+                                                <div class="col-sm-8">
+                                                    <span class="etiqueta">
+                                                        Nombre de Contrato:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtNombreContratoNuevoContrato" />
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <span class="etiqueta">
+                                                        Número de Contrato:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtNumeroContratoNuevoContrato" />
+                                                </div>
+                                            </div>
+                                            <div class="row mt-1">
+                                                <div class="col-sm-12">
+                                                    <span class="etiqueta">
+                                                        Nombre del Proyecto:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtNombreProyectoNuevoContrato" />
+                                                </div>
+                                            </div>
+                                            <div class="row mt-1">
+                                                <div class="col-sm-8">
+                                                    <span class="etiqueta">
+                                                        Razón Social / Cliente:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtRazonSocialClienteNuevoContrato" />
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <span class="etiqueta">
+                                                        RUC / DNI:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtRucDNIClienteNuevoContrato" />
+                                                </div>
+                                            </div>
+                                            <div class="row mt-1">
+                                                <div class="col-sm-8">
+                                                    <span class="etiqueta">
+                                                        Domicilio:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtDomicilioNuevoContrato" />
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <span class="etiqueta">
+                                                        Actividad:
+                                                    </span>
+                                                    <input type="text" class="form-control" readonly id="txtActividadNuevoContrato" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div data-tab=" Antecedentes " class="tabContenedor">
+                                            <table class="table table-striped" id="tableAntecedentesNuevoContrato">
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                        <!--<div data-tab=" Objeto " class="tabContenedor">
+                                            Proin vestibulum turpis tristique maximus molestie. Integer dapibus eros ultricies sapien scelerisque, sit amet semper risus consequat. Ut egestas lorem eu blandit finibus. Nam non massa bibendum, tristique libero quis, lacinia justo. Sed non ultricies diam. In rutrum elit in urna iaculis tristique. Donec in lorem dolor. Ut varius tortor neque, et facilisis nulla porta non. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                                            Integer fermentum sed quam a sagittis. Vivamus a bibendum elit, et suscipit risus. Sed sit amet justo sollicitudin, scelerisque tortor vel, porta ipsum. Donec bibendum viverra porttitor. Nulla vitae gravida magna, sed tincidunt odio. Curabitur quis posuere est, ac congue sem. Sed vulputate neque neque, aliquam viverra enim posuere eu. Pellentesque nec nisi mattis nisl lacinia vestibulum. Etiam pulvinar consectetur sem sit amet malesuada. Etiam mollis vestibulum convallis. Suspendisse aliquam, nunc ac mattis convallis, justo tellus ornare est, nec rhoncus enim nulla nec justo.
+                                        </div>-->
+                                        <div data-tab=" Monto Contratado " class="tabContenedor">
+                                            <div class="row mt-5">
+                                                <div class="col-sm-8">
+                                                    <div class="form-group row">
+                                                        <label for="inputPassword" class="col-sm-4 col-form-label etiqueta">Tipo de Moneda</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" readonly class="form-control text-center" id="txtTipoMonedaNuevoContato">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <div class="form-group row">
+                                                        <label for="inputPassword" class="col-sm-4 col-form-label etiqueta">Precio Contractual</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" readonly class="form-control text-center" id="txtPrecioContractualNuevoContato">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div data-tab=" Cronograma de Entrega " class="tabContenedor">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table class="table table-bordered table-striped" id="tablaCronogramaEntregaNuevoContrato">
+                                                        <thead class="bg-primary font-weight-bold text-black-50 text-center">
+                                                            <tr>
+                                                                <td>Nro Entrega</td>
+                                                                <td>Días</td>
+                                                                <td>Fecha de Entrega</td>
+                                                                <td>Descripción</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div data-tab=" Vigencia " class="tabContenedor">
+                                            <div class="row mt-5">
+                                                <div class="col-sm-8">
+                                                    <div class="form-group row">
+                                                        <label for="inputPassword" class="col-sm-4 col-form-label etiqueta">Fecha Inicio Contrato:</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control text-center" readonly id="txtFechaInicioNuevoContato">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <div class="form-group row">
+                                                        <label for="inputPassword" class="col-sm-4 col-form-label etiqueta">Fecha Fin Contrato:</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control text-center" readonly id="txtFechaFinalNuevoContato">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div data-tab=" Formas de Pago " class="tabContenedor">
+
+                                            <div class="row mt-3">
+                                                <div class="col-sm-12">
+                                                    <input type="radio" disabled id="chkPagoContadoNuevoContrato">
+                                                    <label class="etiqueta" for="customCheck1">Pago al Contrado</label>
+
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-sm-6">
+
+                                                    <input type="radio" disabled id="chkPagoCuotasNuevoContrato">
+                                                    <label class="etiqueta" for="customCheck1">Pago en Cuotas</label>
+
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control text-center font-weight-bold" readonly id="txtCuotasNuevoContrato" />
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <span class="etiqueta">
+                                                        Cuotas
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-sm-12">
+                                                    <table class="table table-bordered table-striped" id="tablaCuotasNuevoContrato">
+                                                        <thead class="bg-primary font-weight-bold text-black-50 text-center">
+                                                            <tr>
+                                                                <td>Número Cuota</td>
+                                                                <td>Año</td>
+                                                                <td>Mes</td>
+                                                                <td>Último Día de Pago</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div data-tab=" Firmas " class="tabContenedor">
+                                            <div class="row mt-2">
+                                                <div class="col-sm-4">
+                                                    <span class="etiqueta">
+                                                        DNI Cliente Firmante:
+                                                    </span>
+                                                    <input type="text" class="form-control text-center" maxlength="8" id="txtDniClienteFirmanteNuevoContrato" />
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <br />
+                                                    <input type="text" class="form-control" readonly id="txtNombreClienteFirmanteNuevoContrato" />
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-sm-4">
+                                                    <span class="etiqueta">
+                                                        DNI Apoderado:
+                                                    </span>
+                                                    <input type="text" class="form-control text-center" maxlength="8" id="txtDniApoderadoNuevoContrato" />
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <br />
+                                                    <input type="text" class="form-control" readonly id="txtNombreApoderadoNuevoContrato" />
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-sm-4">
+                                                    <span class="etiqueta">
+                                                        DNI Gerente:
+                                                    </span>
+                                                    <input type="text" class="form-control text-center" maxlength="8" readonly id="txtDniGerenteNuevoContrato" />
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <br />
+                                                    <select class="form-control" id="cboNombresGerentesNuevoContrato"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="row mt-4">
+                                    <div class="col-sm-12 text-center">
+                                        <button class="btn btn-secondary btn-sm btn-block" id="btnSubirArchivoRequerimientoPrograma" style="display:none;">
+                                            <i class="far fa-folder-open"></i>
+                                            Requerimiento
+                                            <br />
+                                            ó
+                                            <br />
+                                            Programa
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row mt-5">
+                                    <button class="btn btn-secondary btn-block" id="btnVistaPreviaNuevoContrato">
+                                        <i class="fas fa-eye"></i>
+                                        Vista Previa
+                                    </button>
+                                </div>
+                                <div class="row mt-4">
+                                    <button class="btn btn-primary btn-block font-weight-bold" id="btnGuardarNuevoContrato">
+                                        <i class="far fa-save"></i>
+                                        GUARDAR
+                                    </button>
+                                </div>
+                                <div class="row mt-4">
+                                    <button class="btn btn-danger btn-block font-weight-bold" id="btnEliminarNuevoContrato">
+                                        <i class="far fa-trash-alt"></i>
+                                        ELIMINAR
+                                    </button>
+                                </div>
+                                <div class="row mt-4">
+                                    <button class="btn btn-secondary btn-block font-weight-bold" style="bottom: 10px;position: absolute;" id="btnCancelarNuevoContrato">
+                                        <i class="fas fa-ban"></i>
+                                        CANCELAR
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!--MODAL BUSCAR CLIENTE-->
+    <div class="modal" tabindex="-1" role="dialog" id="dialogoBuscarCliente">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Buscar Cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            RUC:
+                            <input type="text" class="form-control" id="txtBuscarRucCliente" />
+                        </div>
+                        <div class="col-sm-3">
+                            DNI:
+                            <input type="text" class="form-control" id="txtBuscarDniCliente" />
+                        </div>
+                        <div class="col-sm-4">
+                            Cliente / Razón Social:
+                            <input type="text" class="form-control" id="txtBuscarClienteRazonSocialCliente" />
+                        </div>
+                        <div class="col-sm-2">
+                            <br />
+                            <button class="btn btn-success btn-sm" id="btnBuscarClienteDialogo">
+                                <i class="fas fa-search"></i>
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-12">
+                            <table id="tablaClientesDialogo"></table>
+                            <div id="pagertablaClientesDialogo"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" id="btnSeleccionarClienteDialogo">
+                        <i class="fas fa-mouse-pointer"></i>
+                        Seleccionar
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+                        <i class="fas fa-ban"></i>
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--MODAL PARA VISUALIZAR PDF-->
+    <!--<div class="modal"role="dialog" style="z-index: 99999">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="TituloDialog_VisualizadorPDF"></h4>
+                </div>
+                <div class="modal-body" style="height: 10%;">
+                    <iframe frameborder="0" style="width: 100%;" id="IFrameVisualizarPDF_JSJ"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <div class="modal" id="DialogoVisualizarPDF" tabindex="-1" role="dialog" id="dialogoBuscarCliente">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<h5 class="modal-title">Buscar Cliente</h5>-->
+                    <h4 class="modal-title" id="TituloDialog_VisualizadorPDF"></h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe frameborder="0" style="width: 100%;" id="IFrameVisualizarPDF_JSJ"></iframe>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--INPUT TYPE=FILE -> ARCHIVOS XLSX-->
+    <input type="file" id="subirArchivosXLSX" style="display:none;" />
+
+
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="plugins/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+
+    <!--JQUERY-UI  -->
+    <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+
+    <!--JQGRID-->
+    <script src="plugins/Guriddo_jqGrid_JS_5.1.0/js/i18n/grid.locale-es.js"></script>
+    <script src="plugins/Guriddo_jqGrid_JS_5.1.0/js/jquery.jqGrid.min.js"></script>
+    <script src="plugins/Guriddo_jqGrid_JS_5.1.0/js/context-menu.js"></script>
+
+
+    <script src="plugins/waitMe-31.10.17/waitMe.min.js"></script>
+
+    <script type='text/javascript' src='https://www.jqueryscript.net/demo/Themeable-jQuery-Tabs-Plugin-CardTabs/jquery.cardtabs.js'></script>
+    <!--<script src="plugins/generatepdf/jspdf.debug.js"></script>-->
+    <script src="plugins/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+
+    <!-- ALERT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
+    <script src="plugins/JS_EXCEL/shim.js"></script>
+    <script src="plugins/JS_EXCEL/jszip.js"></script>
+    <script src="plugins/JS_EXCEL/xlsx.js"></script>
+
+    <!-- uncomment the next line here and in xlsxworker.js for ODS support -->
+    <script src="plugins/JS_EXCEL/dist/ods.js"></script>
+    <script src="plugins/JS_EXCEL/ExcelXLSX.js"></script>
+
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+
+    <script src="plugins/generatepdf/jspdf.debug.js"></script>
+    <script src="js/functionsGenerals.js"></script>
+    <script src="js/mantenercontrato.js"></script>
+    <!--<script>
+
+        //var docDefinition = { content: 'This is an sample PDF printed with pdfMake' };
+        //// open the PDF in a new window
+        //pdfMake.createPdf(docDefinition).open();
+
+        //var document = {
+        //    content:
+        //    [
+        //        {
+        //            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        //            alignment: 'center' //it's that simple :)
+        //        }
+        //    ]
+        //}
+        var myText = "Say hello to \
+                        multi-line\
+                        strings!";
+
+        var html = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id turpis dolor. Sed nisi sapien, ullamcorper a tellus a, consequat vulputate nisl. Fusce scelerisque venenatis pharetra. In sit amet nulla ultrices, elementum nisl sit amet, pellentesque lacus. Phasellus in ligula tempor, scelerisque lacus at, posuere enim. Vivamus augue nulla, rhoncus sit amet lorem id, sodales lacinia quam. Praesent facilisis aliquam fringilla. Integer vel convallis arcu. In efficitur ac tortor at ultrices.\
+        Donec nec est nec odio tempus vehicula mattis id nunc. Sed vehicula vel metus porta consequat. Nullam porttitor purus ut pretium finibus. Nunc lacinia orci vel magna lobortis sodales. Quisque et nisi lacinia, sagittis lorem in, molestie sem. Maecenas at convallis neque. Donec a nulla eu tortor placerat euismod. Duis ut molestie lacus. Cras viverra maximus nunc vitae blandit. Vestibulum maximus metus sed ipsum finibus, non blandit nulla maximus. Nullam porta eget dui nec efficitur.\n\n\
+        Suspendisse nunc orci, euismod et luctus id, aliquam non arcu. Duis malesuada sollicitudin enim, at luctus magna malesuada ut. Curabitur accumsan nulla quis facilisis semper. Etiam non efficitur ante. Nulla iaculis tincidunt enim, nec efficitur ante commodo in. Sed bibendum ullamcorper ex quis sollicitudin. Suspendisse tempus dolor quis turpis condimentum, non maximus lacus tincidunt. Nulla aliquam, ligula id ullamcorper eleifend, tellus quam iaculis sem, sit amet eleifend magna turpis a sapien. Sed suscipit, tortor vitae lacinia ultricies, elit risus tristique dui, sed porttitor risus odio non nunc.\
+        Curabitur vestibulum faucibus tortor at vulputate. Ut justo tellus, tristique quis odio ac, commodo semper felis. Morbi in lobortis massa. Quisque ac pharetra justo, vitae maximus risus. Aenean ultricies tellus at mauris tempus volutpat. Ut maximus orci eget libero accumsan, eu accumsan metus tincidunt. Etiam interdum elementum felis, sed aliquam urna rutrum nec. Donec vel ultricies sapien. Curabitur placerat, purus quis viverra gravida, lectus ipsum volutpat neque, et posuere nulla arcu in sem. In hac habitasse platea dictumst. Vestibulum dolor eros, euismod in nunc vitae, auctor aliquam ex.\n\n\
+        Sed accumsan ante ut metus pretium iaculis ac quis sem. Aenean varius nisi sed mauris auctor, sit amet condimentum ligula mollis. Duis et odio laoreet, mollis diam sed, dictum felis. Etiam non felis placerat nunc congue lacinia sed ut quam. Nam fermentum, eros ac semper venenatis, nisl odio accumsan neque, nec consequat libero nisi vitae sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean pellentesque posuere varius. Integer ultricies, ligula eget placerat bibendum, urna nulla ullamcorper leo, at dictum risus erat non ex. Etiam ac egestas magna. Ut a urna cursus elit laoreet sagittis. Etiam placerat feugiat scelerisque. Donec interdum urna sit amet erat finibus, nec cursus ex sagittis. Vivamus volutpat nulla et commodo consectetur. Integer at luctus augue, vitae porttitor nisl. Quisque vel nunc ante. In at felis ac odio tempus malesuada ut at turpis.\
+        Aliquam viverra elit placerat turpis blandit, non pulvinar purus congue. Duis viverra ut tellus ut porttitor. Vivamus nibh sapien, pharetra bibendum pretium imperdiet, imperdiet non magna. Sed lobortis sollicitudin accumsan. Sed ullamcorper felis nec lorem ultrices, in pretium lorem interdum. Duis ex velit, molestie vel bibendum sed, ultricies vel nulla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus lacinia diam pretium, convallis erat quis, consequat nisl. Suspendisse at egestas turpis, in mollis massa. Nunc sed placerat est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lobortis orci non diam pellentesque, scelerisque consectetur metus sodales. Aliquam aliquam interdum condimentum. Vestibulum tincidunt odio risus, ac eleifend ex cursus vel. Donec scelerisque consectetur nulla, id hendrerit ante ultricies in.\
+        Vestibulum id lectus nulla. Sed luctus, dui at interdum suscipit, nibh magna ultricies felis, dictum consequat augue lorem vel ante. Donec magna diam, sollicitudin at porta vel, consectetur sed metus. Vivamus accumsan vulputate velit, et malesuada diam sollicitudin fermentum. Curabitur elit orci, fringilla non condimentum nec, luctus id quam. Curabitur id mattis lorem. Mauris ligula nisi, vulputate nec libero ac, placerat sodales massa. Integer et laoreet diam. Sed nec mauris at lectus bibendum ullamcorper. In a arcu imperdiet, rhoncus lectus ac, consectetur leo. Phasellus maximus ante blandit dolor fermentum volutpat. Nullam vel convallis neque. Quisque euismod enim nec velit elementum ornare ac sed erat."
+        
+        var docDefinition = {
+            content: [
+              {
+                  text: html,
+                  style: 'header'
+              },
+              'No styling here, this is a standard paragraph',
+              //{ text: 'Another text', style: 'anotherStyle' },
+              //{ text: 'Multiple styles applied', style: ['header', 'anotherStyle'] }
+            ],
+
+            styles: {
+                header: {
+                    //fontSize: 22,
+                    //bold: true,
+                    alignment: 'justify'
+                },
+                anotherStyle: {
+                    italic: true,
+                    alignment: 'right'
+                }
+            }
+        };
+        pdfMake.createPdf(docDefinition).open();
+
+    </script>-->
+</body>
+</html>

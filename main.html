@@ -1,0 +1,466 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Contrato de Clientes</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+    <link href="plugins/bootstrap-4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootswatch.css" rel="stylesheet" />
+
+    <link href="plugins/waitMe-31.10.17/waitMe.min.css" rel="stylesheet" />
+
+    <!--JQUERY-UI -->
+    <link href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
+
+    <!--JQGRID -->
+    <link href="plugins/Guriddo_jqGrid_JS_5.1.0/css/ui.jqgrid-bootstrap.css" rel="stylesheet" />
+    <link href="plugins/Guriddo_jqGrid_JS_5.1.0/css/ui.jqgrid-bootstrap-ui.css" rel="stylesheet" />
+    <link href="plugins/Guriddo_jqGrid_JS_5.1.0/css/ui.jqgrid.css" rel="stylesheet" />
+
+    <link rel='stylesheet' href='https://www.jqueryscript.net/demo/Themeable-jQuery-Tabs-Plugin-CardTabs/jquery.cardtabs.css'>
+
+    <!-- DATETIMEPICKER -->
+    <link href="plugins/datetimepicker/jquery.datetimepicker.css" rel="stylesheet" />
+    <!-- ALERT -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+
+    <link href="css/stylos.css" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="image/logoindra.png" class="img-thumbnail" style="margin-top: -10px;margin-bottom: -10px;width: 90px;" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+
+                    <div class="SubOption" page="pages/mantenercontrato.html" id="btnMantenerContratosMain">
+                        <i class="far fa-newspaper fa-2x"></i>
+                        <label>Mantener Contratos</label>
+                    </div>
+                    <div class="SubOption" page="pages/manteneradenda.html" id="btnMantenerAdendasMain">
+                        <i class="far fa-newspaper fa-2x"></i>
+                        <label>Mantener Adenda</label>
+                    </div>
+                    <div class="SubOption">
+                        <i class="far fa-newspaper fa-2x" id="btnSolicitudControversias"></i>
+                        <label>Solicitud Controversia</label>
+                    </div>
+                    <div class="SubOption">
+                        <i class="far fa-newspaper fa-2x" id="btnActaAcuerdos"></i>
+                        <label>Acta de Acuerdos</label>
+                    </div>
+
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        <img src="image/EPE.png" class="img img-thumbnail mr-3" style="width:60px;" id="btnLogo" />
+                        <i class="fas fa-user"></i>
+                        Usuario
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-2" id="divContenido">
+
+        <div class="row mt">
+            <div class="col-sm-12 text-center">
+                <img src="image/indrafoto.jpg" style="opacity:0.5" class="img-thumbnail " />
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--MODAL BUSCAR CLIENTE-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="dialogoBuscarCliente">
+        <div class="modal-60 modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Buscar Cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            RUC:
+                            <input type="text" class="form-control" maxlength="11" id="txtBuscarRucCliente" />
+                        </div>
+                        <div class="col-sm-3">
+                            DNI:
+                            <input type="text" class="form-control" maxlength="8" id="txtBuscarDniCliente" />
+                        </div>
+                        <div class="col-sm-4">
+                            Cliente / Razón Social:
+                            <input type="text" class="form-control" id="txtBuscarClienteRazonSocialCliente" />
+                        </div>
+                        <div class="col-sm-2">
+                            <br />
+                            <button class="btn btn-success btn-sm" id="btnBuscarClienteDialogo">
+                                <i class="fas fa-search"></i>
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-12">
+                            <table id="tablaClientesDialogo"></table>
+                            <div id="pagertablaClientesDialogo"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" id="btnSeleccionarClienteDialogo">
+                        <i class="fas fa-mouse-pointer"></i>
+                        Seleccionar
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+                        <i class="fas fa-ban"></i>
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--MODAL CONTRATO CLIENTE-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="dialogoBuscarContrato">
+        <div class="modal-80 modal-dialog modal-lg container" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Buscar Contrato</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            Razón Social / Cliente:
+                            <input type="hidden" id="hCodigoClienteDialogoContrato" />
+                            <div class="input-group">
+                                <input type="text" readonly class="form-control" id="txtBuscarRucClienteDialogo" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button" title="Buscar Cliente" id="btnAbrirDialogoClienteBuscarAdenda">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-2">
+                            <br />
+                            <button class="btn btn-success btn-sm" id="btnBuscarContratoDialogo">
+                                <i class="fas fa-search"></i>
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-12">
+                            <table id="tablaBusquedaContratosDialogo"></table>
+                            <div id="pagertablaBusquedaContratosDialogo"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" id="btnSeleccionarContratoDialogo">
+                        <i class="fas fa-mouse-pointer"></i>
+                        Seleccionar
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+                        <i class="fas fa-ban"></i>
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--MODAL FOTO GRUPO-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="dialogoFotoGrupo">
+        <div class="modal-dialog modal-lg container" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Grupo Contrato de Clientes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <div>
+                                <img class="img-thumbnail" src="image/grupo.jpg" alt="Card image cap">
+                            </div>
+                            <h5 class="card-title">GRACIAS!!!!</h5>
+                            <p class="card-text">Totales</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+                        <i class="fas fa-ban"></i>
+                        Salir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="plugins/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+
+    <!--JQUERY-UI  -->
+    <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+
+    <!--JQGRID-->
+    <script src="plugins/Guriddo_jqGrid_JS_5.1.0/js/i18n/grid.locale-es.js"></script>
+    <script src="plugins/Guriddo_jqGrid_JS_5.1.0/js/jquery.jqGrid.min.js"></script>
+    <script src="plugins/Guriddo_jqGrid_JS_5.1.0/js/context-menu.js"></script>
+
+
+    <script src="plugins/waitMe-31.10.17/waitMe.min.js"></script>
+
+    <script type='text/javascript' src='https://www.jqueryscript.net/demo/Themeable-jQuery-Tabs-Plugin-CardTabs/jquery.cardtabs.js'></script>
+    <!--<script src="plugins/generatepdf/jspdf.debug.js"></script>-->
+    <script src="plugins/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+
+    <!-- ALERT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
+    <script src="plugins/JS_EXCEL/shim.js"></script>
+    <script src="plugins/JS_EXCEL/jszip.js"></script>
+    <script src="plugins/JS_EXCEL/xlsx.js"></script>
+
+    <!-- uncomment the next line here and in xlsxworker.js for ODS support -->
+    <script src="plugins/JS_EXCEL/dist/ods.js"></script>
+    <script src="plugins/JS_EXCEL/ExcelXLSX.js"></script>
+
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+
+    <script src="plugins/generatepdf/jspdf.debug.js"></script>
+    <script src="js/functionsGenerals.js"></script>
+
+    <script>
+
+        $('#btnMantenerContratosMain,#btnMantenerAdendasMain').on('click', function () {
+            $('div.SubOption').removeClass('option-active');
+            $(this).addClass('option-active');
+            $('#divContenido').load($(this).attr('page') + '?_c=' + GenerarStringAleatorio(15));
+        });
+
+        $('#btnSolicitudControversias,#btnActaAcuerdos').on('click', function () {
+            MensajeOk('Módulos en desarrollo');
+        });
+
+        function GenerarGrillaClientesDialogoContratos() {
+            var alto = $(document).height() - 350;
+            jQuery('#tablaClientesDialogo').jqGrid({
+                url: '',
+                datatype: "local",
+                colModel: [
+                    { label: 'Codigo Firmante', name: 'codigoFirmante', index: 'codigoFirmante', align: 'center', width: 100, hidden: true, key: true, sortable: false, resizable: false },
+                    { label: 'Cliente', name: 'cliente', index: 'cliente', align: 'left', width: 270, frozen: true, hidden: false, sortable: false, resizable: false },
+                    { label: 'Dirección', name: 'direccion', index: 'direccion', align: 'left', width: 270, hidden: false, sortable: false, resizable: false },
+                    {
+                        label: 'Ruc/DNI', name: 'rucDni', index: 'rucDni', align: 'center', width: 150, hidden: false, sortable: false, resizable: false,
+                        formatter: function (cellvalue, options, rowObject) {
+                            if (rowObject.tipoCliente == 'NATURAL')
+                                return rowObject.dni;
+                            else
+                                return rowObject.ruc;
+                        }
+                    },
+                    { label: 'Tipo', name: 'tipoCliente', index: 'tipoCliente', align: 'center', width: 150, hidden: false, sortable: false, resizable: false }
+                ],
+                rowNum: 10000,
+                shrinkToFit: false,
+                width: null,
+                height: alto,
+                rownumbers: true,
+                rownumWidth: 30,
+                rowList: [15, 50, 100, 200, 300, 500],
+                scroll: true,
+                pager: '#pagertablaClientesDialogo',
+                gridview: true,
+                ignoreCase: true,
+                viewrecords: true,
+                sortable: true,
+
+                onSelectRow: function (rowid, iRow, iCol, e) {
+                },
+                onCellSelect: function (rowid, icol, cellcontent, e) {
+                },
+                onRightClickRow: function (rowid, iRow, iCol, e) {
+                },
+                ondblClickRow: function (rowid, iRow, iCol, e) {
+                },
+                gridComplete: function (data) {
+                },
+                loadComplete: function (data) {
+                }
+            });
+        }
+
+        function GenerarGrillaContratosDialogo() {
+            var alto = $(document).height() - 350;
+            jQuery('#tablaBusquedaContratosDialogo').jqGrid({
+                url: '',
+                datatype: "local",
+                colModel: [
+                    { label: 'idRegistro', name: 'idRegistro', index: 'idRegistro', align: 'center', width: 100, hidden: true, key: true, sortable: false, resizable: false },
+                    { label: 'Codigo Contrato', name: 'codigoContrato', index: 'codigoContrato', align: 'center', width: 100, hidden: true, sortable: false, resizable: false },
+                    { label: 'Codigo Adenda', name: 'codigoAdenda', index: 'codigoAdenda', align: 'left', width: 100, hidden: true, sortable: false, resizable: false },
+                    { label: 'Nro Contrato', name: 'numeroContrato', index: 'numeroContrato', align: 'center', width: 100, sortable: false, resizable: false },
+                    { label: 'Nombre Contrato', name: 'nombreContrato', index: 'nombreContrato', align: 'left', width: 250, sortable: false, resizable: false },
+                    {
+                        label: 'Ultimo Nro Adenda', name: 'numeroAdenda', index: 'numeroAdenda', align: 'center', width: 150, sortable: false, resizable: false,
+                        formatter: function (cellvalue, options, rowObject) {
+                            if (cellvalue == 0)
+                                return '';
+                            else
+                                return cellvalue;
+                        }
+                    },
+                    { label: 'Nombre Adenda', name: 'nombreAdenda', index: 'nombreAdenda', align: 'left', width: 250, sortable: false, resizable: false },
+                    {
+                        label: 'Numero Solicitud', name: 'numeroSolicitud', index: 'numeroSolicitud', align: 'center', width: 130, sortable: false, resizable: false,
+                        formatter: function (cellvalue, options, rowObject) {
+                            return cellvalue == 0 ? '' : cellvalue;
+                        }
+                    },
+                    {
+                        label: 'Estado Solicitud', name: 'estadoSolicitud', index: 'estadoSolicitud', align: 'center', width: 130, sortable: false, resizable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            return ' style="' + getEstiloEstado(val) + '"';
+                        },
+                    },
+                    {
+                        label: 'Estado', name: 'estadoAdenda', index: 'estadoAdenda', align: 'center', width: 100, sortable: false, resizable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            return ' style="' + getEstiloEstado(val) + '"';
+                        },
+                    },
+                ],
+                rowNum: 10000,
+                shrinkToFit: false,
+                width: null,
+                height: alto,
+                rownumbers: true,
+                rownumWidth: 30,
+                rowList: [15, 50, 100, 200, 300, 500],
+                scroll: true,
+                pager: '#pagertablaBusquedaContratosDialogo',
+                gridview: true,
+                ignoreCase: true,
+                viewrecords: true,
+                sortable: true,
+
+                onSelectRow: function (rowid, iRow, iCol, e) {
+                },
+                onCellSelect: function (rowid, icol, cellcontent, e) {
+                },
+                onRightClickRow: function (rowid, iRow, iCol, e) {
+                },
+                ondblClickRow: function (rowid, iRow, iCol, e) {
+                },
+                gridComplete: function (data) {
+                },
+                loadComplete: function (data) {
+                }
+            });
+        }
+        GenerarGrillaClientesDialogoContratos();
+        GenerarGrillaContratosDialogo();
+
+
+        $('#btnBuscarClienteDialogo').off().on('click', function () {
+            var ruc = $('#txtBuscarRucCliente').val().trim(),
+                dni = $('#txtBuscarDniCliente').val().trim(),
+                razonSocial = $('#txtBuscarClienteRazonSocialCliente').val().trim(),
+                tipo = 0,
+                buscar = '';
+
+            if (ruc.length > 0) {
+                tipo = 1;
+                buscar = ruc;
+            } else if (dni.length > 0) {
+                tipo = 2;
+                buscar = dni;
+            } else if (razonSocial.length > 0) {
+                tipo = 3;
+                buscar = razonSocial;
+            } else {
+                MensajeError('Debe ingresar Ruc, Dni o Razón social a buscar');
+                return;
+            }
+
+            ReloadJQGRID('tablaClientesDialogo', []);
+
+            MostrarLoading(true, 'recuperando información...');
+
+            QueryAJAX('indraupc/buscarCliente',
+                {
+                    tipoBusqueda: tipo,
+                    buscar: buscar
+                },
+                function (result) {
+                    MostrarLoading(false);
+
+                    if (result == null) {
+                        MensajeError('Servidor devolvió Error de Datos');
+                        return;
+                    }
+
+                    if (result.length == 0)
+                        MensajeOk('Sin Registros', 'No se encontraron registros');
+                    else
+                        ReloadJQGRID('tablaClientesDialogo', result);
+                },
+                function (error) {
+                    MostrarLoading(false);
+                    MensajeError('Se produjo un error al conectarnos con el servicio');
+                });
+        });
+
+        $('#txtBuscarRucCliente,#txtBuscarDniCliente,#txtBuscarClienteRazonSocialCliente').off().on('input', function () {
+            switch ($(this).attr('id')) {
+                case 'txtBuscarRucCliente':
+                    $('#txtBuscarDniCliente,#txtBuscarClienteRazonSocialCliente').val('');
+                    break;
+                case 'txtBuscarDniCliente':
+                    $('#txtBuscarRucCliente,#txtBuscarClienteRazonSocialCliente').val('');
+
+                    break;
+                case 'txtBuscarClienteRazonSocialCliente':
+                    $('#txtBuscarRucCliente,#txtBuscarDniCliente').val('');
+            }
+        });
+        $('#btnLogo').on('click', function () {
+            OpenDialogo('dialogoFotoGrupo');
+        });
+
+    </script>
+</body>
+</html>

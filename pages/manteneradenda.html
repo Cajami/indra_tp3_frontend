@@ -1,0 +1,506 @@
+﻿<div id="CarruselModuloAdenda" data-interval="false" data-keyboard="false" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="overflow-y:auto;">
+
+            <!-- PANTALLA PRINCIPAL -->
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <span class="etiqueta">
+                            Cliente
+                        </span>
+                        <div class="input-group mb-3">
+                            <input type="hidden" id="hCodigoFirmanteSeleccionadoModuloPrincipalAdendas" />
+                            <input type="text" readonly class="form-control" id="txtClienteModuloPrincipalAdendas" />
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="button" title="Buscar Cliente" id="btnAbrirDialogoClienteBuscar">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <span class="etiqueta">
+                            Fecha Registro:
+                        </span>
+                        <input type="text" class="form-control" id="txtFechaInicioModuloPrincipal" />
+                    </div>
+                    <div class="col-sm-2">
+                        <br />
+                        <button class="btn btn-success float-right btn-sm btn-block" id="btnBuscarAdendasModuloPrincipal">
+                            <i class="fas fa-search"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-12">
+                        <table id="tablaClientesAdendas"></table>
+                        <div id="pagertablaClientesAdendas"></div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-12">
+
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnListoImprimirAdenda">
+                            <i class="far fa-share-square"></i>
+                            Listo para Imprimir
+                        </button>
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnEliminarAdenda">
+                            <i class="far fa-trash-alt"></i>
+                            Eliminar
+                        </button>
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnModificarAdenda">
+                            <i class="far fa-edit"></i>
+                            Modificar
+                        </button>
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnConsultarAdenda">
+                            <i class="fas fa-search-plus"></i>
+                            Consultar
+                        </button>
+                        <button class="btn btn-secondary float-right btn-sm" id="btnNuevoAdenda">
+                            <i class="far fa-file"></i>
+                            Nuevo
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="carousel-item">
+            <!--NUEVO Adenda  -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 font-weight-bold bg-light p-2 text-body" id="titleOpcion">
+                        NUEVO Adenda
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" id="divContenerInputsAdenda">
+
+                        <div class='tabsholder4'>
+                            <div data-tab="Principal" class="tabContenedor" style="overflow-y:auto;overflow-x:hidden;">
+
+                                <div class="row mt-2">
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Nro Contrato</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput text-center" id="txtNroContratoAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Nro Adenda</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput text-center" id="txtNroAdendaAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-secondary" id="btnBuscarDialogoContratoAdenda" title="Buscar Contrato & Adenda">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-2">
+
+                                        <button class="btn btn-success" id="btnBuscarContratoAdenda">
+                                            <i class="fas fa-search"></i>
+                                            Buscar
+                                        </button>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 3px solid #e6e2e2;" />
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Pais:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtPaisAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Departamento:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtDepartamentoAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Provincia:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtProvinciaAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Tipo Contrato:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtTipoContratoAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Tipo Servicio:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtTipoServicioAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Distrito:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtDistritoAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Nombre del Proyecto:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtNombreProyectoAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Nombre Adenda:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtNombreAdendaAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Nro. Adenda:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtNumeroAdendaAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-3">Razón Social/Cliente:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control textoInput" id="txtRazonSocialClienteAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">RUC/DNI:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtRucDniAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-3">Domicilio:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control textoInput" id="txtDomicilioAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Actividad:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtActividadAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div data-tab=" Antecedentes " class="tabContenedor" style="overflow-y:auto;overflow-x:hidden;">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-striped" id="tableAntecedentesNuevoContrato">
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-warning btn-sm" id="btnAgregarNuevoAntecedenteAdenda">
+                                            <i class="fas fa-plus"></i>
+                                            Agregar Nuevo Antecedente
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div data-tab=" Objeto " class="tabContenedor">
+                                Proin vestibulum turpis tristique maximus molestie. Integer dapibus eros ultricies sapien scelerisque, sit amet semper risus consequat. Ut egestas lorem eu blandit finibus. Nam non massa bibendum, tristique libero quis, lacinia justo. Sed non ultricies diam. In rutrum elit in urna iaculis tristique. Donec in lorem dolor. Ut varius tortor neque, et facilisis nulla porta non. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                                Integer fermentum sed quam a sagittis. Vivamus a bibendum elit, et suscipit risus. Sed sit amet justo sollicitudin, scelerisque tortor vel, porta ipsum. Donec bibendum viverra porttitor. Nulla vitae gravida magna, sed tincidunt odio. Curabitur quis posuere est, ac congue sem. Sed vulputate neque neque, aliquam viverra enim posuere eu. Pellentesque nec nisi mattis nisl lacinia vestibulum. Etiam pulvinar consectetur sem sit amet malesuada. Etiam mollis vestibulum convallis. Suspendisse aliquam, nunc ac mattis convallis, justo tellus ornare est, nec rhoncus enim nulla nec justo.
+                            </div>-->
+                            <div data-tab=" Monto Contratado " class="tabContenedor" style="overflow-y:auto;overflow-x:hidden;">
+                                <div class="row mt-5">
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="inputPassword" class="col-sm-4 col-form-label etiqueta">Tipo de Moneda</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="cboTipoMonedaNuevoContrato">
+                                                    <option value="1">SOLES</option>
+                                                    <option value="2">DOLARES</option>
+                                                </select>
+                                                <!--<input type="text" readonly class="form-control text-center" id="txtTipoMonedaNuevoContato">-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="inputPassword" class="col-sm-4 col-form-label etiqueta">Precio Contractual</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control text-center" id="txtPrecioContractualNuevoContato">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-tab=" Cronograma de Entrega " class="tabContenedor" style="overflow-y:auto;overflow-x:hidden;">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-striped" id="tablaCronogramaEntregaNuevoContrato">
+                                            <thead class="bg-primary font-weight-bold text-black-50 text-center">
+                                                <tr>
+                                                    <td>Del</td>
+                                                    <td>Nro Entrega</td>
+                                                    <td>Días</td>
+                                                    <td>Fecha de Entrega</td>
+                                                    <td>Descripción</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-warning btn-sm" id="btnAgregarNuevoCronogramaAdenda">
+                                            <i class="fas fa-plus"></i>
+                                            Agregar Nuevo Antecedente
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-tab=" Vigencia " class="tabContenedor" style="overflow-y:auto;overflow-x:hidden;">
+                                <div class="row mt-5">
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="inputPassword" class="col-sm-4 col-form-label etiqueta">Fecha Inicio Contrato:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control text-center" id="txtFechaInicioNuevoContato">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="inputPassword" class="col-sm-4 col-form-label etiqueta">Fecha Fin Contrato:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control text-center" id="txtFechaFinalNuevoContato">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-tab=" Formas de Pago " class="tabContenedor" style="overflow-y:auto;overflow-x:hidden;">
+
+                                <div class="row mt-3">
+                                    <div class="col-sm-12">
+                                        <input type="radio" id="chkPagoContadoNuevoContrato">
+                                        <label class="etiqueta" for="customCheck1">Pago al Contrado</label>
+
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-sm-6">
+
+                                        <input type="radio" id="chkPagoCuotasNuevoContrato">
+                                        <label class="etiqueta" for="customCheck1">Pago en Cuotas</label>
+
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control text-center font-weight-bold" readonly id="txtCuotasNuevoContrato" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="etiqueta">
+                                            Cuotas
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-striped" id="tablaCuotasNuevoContrato">
+                                            <thead class="bg-primary font-weight-bold text-black-50 text-center">
+                                                <tr>
+                                                    <td>Del</td>
+                                                    <td>Número Cuota</td>
+                                                    <td>Año</td>
+                                                    <td>Mes</td>
+                                                    <td>Último Día de Pago</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-warning btn-sm" id="btnAgregarCuotaPagoAdenda">
+                                            <i class="fas fa-plus"></i>
+                                            Agregar Nueva Cuota
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div data-tab=" Firmas " class="tabContenedor" style="overflow-y:auto;overflow-x:hidden;">
+                                <div class="row mt-2">
+                                    <div class="col-sm-4">
+                                        <span class="etiqueta">
+                                            DNI Cliente Firmante:
+                                        </span>
+                                        <input type="text" class="form-control text-center" maxlength="8" id="txtDniClienteFirmanteNuevoContrato" />
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <br />
+                                        <input type="text" class="form-control" readonly id="txtNombreClienteFirmanteNuevoContrato" />
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-sm-4">
+                                        <span class="etiqueta">
+                                            DNI Apoderado:
+                                        </span>
+                                        <input type="text" class="form-control text-center" maxlength="8" id="txtDniApoderadoNuevoContrato" />
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <br />
+                                        <input type="text" class="form-control" readonly id="txtNombreApoderadoNuevoContrato" />
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-sm-4">
+                                        <span class="etiqueta">
+                                            DNI Gerente:
+                                        </span>
+                                        <input type="text" class="form-control text-center" maxlength="8" readonly id="txtDniGerenteNuevoContrato" />
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <br />
+                                        <select class="form-control" id="cboNombresGerentesNuevoContrato"></select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div data-tab=" Clausulas a Imprmir " class="tabContenedor" style="overflow-y:auto;overflow-x:hidden;">
+                                <div class="row mt-4">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-8">
+                                        <table class="table" id="tablaClausulasAImprimirAdenda">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <input type="checkbox" numeroClausula="1" style="height: 18px;" id="checkClausulaPrimera" />
+                                                    </td>
+                                                    <td>CLÁUSULA PRIMERA - ANTECEDENTES</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <input type="checkbox" numeroclausula="2" style="height: 18px;" id="checkClausulaSegunda" />
+                                                    </td>
+                                                    <td>CLÁUSULA SEGUNDA - OBJETO</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <input type="checkbox" numeroclausula="3" style="height: 18px;" id="checkClausulaTercera" />
+                                                    </td>
+                                                    <td>CLÁUSULA TERCERA - CONTRAPRESTACIÓN</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <input type="checkbox" numeroclausula="4" style="height: 18px;" id="checkClausulaCuarta" />
+                                                    </td>
+                                                    <td>CLÁUSULA CUARTA - FORMA DE PAGO</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <input type="checkbox" numeroclausula="5" style="height: 18px;" id="checkClausulaQuinta" />
+                                                    </td>
+                                                    <td>CLÁUSULA QUINTA - PLAZO DEL CONTRATO</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <input type="checkbox" numeroclausula="6" style="height: 18px;" id="checkClausulaSexta" />
+                                                    </td>
+                                                    <td>CLÁUSULA SEXTA - CRONOGRAMA DE ENTREGA</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-12">
+
+                        <button class="btn btn-secondary btn-sm float-right ml-4" id="btnCancelarAdenda">
+                            <i class="fas fa-ban"></i>
+                            CANCELAR
+                        </button>
+
+                        <button class="btn btn-danger btn-sm float-right ml-4" id="btnGuardarEliminarAdenda">
+                            <i class="far fa-trash-alt"></i>
+                            ELIMINAR
+                        </button>
+
+                        <button class="btn btn-info btn-sm float-right ml-4" id="btnGuardarModificacionAdenda">
+                            <i class="fas fa-pencil-alt"></i>
+                            MODIFICAR
+                        </button>
+
+                        <button class="btn btn-primary btn-sm float-right ml-4" id="btnGuardarAdenda">
+                            <i class="far fa-save"></i>
+                            GUARDAR
+                        </button>
+
+                        <button class="btn btn-secondary btn-sm float-right " id="btnVistaPreviaAdenda">
+                            <i class="fas fa-eye"></i>
+                            Vista Previa
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/manteneradendas.js"></script>

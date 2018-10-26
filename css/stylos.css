@@ -1,0 +1,89 @@
+﻿body {
+    color: #0c0c0c !important;
+}
+
+.disabled {
+    opacity: 0.4;
+}
+
+.SubOption {
+    float: left;
+    text-align: center;
+    padding: 0px 10px;
+    /*border-right: 1px solid #f5f3f3;*/
+    color: #bfbfb3;
+    opacity: 0.4;
+}
+
+.cursor{
+    cursor:pointer;
+}
+
+    .SubOption:hover {
+        background-color: #88848c !important;
+        cursor: pointer;
+    }
+
+    .SubOption i {
+        display: block;
+    }
+
+.option-active {
+    color: #f5f5f5 !important;
+    opacity: 1;
+}
+
+hr {
+    margin: 1px 0px 14px 0px;
+}
+
+.textoInput {
+    padding: 4px !important;
+}
+
+.modal-header {
+    background-color: #094684;
+}
+
+.rowSeleccionado {
+    background-color: #ffff37 !important;
+    color: #08065f !important;
+    font-weight: bold !important;
+}
+
+input:read-only {
+    background-color: initial !important;
+}
+
+div.card-tabs-stack.wiki div[data-tab] {
+    border: initial !important;
+}
+
+div.card-tabs-bar.wiki a {
+    border: initial !important;
+    border-bottom: 1px #A7D7F9 solid !important;
+}
+
+/*JQGRID*/
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid #989898 !important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    font-weight: bold !important;
+}
+
+.etiqueta {
+    color: #808080;
+    font-weight: bold;
+}
+
+
+.modal-80 {
+    width: 80% !important;
+    max-width: initial !important;
+}
+.modal-60 {
+    width: 60% !important;
+    max-width: initial !important;
+}

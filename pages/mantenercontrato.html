@@ -1,0 +1,386 @@
+﻿<div id="CarruselModuloContrato" data-interval="false" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="overflow-y:auto;">
+
+            <!-- PANTALLA PRINCIPAL -->
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="etiqueta">
+                            Cliente
+                        </span>
+                        <div class="input-group mb-3">
+                            <input type="hidden" id="hCodigoFirmanteSeleccionadoModuloPrincipalContratos" />
+                            <input type="text" readonly class="form-control" id="txtClienteModuloPrincipalContratos" />
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="button" title="Buscar Cliente" id="btnAbrirDialogoClienteBuscar">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <span class="etiqueta">
+                            Fecha Inicio:
+                        </span>
+                        <input type="text" class="form-control" id="txtFechaInicioModuloPrincipal" />
+                    </div>
+                    <div class="col-sm-2">
+                        <span class="etiqueta">
+                            Fecha Fin:
+                        </span>
+                        <input type="text" class="form-control" id="txtFechaFinalModuloPrincipal" />
+                    </div>
+
+                    <div class="col-sm-2">
+                        <br />
+                        <button class="btn btn-success float-right btn-sm btn-block" id="btnBuscarContratosModuloPrincipal">
+                            <i class="fas fa-search"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-12">
+                        <table id="tablaIngresoStock"></table>
+                        <div id="pagertablaIngresoStock"></div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-12">
+
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnListoImprimirContrato">
+                            <i class="far fa-share-square"></i>
+
+                            Listo para Imprimir
+                        </button>
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnEliminarContrato">
+                            <i class="far fa-trash-alt"></i>
+                            Eliminar
+                        </button>
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnConsultarContrato">
+                            <i class="fas fa-search-plus"></i>
+                            Consultar
+                        </button>
+                        <button class="btn btn-secondary float-right btn-sm" id="btnNuevoContrato">
+                            <i class="far fa-file"></i>
+                            Nuevo
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="carousel-item">
+            <!--NUEVO CONTRATO  -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 font-weight-bold bg-light p-2 text-body" id="titleOpcion">
+                        NUEVO CONTRATO
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+
+                    <div class="col-sm-10">
+                        <div style="overflow-y:auto;overflow-x:hidden;" id="contenedorColumna10NuevoContrato">
+                            <div class='tabsholder4'>
+                                <div data-tab="Principal" class="tabContenedor">
+                                    <div class="row">
+                                        <input type="hidden" id="hArchivoCorrectoNuevoContrato" />
+                                        <input type="hidden" id="iCodigoAdendaNuevoContrato" />
+                                        <div class="col-sm-4">
+                                            <span class="etiqueta">
+                                                Pais:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtPaisNuevoContrato" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="etiqueta">
+                                                Departamento:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtDepartamentoNuevoContrato" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="etiqueta">
+                                                Provincia:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtProvinciaNuevoContrato" />
+                                        </div>
+
+                                    </div>
+                                    <div class="row mt-1">
+                                        <div class="col-sm-4">
+                                            <span class="etiqueta">
+                                                Tipo Contrato:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtTipoContratoNuevoContrato" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="etiqueta">
+                                                Tipo Servicio:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtServicioNuevoContrato" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="etiqueta">
+                                                Distrito:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtDistritoNuevoContrato" />
+                                        </div>
+                                    </div>
+                                    <div class="row mt-1">
+                                        <div class="col-sm-8">
+                                            <span class="etiqueta">
+                                                Nombre de Contrato:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtNombreContratoNuevoContrato" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="etiqueta">
+                                                Número de Contrato:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtNumeroContratoNuevoContrato" />
+                                        </div>
+                                    </div>
+                                    <div class="row mt-1">
+                                        <div class="col-sm-12">
+                                            <span class="etiqueta">
+                                                Nombre del Proyecto:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtNombreProyectoNuevoContrato" />
+                                        </div>
+                                    </div>
+                                    <div class="row mt-1">
+                                        <div class="col-sm-8">
+                                            <span class="etiqueta">
+                                                Razón Social / Cliente:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtRazonSocialClienteNuevoContrato" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="etiqueta">
+                                                RUC / DNI:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtRucDNIClienteNuevoContrato" />
+                                        </div>
+                                    </div>
+                                    <div class="row mt-1">
+                                        <div class="col-sm-8">
+                                            <span class="etiqueta">
+                                                Domicilio:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtDomicilioNuevoContrato" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="etiqueta">
+                                                Actividad:
+                                            </span>
+                                            <input type="text" class="form-control" readonly id="txtActividadNuevoContrato" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-tab=" Antecedentes " class="tabContenedor">
+                                    <table class="table table-striped" id="tableAntecedentesNuevoContrato">
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!--<div data-tab=" Objeto " class="tabContenedor">
+                                    Proin vestibulum turpis tristique maximus molestie. Integer dapibus eros ultricies sapien scelerisque, sit amet semper risus consequat. Ut egestas lorem eu blandit finibus. Nam non massa bibendum, tristique libero quis, lacinia justo. Sed non ultricies diam. In rutrum elit in urna iaculis tristique. Donec in lorem dolor. Ut varius tortor neque, et facilisis nulla porta non. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                                    Integer fermentum sed quam a sagittis. Vivamus a bibendum elit, et suscipit risus. Sed sit amet justo sollicitudin, scelerisque tortor vel, porta ipsum. Donec bibendum viverra porttitor. Nulla vitae gravida magna, sed tincidunt odio. Curabitur quis posuere est, ac congue sem. Sed vulputate neque neque, aliquam viverra enim posuere eu. Pellentesque nec nisi mattis nisl lacinia vestibulum. Etiam pulvinar consectetur sem sit amet malesuada. Etiam mollis vestibulum convallis. Suspendisse aliquam, nunc ac mattis convallis, justo tellus ornare est, nec rhoncus enim nulla nec justo.
+                                </div>-->
+                                <div data-tab=" Monto Contratado " class="tabContenedor">
+                                    <div class="row mt-5">
+                                        <div class="col-sm-8">
+                                            <div class="form-group row">
+                                                <label for="inputPassword" class="col-sm-4 col-form-label etiqueta">Tipo de Moneda</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" readonly class="form-control text-center" id="txtTipoMonedaNuevoContato">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="form-group row">
+                                                <label for="inputPassword" class="col-sm-4 col-form-label etiqueta">Precio Contractual</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" readonly class="form-control text-center" id="txtPrecioContractualNuevoContato">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-tab=" Cronograma de Entrega " class="tabContenedor">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered table-striped" id="tablaCronogramaEntregaNuevoContrato">
+                                                <thead class="bg-primary font-weight-bold text-black-50 text-center">
+                                                    <tr>
+                                                        <td>Nro Entrega</td>
+                                                        <td>Días</td>
+                                                        <td>Fecha de Entrega</td>
+                                                        <td>Descripción</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-tab=" Vigencia " class="tabContenedor">
+                                    <div class="row mt-5">
+                                        <div class="col-sm-8">
+                                            <div class="form-group row">
+                                                <label for="inputPassword" class="col-sm-4 col-form-label etiqueta">Fecha Inicio Contrato:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control text-center" readonly id="txtFechaInicioNuevoContato">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="form-group row">
+                                                <label for="inputPassword" class="col-sm-4 col-form-label etiqueta">Fecha Fin Contrato:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control text-center" readonly id="txtFechaFinalNuevoContato">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-tab=" Formas de Pago " class="tabContenedor">
+
+                                    <div class="row mt-3">
+                                        <div class="col-sm-12">
+                                            <input type="radio" disabled id="chkPagoContadoNuevoContrato">
+                                            <label class="etiqueta" for="customCheck1">Pago al Contrado</label>
+
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-sm-6">
+
+                                            <input type="radio" disabled id="chkPagoCuotasNuevoContrato">
+                                            <label class="etiqueta" for="customCheck1">Pago en Cuotas</label>
+
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control text-center font-weight-bold" readonly id="txtCuotasNuevoContrato" />
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <span class="etiqueta">
+                                                Cuotas
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered table-striped" id="tablaCuotasNuevoContrato">
+                                                <thead class="bg-primary font-weight-bold text-black-50 text-center">
+                                                    <tr>
+                                                        <td>Número Cuota</td>
+                                                        <td>Año</td>
+                                                        <td>Mes</td>
+                                                        <td>Último Día de Pago</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div data-tab=" Firmas " class="tabContenedor">
+                                    <div class="row mt-2">
+                                        <div class="col-sm-4">
+                                            <span class="etiqueta">
+                                                DNI Cliente Firmante:
+                                            </span>
+                                            <input type="text" class="form-control text-center" maxlength="8" id="txtDniClienteFirmanteNuevoContrato" />
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <br />
+                                            <input type="text" class="form-control" readonly id="txtNombreClienteFirmanteNuevoContrato" />
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-sm-4">
+                                            <span class="etiqueta">
+                                                DNI Apoderado:
+                                            </span>
+                                            <input type="text" class="form-control text-center" maxlength="8" id="txtDniApoderadoNuevoContrato" />
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <br />
+                                            <input type="text" class="form-control" readonly id="txtNombreApoderadoNuevoContrato" />
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-sm-4">
+                                            <span class="etiqueta">
+                                                DNI Gerente:
+                                            </span>
+                                            <input type="text" class="form-control text-center" maxlength="8" readonly id="txtDniGerenteNuevoContrato" />
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <br />
+                                            <select class="form-control" id="cboNombresGerentesNuevoContrato"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="row mt-4">
+                            <div class="col-sm-12 text-center">
+                                <button class="btn btn-secondary btn-sm btn-block" id="btnSubirArchivoRequerimientoPrograma" style="display:none;">
+                                    <i class="far fa-folder-open"></i>
+                                    Requerimiento
+                                    <br />
+                                    ó
+                                    <br />
+                                    Programa
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <button class="btn btn-secondary btn-block" id="btnVistaPreviaNuevoContrato">
+                                <i class="fas fa-eye"></i>
+                                Vista Previa
+                            </button>
+                        </div>
+                        <div class="row mt-4">
+                            <button class="btn btn-primary btn-block font-weight-bold" id="btnGuardarNuevoContrato">
+                                <i class="far fa-save"></i>
+                                GUARDAR
+                            </button>
+                        </div>
+                        <div class="row mt-4">
+                            <button class="btn btn-danger btn-block font-weight-bold" id="btnEliminarNuevoContrato">
+                                <i class="far fa-trash-alt"></i>
+                                ELIMINAR
+                            </button>
+                        </div>
+                        <div class="row mt-4">
+                            <button class="btn btn-secondary btn-block font-weight-bold" style="bottom: 10px;position: absolute;" id="btnCancelarNuevoContrato">
+                                <i class="fas fa-ban"></i>
+                                CANCELAR
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--INPUT TYPE=FILE -> ARCHIVOS XLSX-->
+<input type="file" id="subirArchivosXLSX" style="display:none;" />
+
+<script src="../js/mantenercontrato.js"></script>
