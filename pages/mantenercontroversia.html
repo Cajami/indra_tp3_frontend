@@ -1,0 +1,299 @@
+﻿<div id="CarruselModuloControversia" data-interval="false" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item " style="overflow-y:auto;">
+
+            <!-- PANTALLA PRINCIPAL -->
+            <div class="container mt-3">
+                <div class="row">                    
+                    <div class="col-sm-2">
+                        <span class="etiqueta">
+                            Fecha Inicio:
+                        </span>
+                        <input type="text" class="form-control" id="txtFechaInicioModuloPrincipal" />
+                    </div>
+                    <div class="col-sm-2">
+                        <span class="etiqueta">
+                            Fecha Fin:
+                        </span>
+                        <input type="text" class="form-control" id="txtFechaFinalModuloPrincipal" />
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="etiqueta">
+                            Nombre Contrato
+                        </span>                        
+                        <input type="text" readonly class="form-control" id="txtNombreContratoModuloPrincipalControversia" />                                                    
+                    </div>
+                    <div class="col-sm-2">
+                        <span class="etiqueta">
+                            Estado
+                        </span>
+                        <select class="form-control" id="cboEstadoModuloPrincipalControversia"></select>
+                    </div>
+                    <div class="col-sm-2">
+                        <br />
+                        <button class="btn btn-success float-right btn-sm btn-block" id="btnBuscarContratosModuloPrincipal">
+                            <i class="fas fa-search"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-12">
+                        <table id="tablaClientesControversia"></table>
+                        <div id="pagertablaClientesControversia"></div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-12">
+
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnEliminarControversia">
+                            <i class="far fa-trash-alt"></i>
+                            Eliminar
+                        </button>
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnModificarControversia">
+                            <i class="far fa-edit"></i>
+                            Modificar
+                        </button>
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnConsultarControversia">
+                            <i class="fas fa-search-plus"></i>
+                            Consultar
+                        </button>
+                        <button class="btn btn-secondary float-right btn-sm" id="btnNuevoControversia">
+                            <i class="far fa-file"></i>
+                            Nuevo
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="carousel-item active">
+            <!--NUEVA CONTROVERSIA  -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 font-weight-bold bg-light p-2 text-body" id="titleOpcion">
+                        NUEVA CONTROVERSIA
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" id="divContenerInputsControversia">
+
+                        <div class='tabsholder4'>
+                            <div data-tab="Principal" class="tabContenedor" style="overflow-y:auto;overflow-x:hidden;">
+
+                                <div class="row mt-2">
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-6">Fecha de Registro</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" readonly class="form-control textoInput text-center" id="txtFechaRegistroControversia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Código de Controversia</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" readonly class="form-control textoInput text-center" id="txtNroControversiaControversia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <hr style="border-top: 3px solid #e6e2e2;" />
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-6">Nro Contrato:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" readonly class="form-control textoInput" id="txtPaisAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-6">Nro Adenda:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" readonly class="form-control textoInput" id="txtDepartamentoAdenda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-secondary" id="btnBuscarDialogoContratoAdenda" title="Buscar Contrato & Adenda">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-2">
+
+                                        <button class="btn btn-success" id="btnBuscarContratoControversia">
+                                            <i class="fas fa-search"></i>
+                                            Buscar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-6">Nombre Contrato:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" readonly class="form-control textoInput" id="txtTipoContratoControversia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-6">Nombre Adenda:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" readonly class="form-control textoInput" id="txtTipoServicioControversia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-3">Razón Social/Cliente:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control textoInput" id="txtRazonSocialClienteControversia">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">RUC/DNI:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtRucDniControversia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 3px solid #e6e2e2;" />
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-3">Tipo Documento:</label>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" id="cboTipoDocumentoControversia"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">N°Documento:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtNumeroDocumentoControversia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-3">Nombres y Apellidos:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control textoInput" id="txtNombresApellidosControversia">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Teléfono:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtTelefonoControversia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-3">Dirección:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control textoInput" id="txtDireccionControversia">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Email:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtEmailControversia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 3px solid #e6e2e2;" />
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Descripción:</label>                                            
+                                            <div class="col-sm-12">
+                                                <textarea type="text" readonly class="form-control" rows="4" id="txtDescripcionControversia"></textarea>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-8">Número de página (Referencia)</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" readonly class="form-control textoInput text-center" id="txtNumeroPaginaControversia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-8">Número de cláusula (Referencia)</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" readonly class="form-control textoInput text-center" id="txtNroClausulaControversia">
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                                <hr style="border-top: 3px solid #e6e2e2;" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-12">
+
+                        <button class="btn btn-secondary btn-sm float-right ml-4" id="btnCancelarControversia">
+                            <i class="fas fa-ban"></i>
+                            CANCELAR
+                        </button>
+
+                        <button class="btn btn-danger btn-sm float-right ml-4" id="btnGuardarEliminarControversia">
+                            <i class="far fa-trash-alt"></i>
+                            ELIMINAR
+                        </button>
+
+                        <button class="btn btn-info btn-sm float-right ml-4" id="btnGuardarModificacionControversia">
+                            <i class="fas fa-pencil-alt"></i>
+                            MODIFICAR
+                        </button>
+
+                        <button class="btn btn-primary btn-sm float-right ml-4" id="btnGuardarControversia">
+                            <i class="far fa-save"></i>
+                            GUARDAR
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--INPUT TYPE=FILE -> ARCHIVOS XLSX-->
+<!--<input type="file" id="subirArchivosXLSX" style="display:none;" />-->
+
+<script src="../js/mantenercontrato.js"></script>

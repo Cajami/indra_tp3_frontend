@@ -50,9 +50,9 @@
                         <i class="far fa-newspaper fa-2x"></i>
                         <label>Mantener Adenda</label>
                     </div>
-                    <div class="SubOption">
-                        <i class="far fa-newspaper fa-2x" id="btnSolicitudControversias"></i>
-                        <label>Solicitud Controversia</label>
+                    <div class="SubOption" page="pages/mantenercontroversia.html" id="btnMantenerControversiaMain">
+                        <i class="far fa-newspaper fa-2x"></i>
+                        <label>Mantener Controversia</label>
                     </div>
                     <div class="SubOption">
                         <i class="far fa-newspaper fa-2x" id="btnActaAcuerdos"></i>
@@ -264,13 +264,13 @@
 
     <script>
 
-        $('#btnMantenerContratosMain,#btnMantenerAdendasMain').on('click', function () {
+        $('#btnMantenerContratosMain,#btnMantenerAdendasMain,#btnMantenerControversiaMain').on('click', function () {
             $('div.SubOption').removeClass('option-active');
             $(this).addClass('option-active');
             $('#divContenido').load($(this).attr('page') + '?_c=' + GenerarStringAleatorio(15));
         });
 
-        $('#btnSolicitudControversias,#btnActaAcuerdos').on('click', function () {
+        $('#btnActaAcuerdos').on('click', function () {
             MensajeOk('Módulos en desarrollo');
         });
 
@@ -391,6 +391,7 @@
                 }
             });
         }
+        
         GenerarGrillaClientesDialogoContratos();
         GenerarGrillaContratosDialogo();
 
@@ -457,6 +458,7 @@
                     $('#txtBuscarRucCliente,#txtBuscarDniCliente').val('');
             }
         });
+        
         $('#btnLogo').on('click', function () {
             OpenDialogo('dialogoFotoGrupo');
         });
