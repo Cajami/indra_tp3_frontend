@@ -87,3 +87,8 @@ div.card-tabs-bar.wiki a {
     width: 60% !important;
     max-width: initial !important;
 }
+
+.toggle{
+    display: inline-block;
+    vertical-align: middle;
+}

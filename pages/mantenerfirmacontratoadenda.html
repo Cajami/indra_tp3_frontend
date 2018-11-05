@@ -1,0 +1,283 @@
+
+<div id="CarruselModuloFirmas" data-interval="false" data-keyboard="false" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="overflow-y:auto;">
+
+            <!-- PANTALLA PRINCIPAL -->
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <span class="etiqueta">
+                            Cliente
+                        </span>
+                        <div class="input-group mb-3">
+                            <input type="hidden" id="hCodigoFirmanteSeleccionadoModuloPrincipalFirmas" />
+                            <input type="text" readonly class="form-control" id="txtClienteFirmas" />
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="button" title="Buscar Cliente" id="btnAbrirDialogoClienteBuscar">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <br />
+                        <button class="btn btn-success float-right btn-sm btn-block" id="btnBuscarContratosAdendasFirmas">
+                            <i class="fas fa-search"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-12">
+                        <table id="tablaFirmas"></table>
+                        <div id="pagertablaFirmas"></div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-12">
+
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnSeleccionar">
+                            <i class="far fa-share-square"></i>
+                            Seleccionar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="carousel-item">
+            <!--NUEVO Adenda  -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 font-weight-bold bg-light p-2 text-body" id="titleOpcion">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-10" id="divContenerInputsAdenda">
+
+                        <div class='tabsholder4'>
+
+                            <div data-tab=" Principal " class="tabContenedor" style="overflow-y:auto;overflow-x:hidden;">
+
+                                <div class="row mt-2">
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Pais:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtPaisFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Departamento:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtDepartamentoFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Provincia:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtProvinciaFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Tipo Contrato:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtTipoContratoFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Tipo Servicio:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtTipoServicioFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Distrito:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtDistritoFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Nombre del Proyecto:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtNombreProyectoFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Nombre Adenda:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtNombreAdendaFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Nro. Adenda:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtNumeroAdendaFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-3">Razón Social/Cliente:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control textoInput" id="txtRazonSocialClienteFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">RUC/DNI:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtRucDniFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-3">Domicilio:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control textoInput" id="txtDomicilioFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-4">Actividad:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control textoInput" id="txtActividadFirma">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div data-tab=" Firmas " class="tabContenedor">
+                                <div class="row mt-2">
+                                    <div class="col-sm-4">
+                                        <span class="etiqueta">
+                                            DNI Cliente Firmante:
+                                        </span>
+                                        <input type="text" class="form-control text-center" maxlength="8" id="txtDniClienteFirmante" />
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <br />
+                                        <input type="text" class="form-control" readonly id="txtNombreClienteFirmante" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <br>
+                                        Firmó: <div class="toggle toggle-modern" id="chkDniCliente"></div>
+
+                                    </div>
+
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-sm-4">
+                                        <span class="etiqueta">
+                                            DNI Apoderado:
+                                        </span>
+                                        <input type="text" class="form-control text-center" maxlength="8" id="txtDniApoderado" />
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <br />
+                                        <input type="text" class="form-control" readonly id="txtNombreApoderado" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <br>
+                                        Firmó: <div class="toggle toggle-modern" id="chkDnApoderado"></div>
+
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-sm-4">
+                                        <span class="etiqueta">
+                                            DNI Gerente:
+                                        </span>
+                                        <input type="text" class="form-control text-center" maxlength="8" readonly id="txtDniGerente" />
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <br />
+                                        <input type="text" class="form-control" readonly id="txtNombreGerente" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <br>
+                                        Firmó: <div class="toggle toggle-modern" id="chkDniGerente"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-tab=" Documentos " class="tabContenedor" style="overflow-y:auto;overflow-x:hidden;">
+                                <div class="row mt-5">
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="row mt-4">
+                            <button class="btn btn-danger btn-lg btn-block" id="btnObservarFirmaAdenda">
+                                <i class="far fa-folder-open"></i>
+                                Observar
+                            </button>
+                        </div>
+                        <div class="row mt-5">
+                            <button class="btn btn-primary btn-block font-weight-bold" id="btnGuardarFirmaAdenda">
+                                <i class="far fa-save"></i>
+                                GUARDAR
+                            </button>
+                        </div>
+                        <div class="row mt-2">
+                            <button class="btn btn-secondary btn-block" id="btnVistaPreviaFirmaAdenda">
+                                <i class="fas fa-eye"></i>
+                                Vista Previa
+                            </button>
+                        </div>
+
+                        <div class="row mt-4">
+                            <button class="btn btn-secondary btn-block font-weight-bold" style="bottom: 10px;position: absolute;"
+                                id="btnCancelarFirmaAdenda">
+                                <i class="  fas fa-ban"></i>
+                                CANCELAR
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="../js/mantenerfirmas.js"></script>

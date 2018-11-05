@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Contrato de Clientes</title>
@@ -12,6 +13,13 @@
 
     <!--JQUERY-UI -->
     <link href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
+
+    
+    <!-- TOGGLES -->
+    <link href="plugins/jquery-toggles/toggles-full.css" rel="stylesheet" />
+
+    <link href="plugins/jquery-toggles/themes/toggles-modern.css" rel="stylesheet" />
+
 
     <!--JQGRID -->
     <link href="plugins/Guriddo_jqGrid_JS_5.1.0/css/ui.jqgrid-bootstrap.css" rel="stylesheet" />
@@ -27,6 +35,7 @@
 
     <link href="css/stylos.css" rel="stylesheet" />
 </head>
+
 <body>
 
     <!-- NAVBAR -->
@@ -34,7 +43,8 @@
         <a class="navbar-brand" href="#">
             <img src="image/logoindra.png" class="img-thumbnail" style="margin-top: -10px;margin-bottom: -10px;width: 90px;" />
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -54,9 +64,9 @@
                         <i class="far fa-newspaper fa-2x"></i>
                         <label>Mantener Controversia</label>
                     </div>
-                    <div class="SubOption">
-                        <i class="far fa-newspaper fa-2x" id="btnActaAcuerdos"></i>
-                        <label>Acta de Acuerdos</label>
+                    <div class="SubOption" page="pages/mantenerfirmacontratoadenda.html" id="btnMantenerFirmas">
+                        <i class="far fa-newspaper fa-2x"></i>
+                        <label>Firmar Contrato & Adenda</label>
                     </div>
 
                 </li>
@@ -233,6 +243,10 @@
     <!--JQUERY-UI  -->
     <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 
+    
+    <!-- TOGGLES -->
+    <script src="plugins/jquery-toggles/toggles.min.js"></script>
+
     <!--JQGRID-->
     <script src="plugins/Guriddo_jqGrid_JS_5.1.0/js/i18n/grid.locale-es.js"></script>
     <script src="plugins/Guriddo_jqGrid_JS_5.1.0/js/jquery.jqGrid.min.js"></script>
@@ -270,8 +284,10 @@
             $('#divContenido').load($(this).attr('page') + '?_c=' + GenerarStringAleatorio(15));
         });
 
-        $('#btnActaAcuerdos').on('click', function () {
-            MensajeOk('Módulos en desarrollo');
+        $('#btnMantenerFirmas').on('click', function () {
+            $('div.SubOption').removeClass('option-active');
+            $(this).addClass('option-active');
+            $('#divContenido').load($(this).attr('page') + '?_c=' + GenerarStringAleatorio(15));
         });
 
         function GenerarGrillaClientesDialogoContratos() {
@@ -391,7 +407,7 @@
                 }
             });
         }
-        
+
         GenerarGrillaClientesDialogoContratos();
         GenerarGrillaContratosDialogo();
 
@@ -458,11 +474,12 @@
                     $('#txtBuscarRucCliente,#txtBuscarDniCliente').val('');
             }
         });
-        
+
         $('#btnLogo').on('click', function () {
             OpenDialogo('dialogoFotoGrupo');
         });
 
     </script>
 </body>
+
 </html>
