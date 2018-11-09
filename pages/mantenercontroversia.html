@@ -1,6 +1,6 @@
 ﻿<div id="CarruselModuloControversia" data-interval="false" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-        <div class="carousel-item " style="overflow-y:auto;">
+        <div class="carousel-item active" style="overflow-y:auto;">
 
             <!-- PANTALLA PRINCIPAL -->
             <div class="container mt-3">
@@ -21,17 +21,20 @@
                         <span class="etiqueta">
                             Nombre Contrato
                         </span>                        
-                        <input type="text" readonly class="form-control" id="txtNombreContratoModuloPrincipalControversia" />                                                    
+                        <input type="text" class="form-control" id="txtNombreContratoModuloPrincipalControversia" />                                                    
                     </div>
                     <div class="col-sm-2">
                         <span class="etiqueta">
                             Estado
                         </span>
-                        <select class="form-control" id="cboEstadoModuloPrincipalControversia"></select>
+                        <select class="form-control" id="cboEstadoModuloPrincipalControversia">
+                            <option value="1">INICIADO</option>
+                            <option value="2">APROBADO</option>
+                        </select>
                     </div>
                     <div class="col-sm-2">
                         <br />
-                        <button class="btn btn-success float-right btn-sm btn-block" id="btnBuscarContratosModuloPrincipal">
+                        <button class="btn btn-success float-right btn-sm btn-block" id="btnBuscarControversiasModuloPrincipal">                                
                             <i class="fas fa-search"></i>
                             Buscar
                         </button>
@@ -39,8 +42,8 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col-sm-12">
-                        <table id="tablaClientesControversia"></table>
-                        <div id="pagertablaClientesControversia"></div>
+                        <table id="tablaClientesControversias"></table>
+                        <div id="pagertablaClientesControversias"></div>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -68,7 +71,7 @@
             </div>
 
         </div>
-        <div class="carousel-item active">
+        <div class="carousel-item ">
             <!--NUEVA CONTROVERSIA  -->
             <div class="container">
                 <div class="row">
@@ -107,7 +110,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6">Nro Contrato:</label>
                                             <div class="col-sm-6">
-                                                <input type="text" readonly class="form-control textoInput" id="txtPaisAdenda">
+                                                <input type="text" readonly class="form-control textoInput text-center" id="txtNroContratoControversia">
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +118,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6">Nro Adenda:</label>
                                             <div class="col-sm-6">
-                                                <input type="text" readonly class="form-control textoInput" id="txtDepartamentoAdenda">
+                                                <input type="text" readonly class="form-control textoInput text-center" id="txtNroAdendaControversia">
                                             </div>
                                         </div>
                                     </div>
@@ -126,7 +129,7 @@
                                     </div>
                                     <div class="col-sm-2">
 
-                                        <button class="btn btn-success" id="btnBuscarContratoControversia">
+                                        <button class="btn btn-success" id="btnBuscarContratoAdenda">
                                             <i class="fas fa-search"></i>
                                             Buscar
                                         </button>
@@ -137,7 +140,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6">Nombre Contrato:</label>
                                             <div class="col-sm-6">
-                                                <input type="text" readonly class="form-control textoInput" id="txtTipoContratoControversia">
+                                                <input type="text" readonly class="form-control textoInput" id="txtNombreContratoControversia">
                                             </div>
                                         </div>
                                     </div>
@@ -145,7 +148,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6">Nombre Adenda:</label>
                                             <div class="col-sm-6">
-                                                <input type="text" readonly class="form-control textoInput" id="txtTipoServicioControversia">
+                                                <input type="text" readonly class="form-control textoInput" id="txtNombreAdendaControversia">
                                             </div>
                                         </div>
                                     </div>
@@ -175,7 +178,8 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-3">Tipo Documento:</label>
                                             <div class="col-sm-6">
-                                                <select class="form-control" id="cboTipoDocumentoControversia"></select>
+                                                <!--<select class="form-control" id="cboTipoDocumentoControversia"></select>-->
+                                                <input type="text" readonly class="form-control textoInput" id="txtTipoDocumentoControversia" value="DNI">
                                             </div>
                                         </div>
                                     </div>
@@ -233,7 +237,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-4">Descripción:</label>                                            
                                             <div class="col-sm-12">
-                                                <textarea type="text" readonly class="form-control" rows="4" id="txtDescripcionControversia"></textarea>
+                                                <textarea type="text" class="form-control" rows="4" id="txtDescripcionControversia"></textarea>
                                             </div>
                                             
                                         </div>
@@ -244,7 +248,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-8">Número de página (Referencia)</label>
                                             <div class="col-sm-4">
-                                                <input type="text" readonly class="form-control textoInput text-center" id="txtNumeroPaginaControversia">
+                                                <input type="text" class="form-control textoInput text-center" id="txtNumeroPaginaControversia">
                                             </div>
                                         </div>
                                     </div>
@@ -252,7 +256,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-8">Número de cláusula (Referencia)</label>
                                             <div class="col-sm-4">
-                                                <input type="text" readonly class="form-control textoInput text-center" id="txtNroClausulaControversia">
+                                                <input type="text" class="form-control textoInput text-center" id="txtNroClausulaControversia">
                                             </div>
                                         </div>
                                     </div>                                    
@@ -296,4 +300,5 @@
 <!--INPUT TYPE=FILE -> ARCHIVOS XLSX-->
 <!--<input type="file" id="subirArchivosXLSX" style="display:none;" />-->
 
-<script src="../js/mantenercontrato.js"></script>
+
+<script src="../js/mantenercontroversia.js"></script>
