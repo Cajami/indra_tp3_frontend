@@ -1,4 +1,3 @@
-
 <div id="CarruselModuloFirmas" data-interval="false" data-keyboard="false" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active" style="overflow-y:auto;">
@@ -212,9 +211,10 @@
                                         <input type="text" class="form-control" readonly id="txtNombreApoderado" />
                                     </div>
                                     <div class="col-sm-3">
-                                        <br>
-                                        Firmó: <div class="toggle toggle-modern" id="chkDnApoderado"></div>
-
+                                        <div id="contenedorFirmaApoderado">
+                                            <br>
+                                            Firmó: <div class="toggle toggle-modern" id="chkDnApoderado"></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mt-2">
@@ -229,14 +229,35 @@
                                         <input type="text" class="form-control" readonly id="txtNombreGerente" />
                                     </div>
                                     <div class="col-sm-3">
-                                        <br>
-                                        Firmó: <div class="toggle toggle-modern" id="chkDniGerente"></div>
+                                        <div id="contenedorFirmaGerente">
+                                            <br>
+                                            Firmó: <div class="toggle toggle-modern" id="chkDniGerente"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div data-tab=" Documentos " class="tabContenedor" style="overflow-y:auto;overflow-x:hidden;">
-                                <div class="row mt-5">
-
+                                <div class="row mt-2">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-primary" id="btnCargarDocumentoFirmas">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                            Cargar Documento </button>
+                                        <input type="file" id="fileUpload" class="invisible" />
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <table class="table table-bordered" id="tablaDocumentos">
+                                        <thead class="font-weight-bold text-center bg-primary">
+                                            <tr>
+                                                <td>Item</td>
+                                                <td>Nombre Archivo</td>
+                                                <td>Fecha Modificación</td>
+                                                <td>Descargar</td>
+                                                <td>Eliminar</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
                                 </div>
                             </div>
 
@@ -251,7 +272,13 @@
                             </button>
                         </div>
                         <div class="row mt-5">
-                            <button class="btn btn-primary btn-block font-weight-bold" id="btnGuardarFirmaAdenda">
+                            <button class="btn btn-primary btn-block font-weight-bold" id="btnFirmarFirmaAdenda">
+                                <i class="far fa-save"></i>
+                                FIRMAR
+                            </button>
+                        </div>
+                        <div class="row mt-5">
+                            <button class="btn btn-success btn-block font-weight-bold" id="btnGuardarFirmaAdenda">
                                 <i class="far fa-save"></i>
                                 GUARDAR
                             </button>
@@ -279,5 +306,50 @@
     </div>
 </div>
 
+<!--MODAL OBSERVAR DOCUMENTO-->
+<div class="modal fade" tabindex="-1" role="dialog" id="dialogoObservarFirma">
+    <div class="modal-60 modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Observar Documento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        Nombre del Contrato:
+                        <input type="text" class="form-control textoInput" readonly id="txtNombreContratoObservar" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        Cliente / Razón Social:
+                        <input type="text" class="form-control textoInput" readonly id="txtClienteObservar" />
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-8">
+                        Motivo de Observación:
+                        <textarea class="form-control text-uppercase" id="txtMotivoObservacionObservar"></textarea>
+                    </div>
 
-    <script src="../js/mantenerfirmas.js"></script>
+                    <div class="col-sm-4">
+                        <button class="btn btn-danger btn-block btn-lg text-center mt-4" id="btnGuardarObservacion">
+                            <i class="fas fa-save"></i>
+                            Guardar Observación
+                        </button>
+
+                        <button class="btn btn-secondary btn-block text-center mt-5">
+                            <i class="fas fa-ban"></i>
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/mantenerfirmas.js"></script>

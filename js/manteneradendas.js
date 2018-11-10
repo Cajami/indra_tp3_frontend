@@ -60,14 +60,14 @@ $('#btnNuevoAdenda').off().on('click', function () {
 function ConsultarAdenda(iCodAdenda, callBack, evento) {
     MostrarLoading(true, 'Recuperando Datos de Adenda...');
     QueryAJAX('indraupc/ad_ConsultarAdenda',
-       {
-           codigoAdenda: iCodAdenda
-       },
+        {
+            codigoAdenda: iCodAdenda
+        },
         function (resultado) {
 
             console.log(resultado);
 
-            if (resultado == null  || !resultado) {
+            if (resultado == null || !resultado) {
                 MostrarLoading(false);
                 MensajeError('Problemas con el servidor, devolvió NULL');
                 return;
@@ -115,9 +115,9 @@ function ConsultarAdenda(iCodAdenda, callBack, evento) {
                 var html = '';
                 for (var i = 0; i < resultado.antecedentes.length; i++) {
                     html += '<tr>' +
-                                '<td class="cursor deleteAntecedentes"><i class="far fa-trash-alt text-danger"></i></td>' +
-                                '<td contenteditable="true">' + resultado.antecedentes[i].descripcion + '</td>' +
-                            '</tr>';
+                        '<td class="cursor deleteAntecedentes"><i class="far fa-trash-alt text-danger"></i></td>' +
+                        '<td contenteditable="true">' + resultado.antecedentes[i].descripcion + '</td>' +
+                        '</tr>';
                 }
                 $('#tableAntecedentesNuevoContrato tbody').html(html);
 
@@ -129,12 +129,12 @@ function ConsultarAdenda(iCodAdenda, callBack, evento) {
                 html = '';
                 for (var i = 0; i < resultado.cronograma.length; i++) {
                     html += '<tr class="text-center">' +
-                                '<td class="cursor deleteCronograma"><i class="far fa-trash-alt text-danger"></i></td>' +
-                                '<td contenteditable="true" columna="numeroentrega">' + resultado.cronograma[i].numeroEntrega + '</td>' +
-                                '<td contenteditable="true" columna="numerodias">' + resultado.cronograma[i].cantidadDias + '</td>' +
-                                '<td contenteditable="true" columna="fechaentrega">' + resultado.cronograma[i].fechaEntrega + '</td>' +
-                                '<td contenteditable="true" class="text-left">' + resultado.cronograma[i].descripcionEntrega + '</td>' +
-                            '</tr>';
+                        '<td class="cursor deleteCronograma"><i class="far fa-trash-alt text-danger"></i></td>' +
+                        '<td contenteditable="true" columna="numeroentrega">' + resultado.cronograma[i].numeroEntrega + '</td>' +
+                        '<td contenteditable="true" columna="numerodias">' + resultado.cronograma[i].cantidadDias + '</td>' +
+                        '<td contenteditable="true" columna="fechaentrega">' + resultado.cronograma[i].fechaEntrega + '</td>' +
+                        '<td contenteditable="true" class="text-left">' + resultado.cronograma[i].descripcionEntrega + '</td>' +
+                        '</tr>';
                 }
                 $('#tablaCronogramaEntregaNuevoContrato tbody').html(html);
 
@@ -155,12 +155,12 @@ function ConsultarAdenda(iCodAdenda, callBack, evento) {
                 for (var i = 0; i < resultado.pago.length; i++) {
 
                     html += '<tr class="text-center">' +
-                                '<td class="cursor deletePagos"><i class="far fa-trash-alt text-danger"></i></td>' +
-                                '<td contenteditable="true" columna="numerocuota">' + resultado.pago[i].numeroCuota + '</td>' +
-                                '<td contenteditable="true" columna="aniocuota">' + resultado.pago[i].anio + '</td>' +
-                                '<td contenteditable="true" columna="mescuota" mes="' + resultado.pago[i].mes + '">' + nombreMes(resultado.pago[i].mes) + '</td>' +
-                                '<td contenteditable="true" columna="ultimodiapagocuota">' + resultado.pago[i].ultimoDiaPago + '</td>' +
-                            '</tr>';
+                        '<td class="cursor deletePagos"><i class="far fa-trash-alt text-danger"></i></td>' +
+                        '<td contenteditable="true" columna="numerocuota">' + resultado.pago[i].numeroCuota + '</td>' +
+                        '<td contenteditable="true" columna="aniocuota">' + resultado.pago[i].anio + '</td>' +
+                        '<td contenteditable="true" columna="mescuota" mes="' + resultado.pago[i].mes + '">' + nombreMes(resultado.pago[i].mes) + '</td>' +
+                        '<td contenteditable="true" columna="ultimodiapagocuota">' + resultado.pago[i].ultimoDiaPago + '</td>' +
+                        '</tr>';
                 }
 
                 $('#tablaCuotasNuevoContrato tbody').html(html);
@@ -190,26 +190,26 @@ function ConsultarAdenda(iCodAdenda, callBack, evento) {
                 if (evento) {
                     var iCodContrato = $('#txtNroContratoAdenda').attr('icodcontrato');
                     QueryAJAX('indraupc/informacionAdenda',
-                       {
-                           codigoContrato: iCodContrato
-                       },
-                       function (resultado) {
-                           MostrarLoading(false);
+                        {
+                            codigoContrato: iCodContrato
+                        },
+                        function (resultado) {
+                            MostrarLoading(false);
 
-                           if (resultado == null) {
-                               MostrarLoading(false);
-                               MensajeError('Problemas con el servidor, devolvió NULL');
-                               return;
-                           }
+                            if (resultado == null) {
+                                MostrarLoading(false);
+                                MensajeError('Problemas con el servidor, devolvió NULL');
+                                return;
+                            }
 
-                           $('#txtNombreAdendaAdenda').val(resultado.nombreAdenda);
-                           $('#txtNumeroAdendaAdenda').val(resultado.numeroAdenda);
+                            $('#txtNombreAdendaAdenda').val(resultado.nombreAdenda);
+                            $('#txtNumeroAdendaAdenda').val(resultado.numeroAdenda);
 
-                       },
-                       function (error) {
-                           MostrarLoading(false);
-                           MensajeError('Problemas para conectarnos con el servicio web');
-                       });
+                        },
+                        function (error) {
+                            MostrarLoading(false);
+                            MensajeError('Problemas para conectarnos con el servicio web');
+                        });
                 } else
                     MostrarLoading(false);
             } catch (e) {
@@ -285,8 +285,9 @@ function GenerarGrillaClientesAdendas() {
                     break;
                 case 'OBSERVADO':
                     $('#btnEliminarAdenda,#btnModificarAdenda').prop('disabled', false);
+                    $('#btnListoImprimirAdenda').prop('disabled', true);
                     break;
-                    case 'APROBADO':
+                case 'APROBADO':
                     $('#btnEliminarAdenda,#btnModificarAdenda').prop('disabled', true);
                     break;
             }
@@ -359,8 +360,8 @@ $('#btnSeleccionarClienteDialogo').off().on('click', function () {
 
 $('#btnSeleccionarContratoDialogo').off().on('click', function () {
     var registro = GetRowSelectJqGrid('tablaBusquedaContratosDialogo');
-debugger;
-    if (registro == null ) {
+    debugger;
+    if (registro == null) {
         MensajeError('Debe seleccionar un Cliente');
         return;
     }
@@ -403,23 +404,23 @@ $('#btnBuscarContratoDialogo').off().on('click', function () {
         {
             codigoCliente: iCodcliente
         },
-         function (resultado) {
-             MostrarLoading(false);
+        function (resultado) {
+            MostrarLoading(false);
 
-             if (resultado == null ) {
-                 MensajeError('Problemas con el servidor, devolvió NULL');
-                 return;
-             }
+            if (resultado == null) {
+                MensajeError('Problemas con el servidor, devolvió NULL');
+                return;
+            }
 
-             for (var i = 0; i < resultado.length; i++)
-                 resultado[i].idRegistro = i + 1;
+            for (var i = 0; i < resultado.length; i++)
+                resultado[i].idRegistro = i + 1;
 
-             ReloadJQGRID('tablaBusquedaContratosDialogo', resultado);
-         },
-         function (error) {
-             MostrarLoading(false);
-             MensajeError('Problemas para conectarnos con el servicio');
-         });
+            ReloadJQGRID('tablaBusquedaContratosDialogo', resultado);
+        },
+        function (error) {
+            MostrarLoading(false);
+            MensajeError('Problemas para conectarnos con el servicio');
+        });
 });
 
 $('#btnCancelarAdenda').off().on('click', function () {
@@ -579,30 +580,30 @@ $('#tablaCuotasNuevoContrato tbody').off().on('click', 'td.deletePagos', functio
 
 $('#btnAgregarNuevoAntecedenteAdenda').off().on('click', function () {
     var html = '<tr>' +
-                    '<td class="cursor deleteAntecedentes"><i class="far fa-trash-alt text-danger"></i></td>' +
-                    '<td contenteditable="true"></td>' +
-                '</tr>';
+        '<td class="cursor deleteAntecedentes"><i class="far fa-trash-alt text-danger"></i></td>' +
+        '<td contenteditable="true"></td>' +
+        '</tr>';
     $('#tableAntecedentesNuevoContrato tbody').append(html);
 });
 
 $('#btnAgregarNuevoCronogramaAdenda').off().on('click', function () {
     var html = '<tr class="text-center">' +
-                     '<td class="cursor deleteCronograma"><i class="far fa-trash-alt text-danger"></i></td>' +
-                     '<td contenteditable="true" columna="numeroentrega"></td>' +
-                     '<td contenteditable="true" columna="numerodias" ></td>' +
-                     '<td contenteditable="true" columna="fechaentrega" ></td>' +
-                     '<td contenteditable="true" class="text-left"></td>' +
-                 '</tr>';
+        '<td class="cursor deleteCronograma"><i class="far fa-trash-alt text-danger"></i></td>' +
+        '<td contenteditable="true" columna="numeroentrega"></td>' +
+        '<td contenteditable="true" columna="numerodias" ></td>' +
+        '<td contenteditable="true" columna="fechaentrega" ></td>' +
+        '<td contenteditable="true" class="text-left"></td>' +
+        '</tr>';
     $('#tablaCronogramaEntregaNuevoContrato tbody').append(html);
 });
 
 $('#btnAgregarCuotaPagoAdenda').off().on('click', function () {
     var html = '<tr class="text-center">' +
-            '<td class="cursor deletePagos"><i class="far fa-trash-alt text-danger"></i></td>' +
-            '<td contenteditable="true" columna="numerocuota"></td>' +
-            '<td contenteditable="true" columna="aniocuota"></td>' +
-            '<td contenteditable="true" columna="mescuota" mes=""></td>' +
-            '<td contenteditable="true" columna="ultimodiapagocuota"></td>' +
+        '<td class="cursor deletePagos"><i class="far fa-trash-alt text-danger"></i></td>' +
+        '<td contenteditable="true" columna="numerocuota"></td>' +
+        '<td contenteditable="true" columna="aniocuota"></td>' +
+        '<td contenteditable="true" columna="mescuota" mes=""></td>' +
+        '<td contenteditable="true" columna="ultimodiapagocuota"></td>' +
         '</tr>';
 
     $('#tablaCuotasNuevoContrato tbody').append(html);
@@ -765,9 +766,9 @@ $('#btnGuardarAdenda').off().on('click', function () {
     //CRONOGRAMA
     $('#tablaCronogramaEntregaNuevoContrato tbody tr').each(function () {
         if ($(this).find('td:eq(1)').text().trim().length == 0 ||
-                $(this).find('td:eq(2)').text().trim().length == 0 ||
-                $(this).find('td:eq(3)').text().trim().length == 0 ||
-                $(this).find('td:eq(4)').text().trim().length == 0)
+            $(this).find('td:eq(2)').text().trim().length == 0 ||
+            $(this).find('td:eq(3)').text().trim().length == 0 ||
+            $(this).find('td:eq(4)').text().trim().length == 0)
             sw = true;
     });
 
@@ -780,9 +781,9 @@ $('#btnGuardarAdenda').off().on('click', function () {
     //PAGO CUOTAS
     $('#tablaCuotasNuevoContrato tbody tr').each(function () {
         if ($(this).find('td:eq(2)').text().trim().length == 0 ||
-                $(this).find('td:eq(3)').text().trim().length == 0 ||
-                $(this).find('td:eq(1)').text().trim().length == 0 ||
-                $(this).find('td:eq(4)').text().trim().length == 0)
+            $(this).find('td:eq(3)').text().trim().length == 0 ||
+            $(this).find('td:eq(1)').text().trim().length == 0 ||
+            $(this).find('td:eq(4)').text().trim().length == 0)
             sw = true;
     });
 
@@ -809,64 +810,64 @@ $('#btnGuardarAdenda').off().on('click', function () {
             MostrarLoading(true, 'Regitrando Adenda...');
 
             QueryAJAX('indraupc/registrarAdenda',
-                   {
-                       codigoContrato: iCodContrato,
-                       tipoMoneda: tipoMoneda,
-                       monto: monto,
-                       fechaInicio: fechaInicio,
-                       fechaFin: fechaFin,
-                       dniCliente: dniCliente,
-                       dniApoderado: dniApoderado,
-                       dniGerente: dniGerente,
-                       numeroPaginas: numeroPaginas,
-                       numeroClausulas: numeroClausulas
-                   },
-                   function (resultado) {
+                {
+                    codigoContrato: iCodContrato,
+                    tipoMoneda: tipoMoneda,
+                    monto: monto,
+                    fechaInicio: fechaInicio,
+                    fechaFin: fechaFin,
+                    dniCliente: dniCliente,
+                    dniApoderado: dniApoderado,
+                    dniGerente: dniGerente,
+                    numeroPaginas: numeroPaginas,
+                    numeroClausulas: numeroClausulas
+                },
+                function (resultado) {
 
-                       if (resultado <= 0) {
-                           MostrarLoading(false);
-                           MensajeError('No se pudo registrar adenda en el servidor');
-                           return;
-                       }
+                    if (resultado <= 0) {
+                        MostrarLoading(false);
+                        MensajeError('No se pudo registrar adenda en el servidor');
+                        return;
+                    }
 
-                       console.log('Codigo de Adenda: ', resultado);
+                    console.log('Codigo de Adenda: ', resultado);
 
-                       var idAdenda = resultado;
+                    var idAdenda = resultado;
 
-                       MostrarLoading(true, 'Registrando Antecedentes...');
+                    MostrarLoading(true, 'Registrando Antecedentes...');
 
-                       var array = [];
-                       $('#tableAntecedentesNuevoContrato tbody tr').each(function () {
-                           array.push($(this).find('td:eq(1)').text());
-                       });
+                    var array = [];
+                    $('#tableAntecedentesNuevoContrato tbody tr').each(function () {
+                        array.push($(this).find('td:eq(1)').text());
+                    });
 
-                       RegistrarAntecedentes(array, idAdenda, 0);
+                    RegistrarAntecedentes(array, idAdenda, 0);
 
-                   },
-                   function (error) {
-                       MostrarLoading(false);
-                       MensajeError('Problemas para conectarnos con el servicio');
-                   });
+                },
+                function (error) {
+                    MostrarLoading(false);
+                    MensajeError('Problemas para conectarnos con el servicio');
+                });
         });
 });
 
 function RegistrarAntecedentes(array, idAdenda, index) {
     if (index < array.length) {
         QueryAJAX('indraupc/registrarAncedente',
-                   {
-                       codigoAdenda: idAdenda,
-                       descripcion: array[index]
-                   },
-                   function (resultado) {
-                       console.log('Registro Antecedente: ', resultado);
+            {
+                codigoAdenda: idAdenda,
+                descripcion: array[index]
+            },
+            function (resultado) {
+                console.log('Registro Antecedente: ', resultado);
 
-                       index++;
-                       RegistrarAntecedentes(array, idAdenda, index);
-                   },
-                   function (error) {
-                       index++;
-                       RegistrarAntecedentes(array, idAdenda, index);
-                   });
+                index++;
+                RegistrarAntecedentes(array, idAdenda, index);
+            },
+            function (error) {
+                index++;
+                RegistrarAntecedentes(array, idAdenda, index);
+            });
     } else {
         array.length = 0;
 
@@ -887,21 +888,21 @@ function RegistrarAntecedentes(array, idAdenda, index) {
 function RegistrarCronograma(array, idAdenda, index) {
     if (index < array.length) {
         QueryAJAX('indraupc/registrarCronograma',
-                   {
-                       codigoAdenda: idAdenda,
-                       numeroEntrega: array[index].nroEntrega,
-                       descripcionEntrega: array[index].descripcion,
-                       cantidadDias: array[index].dias,
-                       fechaEntrega: array[index].fechaEntrega
-                   },
-                   function (resultado) {
-                       index++;
-                       RegistrarCronograma(array, idAdenda, index);
-                   },
-                   function (error) {
-                       index++;
-                       RegistrarCronograma(array, idAdenda, index);
-                   });
+            {
+                codigoAdenda: idAdenda,
+                numeroEntrega: array[index].nroEntrega,
+                descripcionEntrega: array[index].descripcion,
+                cantidadDias: array[index].dias,
+                fechaEntrega: array[index].fechaEntrega
+            },
+            function (resultado) {
+                index++;
+                RegistrarCronograma(array, idAdenda, index);
+            },
+            function (error) {
+                index++;
+                RegistrarCronograma(array, idAdenda, index);
+            });
     } else {
         /*REGISTRAMOS EL PAGO*/
         var tipoPago = 0;
@@ -1006,6 +1007,7 @@ function RegistrarClausulasImprimir(array, idAdenda, index) {
         } else if ($('#btnGuardarModificacionAdenda').is(":visible")) {
             MensajeOk('Se modificó', 'Los datos de la Adenda se modificacon correctamente');
             $('#btnCancelarAdenda').trigger('click');
+            $('#btnBuscarAdendasModuloPrincipal').trigger('click');
         }
     }
 }
@@ -1116,15 +1118,15 @@ $('#btnEliminarAdenda').off().on('click', function () {
 
 $('#btnGuardarModificacionAdenda').off().on('click', function () {
     var iCodAdenda = $('#txtNroAdendaAdenda').attr('icodadenda'),
-       tipoMoneda = $('#cboTipoMonedaNuevoContrato').val(),
-       monto = $('#txtPrecioContractualNuevoContato').val().trim(),
-       fechaInicio = $('#txtFechaInicioNuevoContato').val().trim(),
-       fechaFin = $('#txtFechaFinalNuevoContato').val().trim(),
-       dniCliente = $('#txtDniClienteFirmanteNuevoContrato').val().trim(),
-       dniApoderado = $('#txtDniApoderadoNuevoContrato').val().trim(),
-       dniGerente = $('#txtDniGerenteNuevoContrato').val().trim(),
-       numeroPaginas = 10,
-       numeroClausulas = 15;
+        tipoMoneda = $('#cboTipoMonedaNuevoContrato').val(),
+        monto = $('#txtPrecioContractualNuevoContato').val().trim(),
+        fechaInicio = $('#txtFechaInicioNuevoContato').val().trim(),
+        fechaFin = $('#txtFechaFinalNuevoContato').val().trim(),
+        dniCliente = $('#txtDniClienteFirmanteNuevoContrato').val().trim(),
+        dniApoderado = $('#txtDniApoderadoNuevoContrato').val().trim(),
+        dniGerente = $('#txtDniGerenteNuevoContrato').val().trim(),
+        numeroPaginas = 10,
+        numeroClausulas = 15;
 
     if (typeof iCodAdenda == 'undefined' || iCodAdenda.length == 0 || iCodAdenda == 0) {
         MensajeError('No ha seleccionando ningún contrato');
@@ -1170,44 +1172,44 @@ $('#btnGuardarModificacionAdenda').off().on('click', function () {
             MostrarLoading(true, 'Modificando Adenda...');
 
             QueryAJAX('indraupc/modificarAdenda',
-                   {
-                       codigoAdenda: iCodAdenda,
-                       tipoMoneda: tipoMoneda,
-                       monto: monto,
-                       fechaInicio: fechaInicio,
-                       fechaFin: fechaFin,
-                       dniCliente: dniCliente,
-                       dniApoderado: dniApoderado,
-                       dniGerente: dniGerente,
-                       numeroPaginas: numeroPaginas,
-                       numeroClausulas: numeroClausulas
-                   },
-                   function (resultado) {
+                {
+                    codigoAdenda: iCodAdenda,
+                    tipoMoneda: tipoMoneda,
+                    monto: monto,
+                    fechaInicio: fechaInicio,
+                    fechaFin: fechaFin,
+                    dniCliente: dniCliente,
+                    dniApoderado: dniApoderado,
+                    dniGerente: dniGerente,
+                    numeroPaginas: numeroPaginas,
+                    numeroClausulas: numeroClausulas
+                },
+                function (resultado) {
 
-                       if (resultado <= 0) {
-                           MostrarLoading(false);
-                           MensajeError('No se pudo modificar adenda en el servidor');
-                           return;
-                       }
+                    if (resultado <= 0) {
+                        MostrarLoading(false);
+                        MensajeError('No se pudo modificar adenda en el servidor');
+                        return;
+                    }
 
-                       console.log('Codigo de Adenda Modificada: ', resultado);
+                    console.log('Codigo de Adenda Modificada: ', resultado);
 
-                       var idAdenda = resultado;
+                    var idAdenda = resultado;
 
-                       MostrarLoading(true, 'Modificando Antecedentes...');
+                    MostrarLoading(true, 'Modificando Antecedentes...');
 
-                       var array = [];
-                       $('#tableAntecedentesNuevoContrato tbody tr').each(function () {
-                           array.push($(this).find('td:eq(1)').text());
-                       });
+                    var array = [];
+                    $('#tableAntecedentesNuevoContrato tbody tr').each(function () {
+                        array.push($(this).find('td:eq(1)').text());
+                    });
 
-                       RegistrarAntecedentes(array, idAdenda, 0);
+                    RegistrarAntecedentes(array, idAdenda, 0);
 
-                   },
-                   function (error) {
-                       MostrarLoading(false);
-                       MensajeError('Problemas para conectarnos con el servicio');
-                   });
+                },
+                function (error) {
+                    MostrarLoading(false);
+                    MensajeError('Problemas para conectarnos con el servicio');
+                });
         });
 });
 
@@ -1224,36 +1226,36 @@ $('#btnGuardarEliminarAdenda').off().on('click', function () {
             }
 
             QueryAJAX('indraupc/rechazarContrato',
-                  {
-                      codigoAdenda: iCodAdenda,
-                  },
-                  function (resultado) {
-                      MostrarLoading(false);
+                {
+                    codigoAdenda: iCodAdenda,
+                },
+                function (resultado) {
+                    MostrarLoading(false);
 
-                      if (resultado != 1) {
-                          MensajeError('No se pudo Eliminar Adenda');
-                          return;
-                      }
-                      MensajeOk('Adenda Eliminada',
-                          'Se eliminó Adenda correctamente',
-                          function () {
-                              $('#btnCancelarAdenda').trigger('click');
-                              setTimeout(function () {
-                                  $('#btnBuscarAdendasModuloPrincipal').trigger('click');
-                              }, 1000)
-                          });
-                  },
-                  function (error) {
-                      MostrarLoading(false);
-                      MensajeError('Problemas para conectarnos con el servicio');
-                  });
+                    if (resultado != 1) {
+                        MensajeError('No se pudo Eliminar Adenda');
+                        return;
+                    }
+                    MensajeOk('Adenda Eliminada',
+                        'Se eliminó Adenda correctamente',
+                        function () {
+                            $('#btnCancelarAdenda').trigger('click');
+                            setTimeout(function () {
+                                $('#btnBuscarAdendasModuloPrincipal').trigger('click');
+                            }, 1000)
+                        });
+                },
+                function (error) {
+                    MostrarLoading(false);
+                    MensajeError('Problemas para conectarnos con el servicio');
+                });
         });
 });
 
 $('#btnListoImprimirAdenda').off().on('click', function () {
     var registro = GetRowSelectJqGrid('tablaClientesAdendas');
 
-    if (registro == null ) {
+    if (registro == null) {
         MensajeError('Debe seleccionar una Adenda');
         return;
     }
@@ -1261,23 +1263,23 @@ $('#btnListoImprimirAdenda').off().on('click', function () {
     MensajeConfirmar('¿Desea cambiar el estado de la Adenda "Listo para Imprimir"?',
         function () {
             QueryAJAX('indraupc/habilitarContrato',
-            {
-                codigoAdenda: registro.codigoAdenda,
-            },
-                  function (resultado) {
+                {
+                    codigoAdenda: registro.codigoAdenda,
+                },
+                function (resultado) {
 
-                      if (resultado != 1) {
-                          MensajeError('No se pudo cambiar estado de la Adenda');
-                          return;
-                      }
-                      MensajeOk('Adenda Enviada',
-                          'La Adenda se envió correctamente');
+                    if (resultado != 1) {
+                        MensajeError('No se pudo cambiar estado de la Adenda');
+                        return;
+                    }
+                    MensajeOk('Adenda Enviada',
+                        'La Adenda se envió correctamente');
 
-                      $('#btnBuscarAdendasModuloPrincipal').trigger('click');
-                  },
-                  function (error) {
+                    $('#btnBuscarAdendasModuloPrincipal').trigger('click');
+                },
+                function (error) {
 
-                  });
+                });
         });
 });
 
@@ -1285,15 +1287,15 @@ $('#btnVistaPreviaAdenda').off().on('click', function () {
     /*PREGUNTAMOS SI ES PARA CREAR UN NUEVO */
     if ($('#btnGuardarAdenda').is(":visible")) {
         var iCodContrato = $('#txtNroContratoAdenda').attr('icodcontrato'),
-      tipoMoneda = $('#cboTipoMonedaNuevoContrato').val(),
-      monto = $('#txtPrecioContractualNuevoContato').val().trim(),
-      fechaInicio = $('#txtFechaInicioNuevoContato').val().trim(),
-      fechaFin = $('#txtFechaFinalNuevoContato').val().trim(),
-      dniCliente = $('#txtDniClienteFirmanteNuevoContrato').val().trim(),
-      dniApoderado = $('#txtDniApoderadoNuevoContrato').val().trim(),
-      dniGerente = $('#txtDniGerenteNuevoContrato').val().trim(),
-      numeroPaginas = 10,
-      numeroClausulas = 15;
+            tipoMoneda = $('#cboTipoMonedaNuevoContrato').val(),
+            monto = $('#txtPrecioContractualNuevoContato').val().trim(),
+            fechaInicio = $('#txtFechaInicioNuevoContato').val().trim(),
+            fechaFin = $('#txtFechaFinalNuevoContato').val().trim(),
+            dniCliente = $('#txtDniClienteFirmanteNuevoContrato').val().trim(),
+            dniApoderado = $('#txtDniApoderadoNuevoContrato').val().trim(),
+            dniGerente = $('#txtDniGerenteNuevoContrato').val().trim(),
+            numeroPaginas = 10,
+            numeroClausulas = 15;
 
         if (typeof iCodContrato == 'undefined' || iCodContrato.length == 0 || iCodContrato == 0) {
             MensajeError('No ha seleccionando ningún contrato');
@@ -1351,9 +1353,9 @@ $('#btnVistaPreviaAdenda').off().on('click', function () {
         //CRONOGRAMA
         $('#tablaCronogramaEntregaNuevoContrato tbody tr').each(function () {
             if ($(this).find('td:eq(1)').text().trim().length == 0 ||
-                    $(this).find('td:eq(2)').text().trim().length == 0 ||
-                    $(this).find('td:eq(3)').text().trim().length == 0 ||
-                    $(this).find('td:eq(4)').text().trim().length == 0)
+                $(this).find('td:eq(2)').text().trim().length == 0 ||
+                $(this).find('td:eq(3)').text().trim().length == 0 ||
+                $(this).find('td:eq(4)').text().trim().length == 0)
                 sw = true;
         });
 
@@ -1366,9 +1368,9 @@ $('#btnVistaPreviaAdenda').off().on('click', function () {
         //PAGO CUOTAS
         $('#tablaCuotasNuevoContrato tbody tr').each(function () {
             if ($(this).find('td:eq(2)').text().trim().length == 0 ||
-                    $(this).find('td:eq(3)').text().trim().length == 0 ||
-                    $(this).find('td:eq(1)').text().trim().length == 0 ||
-                    $(this).find('td:eq(4)').text().trim().length == 0)
+                $(this).find('td:eq(3)').text().trim().length == 0 ||
+                $(this).find('td:eq(1)').text().trim().length == 0 ||
+                $(this).find('td:eq(4)').text().trim().length == 0)
                 sw = true;
         });
 
@@ -1500,8 +1502,8 @@ $('#btnVistaPreviaAdenda').off().on('click', function () {
     });
 
     var array_anexos = [
-    { descripcion: 'Anexo N° 01 – Especificaciones técnicas y características requeridas (detalle de las especificaciones y características que requiere EL CLIENTE que contenga el software a desarrollar).' },
-    { descripcion: 'Anexo N° 02 - Cronograma de diseño, desarrollo y entrega de software del presente contrato.' }
+        { descripcion: 'Anexo N° 01 – Especificaciones técnicas y características requeridas (detalle de las especificaciones y características que requiere EL CLIENTE que contenga el software a desarrollar).' },
+        { descripcion: 'Anexo N° 02 - Cronograma de diseño, desarrollo y entrega de software del presente contrato.' }
     ];
 
     //var array_pago = [
@@ -1580,64 +1582,64 @@ $('#btnVistaPreviaAdenda').off().on('click', function () {
     });
 
     GenerarPdfAdenda(pNombreContrato,
-                        pnombreAdenda,
-                     pNumeroAdenda,
-                     pNumSolCambios,
-                     pNombreCliente,
-                     pTipoCliente,
-                     pDniCliente,
-                     pDireccionCliente,
-                     pPrimeraClausula,
-                     pSegundaClausula,
-                     pTerceraClausula,
-                     pCuartaClausula,
-                     pQuintaClausula,
-                     pSextaClausula,
-                     pSeptimaClausula,
-                     array_antecedentes,
-                     array_anexos,
-                     pMonedaContrato,
-                     pMontoContrato,
-                     pTipoPago,
-                     array_pago,
-                     pFechaInicial,
-                     pFechaFinal,
-                     array_cronograma,
-                     pDia,
-                     pMes,
-                     pAnio
-                    );
+        pnombreAdenda,
+        pNumeroAdenda,
+        pNumSolCambios,
+        pNombreCliente,
+        pTipoCliente,
+        pDniCliente,
+        pDireccionCliente,
+        pPrimeraClausula,
+        pSegundaClausula,
+        pTerceraClausula,
+        pCuartaClausula,
+        pQuintaClausula,
+        pSextaClausula,
+        pSeptimaClausula,
+        array_antecedentes,
+        array_anexos,
+        pMonedaContrato,
+        pMontoContrato,
+        pTipoPago,
+        array_pago,
+        pFechaInicial,
+        pFechaFinal,
+        array_cronograma,
+        pDia,
+        pMes,
+        pAnio
+    );
 });
 /*VISUALIZAR PDF ADENDA*/
 
 function GenerarPdfAdenda(pNombreContrato,
-                            nombreAdenda,
-                          pNumeroAdenda,
-                          pNumSolCambios,
-                          pNombreCliente,
-                          pTipoCliente,
-                          pDniCliente,
-                          pDireccionCliente,
-                          pPrimeraClausula,
-                          pSegundaClausula,
-                          pTerceraClausula,
-                          pCuartaClausula,
-                          pQuintaClausula,
-                          pSextaClausula,
-                          pSeptimaClausula,
-                          array_antecedentes,
-                          array_anexos,
-                          pMonedaContrato,
-                          pMontoContrato,
-                          pTipoPago,
-                          array_pago,
-                          pFechaInicial,
-                          pFechaFinal,
-                          array_cronograma,
-                          pDia,
-                          pMes,
-                          pAnio
-                         ) {
+    nombreAdenda,
+    pNumeroAdenda,
+    pNumSolCambios,
+    pNombreCliente,
+    pTipoCliente,
+    pDniCliente,
+    pDireccionCliente,
+    pPrimeraClausula,
+    pSegundaClausula,
+    pTerceraClausula,
+    pCuartaClausula,
+    pQuintaClausula,
+    pSextaClausula,
+    pSeptimaClausula,
+    array_antecedentes,
+    array_anexos,
+    pMonedaContrato,
+    pMontoContrato,
+    pTipoPago,
+    array_pago,
+    pFechaInicial,
+    pFechaFinal,
+    array_cronograma,
+    pDia,
+    pMes,
+    pAnio
+) {
 
     var clausulaSiguiente = 0;
 
@@ -1767,7 +1769,7 @@ function GenerarPdfAdenda(pNombreContrato,
                 array_pago[i].mes,
                 array_pago[i].diapago
             ]
-            );
+        );
     }
 
     var arrayCronogramaTempo = [
@@ -1782,7 +1784,7 @@ function GenerarPdfAdenda(pNombreContrato,
                 array_cronograma[i].fecentrega,
                 array_cronograma[i].descripcion
             ]
-            );
+        );
     }
 
     var arrayPlazoTempo = [
@@ -1791,103 +1793,103 @@ function GenerarPdfAdenda(pNombreContrato,
 
     var primeraclausula = [
         [{ text: 'CLÁUSULA ' + clausulas(pPrimeraClausula) + ': DE LOS ANTECEDENTES', style: 'tituloclausula' },
-          {
-              text: 'Según la Solicitud de Cambios N° ' + pNumSolCambios + ', se define la siguiente lista actualizada de Antecedentes a mostrar en el contrato vigente:' + listar_array('Antecedentes', array_antecedentes),
-              style: 'parrafo'
-          }]
+        {
+            text: 'Según la Solicitud de Cambios N° ' + pNumSolCambios + ', se define la siguiente lista actualizada de Antecedentes a mostrar en el contrato vigente:' + listar_array('Antecedentes', array_antecedentes),
+            style: 'parrafo'
+        }]
     ]
 
     var segundaclausula = [
         [{ text: 'CLÁUSULA ' + clausulas(pSegundaClausula) + ': DEL OBJETO', style: 'tituloclausula' },
-          {
-              text: 'Según la Solicitud de Cambios N° ' + pNumSolCambios + ', se define la siguiente lista actualizada de Anexos a mostrar en el contrato vigente:' + '\n\n' + listar_array('Anexos', array_anexos),
-              style: 'parrafo'
-          }]
+        {
+            text: 'Según la Solicitud de Cambios N° ' + pNumSolCambios + ', se define la siguiente lista actualizada de Anexos a mostrar en el contrato vigente:' + '\n\n' + listar_array('Anexos', array_anexos),
+            style: 'parrafo'
+        }]
     ]
 
     var terceraclausula = [
         [{ text: 'CLÁUSULA ' + clausulas(pTerceraClausula) + ': DEL MONTO CONTRACTUAL', style: 'tituloclausula' },
-          {
-              text: 'El monto del presente Contrato asciende a la suma total de ' + pMonedaContrato + ' ' + pMontoContrato + ' (UN MILLON CIENTO NOVENTA Y CINCO MIL OCHOCIENTOS NOVENTA Y UN CON 44/100 SOLES), por los cambios solicitados por EL CLIENTE (según lo establecido en la Solicitud de Cambios con N° ' + pNumSolCambios + ')',
-              style: 'parrafo'
-          }]
+        {
+            text: 'El monto del presente Contrato asciende a la suma total de ' + pMonedaContrato + ' ' + pMontoContrato + ' (UN MILLON CIENTO NOVENTA Y CINCO MIL OCHOCIENTOS NOVENTA Y UN CON 44/100 SOLES), por los cambios solicitados por EL CLIENTE (según lo establecido en la Solicitud de Cambios con N° ' + pNumSolCambios + ')',
+            style: 'parrafo'
+        }]
     ]
 
     var cuartaclausula = [
         [{ text: 'CLÁUSULA ' + clausulas(pCuartaClausula) + ': DE LA FORMA DE PAGO', style: 'tituloclausula' },
-          { text: 'Según la Solicitud de Cambios N° ' + pNumSolCambios + ', EL CLIENTE se compromete a realizar el pago de tipo ' + pTipoPago + ' del servicio solicitado de acuerdo al Contrato vigente, basado en el siguiente cuadro:' + '\n', style: 'parrafo' },
-          { table: { widths: ['auto', 'auto', 'auto', 'auto'], headerRows: 1, body: arrayPagoTempo }, layout: { hLineWidth: function (i, node) { return (i === 0 || i === node.table.body.length) ? 2 : 1; }, vLineWidth: function (i, node) { return (i === 0 || i === node.table.widths.length) ? 2 : 1; }, hLineColor: function (i, node) { return (i === 0 || i === node.table.body.length) ? '#00005F' : '#00005F'; }, vLineColor: function (i, node) { return (i === 0 || i === node.table.widths.length) ? '#00005F' : '#00005F'; }, fillColor: function (i, node) { return (i % 2 === 0) ? '#CCCCCC' : null; } }, style: 'parrafo' }
+        { text: 'Según la Solicitud de Cambios N° ' + pNumSolCambios + ', EL CLIENTE se compromete a realizar el pago de tipo ' + pTipoPago + ' del servicio solicitado de acuerdo al Contrato vigente, basado en el siguiente cuadro:' + '\n', style: 'parrafo' },
+        { table: { widths: ['auto', 'auto', 'auto', 'auto'], headerRows: 1, body: arrayPagoTempo }, layout: { hLineWidth: function (i, node) { return (i === 0 || i === node.table.body.length) ? 2 : 1; }, vLineWidth: function (i, node) { return (i === 0 || i === node.table.widths.length) ? 2 : 1; }, hLineColor: function (i, node) { return (i === 0 || i === node.table.body.length) ? '#00005F' : '#00005F'; }, vLineColor: function (i, node) { return (i === 0 || i === node.table.widths.length) ? '#00005F' : '#00005F'; }, fillColor: function (i, node) { return (i % 2 === 0) ? '#CCCCCC' : null; } }, style: 'parrafo' }
         ]
     ]
 
     var quintaclausula = [
         [{ text: 'CLÁUSULA ' + clausulas(pQuintaClausula) + ': DEL PLAZO DEL CONTRATO', style: 'tituloclausula' },
-          {
-              text: 'Según la Solicitud de Cambios N° ' + pNumSolCambios + ', se actualiza la vigencia del contrato para que sea cumplido por parte de LA EMPRESA, siguiendo las siguientes fechas:' + '\n',
-              style: 'parrafo'
-          },
-          { table: { widths: [180, 180], headerRows: 1, body: [[{ text: 'Fecha Inicio Contrato', style: 'tableHeader' }, { text: 'Fecha Fin Contrato', style: 'tableHeader' }], [pFechaInicial, pFechaFinal], ] }, layout: { hLineWidth: function (i, node) { return (i === 0 || i === node.table.body.length) ? 2 : 1; }, vLineWidth: function (i, node) { return (i === 0 || i === node.table.widths.length) ? 2 : 1; }, hLineColor: function (i, node) { return (i === 0 || i === node.table.body.length) ? '#00005F' : '#00005F'; }, vLineColor: function (i, node) { return (i === 0 || i === node.table.widths.length) ? '#00005F' : '#00005F'; }, fillColor: function (i, node) { return (i % 2 === 0) ? '#CCCCCC' : null; } }, style: 'parrafo' }
+        {
+            text: 'Según la Solicitud de Cambios N° ' + pNumSolCambios + ', se actualiza la vigencia del contrato para que sea cumplido por parte de LA EMPRESA, siguiendo las siguientes fechas:' + '\n',
+            style: 'parrafo'
+        },
+        { table: { widths: [180, 180], headerRows: 1, body: [[{ text: 'Fecha Inicio Contrato', style: 'tableHeader' }, { text: 'Fecha Fin Contrato', style: 'tableHeader' }], [pFechaInicial, pFechaFinal],] }, layout: { hLineWidth: function (i, node) { return (i === 0 || i === node.table.body.length) ? 2 : 1; }, vLineWidth: function (i, node) { return (i === 0 || i === node.table.widths.length) ? 2 : 1; }, hLineColor: function (i, node) { return (i === 0 || i === node.table.body.length) ? '#00005F' : '#00005F'; }, vLineColor: function (i, node) { return (i === 0 || i === node.table.widths.length) ? '#00005F' : '#00005F'; }, fillColor: function (i, node) { return (i % 2 === 0) ? '#CCCCCC' : null; } }, style: 'parrafo' }
         ]
     ]
 
     var sextaclausula = [
         [{ text: 'CLÁUSULA ' + clausulas(pSextaClausula) + ': DEL CRONOGRAMA DE ENTREGA', style: 'tituloclausula' },
-          { text: 'Según la Solicitud de Cambios N° ' + pNumSolCambios + ', se actualiza el Cronograma de entrega del Contrato vigente, basado en el siguiente cuadro:' + '\n', style: 'parrafo' },
-          { table: { widths: ['auto', 'auto', 'auto', 'auto'], headerRows: 1, body: arrayCronogramaTempo }, layout: { hLineWidth: function (i, node) { return (i === 0 || i === node.table.body.length) ? 2 : 1; }, vLineWidth: function (i, node) { return (i === 0 || i === node.table.widths.length) ? 2 : 1; }, hLineColor: function (i, node) { return (i === 0 || i === node.table.body.length) ? '#00005F' : '#00005F'; }, vLineColor: function (i, node) { return (i === 0 || i === node.table.widths.length) ? '#00005F' : '#00005F'; }, fillColor: function (i, node) { return (i % 2 === 0) ? '#CCCCCC' : null; } }, style: 'parrafo' }
+        { text: 'Según la Solicitud de Cambios N° ' + pNumSolCambios + ', se actualiza el Cronograma de entrega del Contrato vigente, basado en el siguiente cuadro:' + '\n', style: 'parrafo' },
+        { table: { widths: ['auto', 'auto', 'auto', 'auto'], headerRows: 1, body: arrayCronogramaTempo }, layout: { hLineWidth: function (i, node) { return (i === 0 || i === node.table.body.length) ? 2 : 1; }, vLineWidth: function (i, node) { return (i === 0 || i === node.table.widths.length) ? 2 : 1; }, hLineColor: function (i, node) { return (i === 0 || i === node.table.body.length) ? '#00005F' : '#00005F'; }, vLineColor: function (i, node) { return (i === 0 || i === node.table.widths.length) ? '#00005F' : '#00005F'; }, fillColor: function (i, node) { return (i % 2 === 0) ? '#CCCCCC' : null; } }, style: 'parrafo' }
         ]
     ]
 
     var septimaclausula = [
         [{ text: 'CLÁUSULA ' + clausulas(pSeptimaClausula) + ': RATIFICACIÓN DE LAS ESTIPULACIONES', style: 'tituloclausula' },
-          { text: '\nLas partes declaran, que las demás estipulaciones del contrato que no hayan sido modificadas expresamente por la presente adenda permanecen inalterables ratificando las partes su eficacia.', style: 'parrafo' },
-          { text: '\n\nLas partes firman por triplicado en señal de conformidad, en la ciudad de Lima a los ' + pDia + ' día(s) del mes de ' + pMes + ' del año ' + pAnio + '.', style: 'parrafo' }
+        { text: '\nLas partes declaran, que las demás estipulaciones del contrato que no hayan sido modificadas expresamente por la presente adenda permanecen inalterables ratificando las partes su eficacia.', style: 'parrafo' },
+        { text: '\n\nLas partes firman por triplicado en señal de conformidad, en la ciudad de Lima a los ' + pDia + ' día(s) del mes de ' + pMes + ' del año ' + pAnio + '.', style: 'parrafo' }
         ]
     ]
 
     var docDefinition = {
         content: [
-          {
-              //text: 'Adenda N° ' + pNumeroAdenda + ' al ' + pNombreContrato,
-              text: nombreAdenda,
-              style: 'header'
-          },
-          '\n',
-          {
-              text: ['Conste por el presente documento, la suscripción de la Adenda al Contrato ' + pNombreContrato + ', reconocido mediante la Solicitud de Cambios N° ' + pNumSolCambios + ', a quien se le define a la empresa INDRA COMPANY SAC, con RUC N° 20374984838, con domicilio legal en Av. Jorge Basadre Nro. 233 Int. 901 (Alt. 1ra Cuadra de Av. Javier Prado Oeste) San Isidro, debidamente representado por su Representante Legal VICTOR MANUEL SUZUKI LAVIN, identificado(a) con DNI N° 03654673 a quien en adelante se le conocerá como ', { text: 'LA EMPRESA', style: 'bigger' }, ' y de la otra parte ' + pNombreCliente + ', con ' + pTipoCliente + ' N° ' + pDniCliente + ', con domicilio legal en ' + pDireccionCliente + ', a quien en adelante se le denominará ', { text: 'EL CLIENTE', style: 'bigger' }, ' en los términos y condiciones siguientes:'],
-              style: 'parrafo'
-          },
-          '\n',
-          clausula1(pPrimeraClausula),
-          '\n',
-          clausula2(pSegundaClausula),
-          '\n',
-          clausula3(pTerceraClausula),
-          '\n',
-          clausula4(pCuartaClausula),
-          '\n',
-          clausula5(pQuintaClausula),
-          '\n',
-          clausula6(pSextaClausula),
-              '\n',
-          {
-              text: septimaclausula,
-              style: 'parrafo'
-          },
-          '\n\n\n\n',
-          {
-              text: '_________________________________________' + '\n' + 'FIRMA DEL GERENTE DEL ÁREA',
-              style: 'parrafo',
-          },
-          '\n\n\n\n',
-          {
-              text: '_________________________________________' + '\n' + 'FIRMA DEL APODERADO',
-              style: 'parrafo',
-          },
-          '\n\n\n\n',
-          {
-              text: '_________________________________________' + '\n' + 'FIRMA DEL CLIENTE',
-              style: 'parrafo',
-          }
+            {
+                //text: 'Adenda N° ' + pNumeroAdenda + ' al ' + pNombreContrato,
+                text: nombreAdenda,
+                style: 'header'
+            },
+            '\n',
+            {
+                text: ['Conste por el presente documento, la suscripción de la Adenda al Contrato ' + pNombreContrato + ', reconocido mediante la Solicitud de Cambios N° ' + pNumSolCambios + ', a quien se le define a la empresa INDRA COMPANY SAC, con RUC N° 20374984838, con domicilio legal en Av. Jorge Basadre Nro. 233 Int. 901 (Alt. 1ra Cuadra de Av. Javier Prado Oeste) San Isidro, debidamente representado por su Representante Legal VICTOR MANUEL SUZUKI LAVIN, identificado(a) con DNI N° 03654673 a quien en adelante se le conocerá como ', { text: 'LA EMPRESA', style: 'bigger' }, ' y de la otra parte ' + pNombreCliente + ', con ' + pTipoCliente + ' N° ' + pDniCliente + ', con domicilio legal en ' + pDireccionCliente + ', a quien en adelante se le denominará ', { text: 'EL CLIENTE', style: 'bigger' }, ' en los términos y condiciones siguientes:'],
+                style: 'parrafo'
+            },
+            '\n',
+            clausula1(pPrimeraClausula),
+            '\n',
+            clausula2(pSegundaClausula),
+            '\n',
+            clausula3(pTerceraClausula),
+            '\n',
+            clausula4(pCuartaClausula),
+            '\n',
+            clausula5(pQuintaClausula),
+            '\n',
+            clausula6(pSextaClausula),
+            '\n',
+            {
+                text: septimaclausula,
+                style: 'parrafo'
+            },
+            '\n\n\n\n',
+            {
+                text: '_________________________________________' + '\n' + 'FIRMA DEL GERENTE DEL ÁREA',
+                style: 'parrafo',
+            },
+            '\n\n\n\n',
+            {
+                text: '_________________________________________' + '\n' + 'FIRMA DEL APODERADO',
+                style: 'parrafo',
+            },
+            '\n\n\n\n',
+            {
+                text: '_________________________________________' + '\n' + 'FIRMA DEL CLIENTE',
+                style: 'parrafo',
+            }
         ],
 
         styles: {

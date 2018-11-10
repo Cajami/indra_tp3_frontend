@@ -77,11 +77,13 @@ function GenerarStringAleatorio(longitud) {
     return cadena;
 }
 
+var urlRest = 'http://localhost:8080/';
+
 
 /*FUNCION AJAX GENERICA:*/
 function QueryAJAX(url, parametros, callBackSucces, callBackError) {
     $.ajax({
-        url: 'http://localhost:8080/' + url,
+        url: urlRest + url,
         type: "POST",
         data: parametros,
         success: function (data) {

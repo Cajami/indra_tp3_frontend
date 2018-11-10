@@ -92,3 +92,7 @@ div.card-tabs-bar.wiki a {
     display: inline-block;
     vertical-align: middle;
 }
+ a.disabled{
+    pointer-events: none !important;
+
+ }
