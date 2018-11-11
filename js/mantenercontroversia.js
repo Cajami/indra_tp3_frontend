@@ -70,6 +70,8 @@ $('#btnNuevoControversia').off().on('click', function () {
 
 function ConsultarAdenda(iCodContrato, iCodAdenda, callBack, evento) {
     MostrarLoading(true, 'Recuperando Datos de Adenda...');
+
+    
     QueryAJAX('indraupc/buscarxContAdenda',
        {
            codContrato: iCodContrato,

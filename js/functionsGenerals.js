@@ -77,7 +77,7 @@ function GenerarStringAleatorio(longitud) {
     return cadena;
 }
 
-var urlRest = 'http://localhost:8080/';
+var urlRest = 'http://localhost:8090/';
 
 
 /*FUNCION AJAX GENERICA:*/

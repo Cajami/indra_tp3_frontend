@@ -1,5 +1,5 @@
-//var iCodUsuarioLogeado = 102;//ERNESTO ADOLFO GUTIERREZ
-var iCodUsuarioLogeado = 106;//PEDRO GABRIEL RAMOS INJANTE
+var iCodUsuarioLogeado = 102;//ERNESTO ADOLFO GUTIERREZ
+//var iCodUsuarioLogeado = 106;//PEDRO GABRIEL RAMOS INJANTE
 var swFirmasCompletadas = false;
 
 function PageInitFirmas() {
@@ -506,4 +506,4 @@ function generarNombreUnico() {
         fechaActual.getFullYear();
 }
 
-alert(generarNombreUnico());
+/////////////alert(generarNombreUnico());
