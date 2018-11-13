@@ -1,0 +1,243 @@
+<div id="CarruselModuloSolicitudCambios" data-interval="false" data-keyboard="false" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="overflow-y:auto;">
+
+            <!-- PANTALLA PRINCIPAL -->
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <span class="etiqueta">
+                            Cliente
+                        </span>
+                        <div class="input-group mb-3">
+                            <input type="hidden" id="hCodigoFirmanteSeleccionadoModuloPrincipalSolicitudCambios" />
+                            <input type="text" readonly class="form-control" id="txtClienteSolicitudCambios" />
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="button" title="Buscar Cliente" id="btnAbrirDialogoClienteBuscar">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <span class="etiqueta">
+                            Fecha Registro
+                        </span>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control text-center" placeholder="  /    /" aria-label="Recipient's username" aria-describedby="basic-addon2">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <br />
+                        <button class="btn btn-success float-right btn-sm btn-block" id="btnBuscarSolicitudesCambios">
+                            <i class="fas fa-search"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-12">
+                        <table id="tablaSolicitudCambios"></table>
+                        <div id="pagertablaSolicitudCambios"></div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-12">
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnEliminarSolicitudCambios">
+                            <i class="far fa-trash-alt"></i>
+                            Eliminar
+                        </button>
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnAprobarSolicitudCambios">
+                            <i class="fas fa-check"></i>
+                            Aprobar
+                        </button>
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnModificarSolicitudCambios">
+                            <i class="fas fa-pencil-alt"></i>
+                            Modificar
+                        </button>
+
+
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnConsultarSolicitudCambios">
+                            <i class="fas fa-search-plus"></i>
+                            Consultar
+                        </button>
+                        <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnNuevoSolicitudCambios">
+                            <i class="far fa-file"></i>
+                            Nuevo
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="carousel-item">
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-12 font-weight-bold bg-light p-2 text-body" id="titleOpcion">
+                        NUEVO CONTRATO
+                    </div>
+                </div>
+
+
+                <div class="row mt-3">
+                    <div class="col-sm-2">
+                        Fecha de Registro:
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control text-center" placeholder="  /    /" aria-label="Recipient's username">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        Nro. Sol. de Cambios:
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        Nro. Contrato:
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-sm-2">
+                        Nro. Adenda:
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+
+                        <button class="btn btn-success float-right">
+                            <i class="fas fa-search"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-2">
+                        Nombre Contrato:
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-sm-2">
+                        Nombre Adenda:
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-2">
+                        Razón Social / Cliente:
+                    </div>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-sm-1">
+                        RUC/DNI
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-12">
+                        <label for="chkTieneControversia" class="float-right">Tiene controversia Asociada</label>
+                        <input type="checkbox" class="float-right mt-2 mr-2" id="chkTieneControversia">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-9">
+                        Cláusulas a modificar:
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-12" style="box-shadow: 0px 0px 3px #c7c3c3;">
+                                <table class="table">
+                                    <tr>
+                                        <td>Ancecedentes</td>
+                                        <td><input type="checkbox" style="width: 21px;height: 21px;"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Monto Contratado (Tipo Moneda y Monto Contractual</td>
+                                        <td><input type="checkbox" style="width: 21px;height: 21px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cronograma de Entrega (Número y fechas de entrega)</td>
+                                        <td><input type="checkbox" style="width: 21px;height: 21px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vigencia (Fecha Inicio y término de contrato)</td>
+                                        <td><input type="checkbox" style="width: 21px;height: 21px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Formas de Pago (Pago al Contado y Cuotas)</td>
+                                        <td><input type="checkbox" style="width: 21px;height: 21px;"></td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <button class="btn btn-lg btn-primary">
+                                    <i class="far fa-save"></i>
+                                    GUARDAR
+                                </button>
+                                <button class="btn btn-danger mt-5  " >
+                                    <i class="fas fa-ban"></i>
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../js/mantenersolicitudcambios.js"></script>

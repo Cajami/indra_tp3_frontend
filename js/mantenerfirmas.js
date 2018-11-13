@@ -32,6 +32,7 @@ function PageInitFirmas() {
 
     GenerarGrillaClientesAdendas();
 }
+
 function GenerarGrillaClientesAdendas() {
     var alto = $(document).height() - 340;
     jQuery('#tablaFirmas').jqGrid({
@@ -181,9 +182,7 @@ $('#btnSeleccionar').off().on('click', function () {
         },
         function (data) {
             MostrarLoading(false);
-            console.clear();
-            console.log(JSON.stringify(data, null, 3));
-
+            
             if (data == null) {
                 MensajeError('Error en la respuesta del Servidor');
                 return;
