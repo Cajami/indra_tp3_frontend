@@ -309,9 +309,13 @@ PageInitAdendas();
 
 
 $('#btnBuscarDialogoContratoAdenda').off().on('click', function () {
+    $('#tablaBusquedaContratosDialogo').hideCol('codigoControversia');
+
     OpenDialogo('dialogoBuscarContrato', function () {
         $('#txtBuscarRucCliente').focus();
     }, undefined, function () {
+        $('#tablaBusquedaContratosDialogo').showCol('codigoControversia');
+
         $('#txtBuscarRucClienteDialogo,#hCodigoClienteDialogoContrato').val('');
         ReloadJQGRID('tablaBusquedaContratosDialogo', []);
     });
@@ -325,6 +329,7 @@ $('#btnAbrirDialogoClienteBuscarAdenda').off().on('click', function () {
         $('#txtBuscarRucCliente').focus();
     }, function () {
         $('#dialogoBuscarContrato').modal('show');
+        $('#tablaBusquedaContratosDialogo').hideCol('codigoControversia');
     }, function () {
         $('#txtBuscarRucCliente,#txtBuscarDniCliente,#txtBuscarClienteRazonSocialCliente').val('');
         ReloadJQGRID('tablaClientesDialogo', []);
@@ -1048,8 +1053,6 @@ $('#btnBuscarAdendasModuloPrincipal').off().on('click', function () {
         },
         function (error) {
             MostrarLoading(false);
-
-
         });
 });
 

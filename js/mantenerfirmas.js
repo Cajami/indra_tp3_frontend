@@ -128,7 +128,7 @@ $('#btnSeleccionarClienteDialogo').off().on('click', function () {
     CloseDialogo('dialogoBuscarCliente');
 });
 
-$('#btnBuscarContratosAdendasFirmas').off().on('click', function () {
+$('#btnBuscarContratosAdendasFirmas').off().on('click', function (event, parameter) {
     var codigoCliente = $('#hCodigoFirmanteSeleccionadoModuloPrincipalFirmas').val().trim();
 
     if (codigoCliente.length == 0) {
@@ -150,19 +150,21 @@ $('#btnBuscarContratosAdendasFirmas').off().on('click', function () {
             MostrarLoading(false);
 
             if (result == null) {
-                MensajeError('Servidor devolvió Error de Datos');
+                if (!parameter)
+                    MensajeError('Servidor devolvió Error de Datos');
                 return;
             }
 
-            if (result.length == 0)
-                MensajeError('Búsqueda SIN REGISTRO');
-            else
+            if (result.length == 0) {
+                if (!parameter)
+                    MensajeError('Búsqueda SIN REGISTRO');
+            } else
                 ReloadJQGRID('tablaFirmas', result);
         },
         function (error) {
             MostrarLoading(false);
-            MensajeError('Se produjo un error al enviar a llamar al servicio')
-
+            if (!parameter)
+                MensajeError('Se produjo un error al enviar a llamar al servicio')
         });
 });
 
@@ -182,7 +184,7 @@ $('#btnSeleccionar').off().on('click', function () {
         },
         function (data) {
             MostrarLoading(false);
-            
+
             if (data == null) {
                 MensajeError('Error en la respuesta del Servidor');
                 return;
@@ -384,9 +386,10 @@ $('#btnGuardarFirmaAdenda').off().on('click', function () {
 
     MensajeConfirmar('¿Está seguro que desea guardar el documento?', function () {
 
+        var codigoAdenda = $('#txtNumeroAdendaFirma').attr('icodadenda');
         var formularioEnviar = new FormData();
-        formularioEnviar.append("codAdenda", $('#txtNumeroAdendaFirma').attr('icodadenda'));
-        formularioEnviar.append('documento', fileSeleccionado);
+        formularioEnviar.append("codAdenda", codigoAdenda);
+        formularioEnviar.append('documento', fileSeleccionado, generarNombreUnico(codigoAdenda));
 
         MostrarLoading(true, 'Guardando...');
 
@@ -398,11 +401,22 @@ $('#btnGuardarFirmaAdenda').off().on('click', function () {
             success: function (data) {
                 MostrarLoading(false);
 
-                console.log('data', data);
+                if (data == null) {
+                    MensajeError('Problemas para guardar');
+                    return;
+                }
+
+                if (data <= 0) {
+                    MensajeError('No pudo guardarse');
+                } else {
+                    $('#btnCancelarFirmaAdenda').trigger('click');
+                    MensajeOk('Documento Guardado', 'Se realizó el guardado del documento');
+                    $('#btnBuscarContratosAdendasFirmas').trigger('click', [true]);
+                }
             },
             error: function (data) {
                 MostrarLoading(false);
-                console.log('error', data);
+                MensajeError('Problemas para conectarnos con el servicio');
             },
             cache: false,
             contentType: false,
@@ -414,9 +428,16 @@ $('#btnGuardarFirmaAdenda').off().on('click', function () {
 $('#btnCargarDocumentoFirmas').off().on('click', function () {
     $('#fileUpload').click();
 });
-var fileSeleccionado;
+var fileSeleccionado = null;
 $('#fileUpload').off().on('change', function () {
     fileSeleccionado = $(this)[0].files[0];
+
+    if (fileSeleccionado.type.toUpperCase().indexOf('PDF') == -1) {
+        fileSeleccionado = null;
+        MensajeError('Debe seleccionar archivos pdf');
+        return;
+    }
+
     //alert(fileSeleccionado.name);
     var html = '<tr class="text-center">' +
         '<td>1</td>' +
@@ -484,7 +505,7 @@ $('#btnGuardarObservacion').off().on('click', function () {
                     MensajeOk('Adenda Observada', 'Se observó adenda correctamente');
                     $('#btnCancelarFirmaAdenda').trigger('click');
 
-                    $('#btnBuscarContratosAdendasFirmas').trigger('click');
+                    $('#btnBuscarContratosAdendasFirmas').trigger('click', [true]);
                 }
             },
             function (error) {
@@ -492,17 +513,16 @@ $('#btnGuardarObservacion').off().on('click', function () {
                 MensajeError('Problemas para conectarnos con el servicio');
             });
     });
-
-
 });
 
-
-function generarNombreUnico() {
+function generarNombreUnico(nameFile) {
     var fechaActual = new Date();
-    return 
+    return fechaActual.getFullYear() +
+        ('0' + fechaActual.getMonth()).slice(-2) +
         ('0' + fechaActual.getDate()).slice(-2) + '_' +
-        ('0' + fechaActual.getMonth()).slice(-2) + '_' +
-        fechaActual.getFullYear();
-}
 
-/////////////alert(generarNombreUnico());
+        ('0' + fechaActual.getHours()).slice(-2) +
+        ('0' + fechaActual.getMinutes()).slice(-2) +
+        ('0' + fechaActual.getSeconds()).slice(-2) + '_' +
+        nameFile;
+}

@@ -61,7 +61,7 @@ $('#btnNuevoControversia').off().on('click', function () {
     $('#txtDescripcionControversia').val('');
     $('#txtNumeroPaginaControversia').val(null);
     $('#txtNroClausulaControversia').val(null);
-    
+
 });
 
 
@@ -71,17 +71,17 @@ $('#btnNuevoControversia').off().on('click', function () {
 function ConsultarAdenda(iCodContrato, iCodAdenda, callBack, evento) {
     MostrarLoading(true, 'Recuperando Datos de Adenda...');
 
-    
+
     QueryAJAX('indraupc/buscarxContAdenda',
-       {
-           codContrato: iCodContrato,
-           codAdenda: iCodAdenda
-       },
+        {
+            codContrato: iCodContrato,
+            codAdenda: iCodAdenda
+        },
         function (resultado) {
 
             console.log(resultado);
 
-            if (resultado == null  || !resultado) {
+            if (resultado == null || !resultado) {
                 MostrarLoading(false);
                 MensajeError('Problemas con el servidor, devolvió NULL');
                 return;
@@ -111,7 +111,7 @@ function ConsultarAdenda(iCodContrato, iCodAdenda, callBack, evento) {
                 $('#txtDireccionControversia').val(resultado[0].direcFirmante);
                 $('#txtEmailControversia').val(resultado[0].emailFirmante);
 
-                                  
+
             } catch (e) {
                 MostrarLoading(false);
                 MensajeError('Se produjo un error con la data recibida del servidor');
@@ -128,15 +128,15 @@ function ConsultarAdenda(iCodContrato, iCodAdenda, callBack, evento) {
 function ConsultarControversia(icodControversia, icodFirmanteControversia, callBack, evento) {
     MostrarLoading(true, 'Recuperando Datos de Controversia...');
     QueryAJAX('indraupc/consultarControversia',
-       {
-           codControversia: icodControversia,
-           idFirmanteContrato: icodFirmanteControversia
-       },
+        {
+            codControversia: icodControversia,
+            idFirmanteContrato: icodFirmanteControversia
+        },
         function (resultado) {
 
             console.log(resultado);
 
-            if (resultado == null  || !resultado) {
+            if (resultado == null || !resultado) {
                 MostrarLoading(false);
                 MensajeError('Problemas con el servidor, devolvió NULL');
                 return;
@@ -179,8 +179,8 @@ function ConsultarControversia(icodControversia, icodFirmanteControversia, callB
                 $('#txtDescripcionControversia').val(resultado[0].descripcionControversia);
                 $('#txtNumeroPaginaControversia').val(resultado[0].numPagina);
                 $('#txtNroClausulaControversia').val(resultado[0].numClausula);
-                
-                                  
+
+
             } catch (e) {
                 MostrarLoading(false);
                 MensajeError('Se produjo un error con la data recibida del servidor');
@@ -210,7 +210,8 @@ function GenerarGrillaClientesControversias() {
             { label: 'Fecha Inicio', name: 'fechaRegistro', index: 'fechaRegistro', align: 'center', width: 150, hidden: false, sortable: false, resizable: false },
             { label: 'Fecha Finalización', name: 'fechaAprobacion', index: 'fechaAprobacion', align: 'center', width: 150, hidden: false, sortable: false, resizable: false },
             { label: 'Últ.Fecha Modif.', name: 'fechaUltimaMod', index: 'fechaUltimaMod', align: 'center', width: 150, hidden: false, sortable: false, resizable: false },
-            { label: 'Estado', name: 'estado', index: 'estado', align: 'center', width: 120, hidden: false, sortable: false, resizable: false,
+            {
+                label: 'Estado', name: 'estado', index: 'estado', align: 'center', width: 120, hidden: false, sortable: false, resizable: false,
                 cellattr: function (rowId, val, rawObject, cm, rdata) {
                     var stylo = '';
                     switch (val) {
@@ -269,9 +270,22 @@ PageInitControversia();
 
 
 $('#btnBuscarDialogoContratoAdenda').off().on('click', function () {
+    var $tabla = $('#tablaBusquedaContratosDialogo');
+    $tabla.hideCol('numeroSolicitud');
+    $tabla.hideCol('codigoControversia');
+    $tabla.hideCol('estadoSolicitud');
+
     OpenDialogo('dialogoBuscarContrato', function () {
         $('#txtBuscarRucCliente').focus();
     }, undefined, function () {
+
+        var $tabla = $('#tablaBusquedaContratosDialogo');
+
+        tabla.showCol('numeroSolicitud');
+        tabla.showCol('codigoControversia');
+        tabla.showCol('estadoSolicitud');
+
+
         $('#txtBuscarRucClienteDialogo,#hCodigoClienteDialogoContrato').val('');
         ReloadJQGRID('tablaBusquedaContratosDialogo', []);
     });
@@ -320,8 +334,8 @@ $('#btnSeleccionarClienteDialogo').off().on('click', function () {
 
 $('#btnSeleccionarContratoDialogo').off().on('click', function () {
     var registro = GetRowSelectJqGrid('tablaBusquedaContratosDialogo');
-debugger;
-    if (registro == null ) {
+    debugger;
+    if (registro == null) {
         MensajeError('Debe seleccionar un Cliente');
         return;
     }
@@ -365,23 +379,23 @@ $('#btnBuscarContratoDialogo').off().on('click', function () {
         {
             codigoCliente: iCodcliente
         },
-         function (resultado) {
-             MostrarLoading(false);
+        function (resultado) {
+            MostrarLoading(false);
 
-             if (resultado == null ) {
-                 MensajeError('Problemas con el servidor, devolvió NULL');
-                 return;
-             }
+            if (resultado == null) {
+                MensajeError('Problemas con el servidor, devolvió NULL');
+                return;
+            }
 
-             for (var i = 0; i < resultado.length; i++)
-                 resultado[i].idRegistro = i + 1;
+            for (var i = 0; i < resultado.length; i++)
+                resultado[i].idRegistro = i + 1;
 
-             ReloadJQGRID('tablaBusquedaContratosDialogo', resultado);
-         },
-         function (error) {
-             MostrarLoading(false);
-             MensajeError('Problemas para conectarnos con el servicio');
-         });
+            ReloadJQGRID('tablaBusquedaContratosDialogo', resultado);
+        },
+        function (error) {
+            MostrarLoading(false);
+            MensajeError('Problemas para conectarnos con el servicio');
+        });
 });
 
 $('#btnCancelarControversia').off().on('click', function () {
@@ -503,8 +517,8 @@ $('#btnGuardarControversia').off().on('click', function () {
         dniCliente = $('#txtNumeroDocumentoControversia').val(),
         desControversia = $('#txtDescripcionControversia').val().trim(),
         numeroPaginas = $('#txtNumeroPaginaControversia').val().trim(),
-        numeroClausulas = $('#txtNroClausulaControversia').val().trim()     
-        
+        numeroClausulas = $('#txtNroClausulaControversia').val().trim()
+
 
     /*if (typeof icodAdenda == 'undefined' || icodAdenda.length == 0 || icodAdenda == 0) {
         MensajeError('No ha seleccionando ninguna adenda');
@@ -535,64 +549,64 @@ $('#btnGuardarControversia').off().on('click', function () {
     if ($('#txtDescripcionControversia').val().trim().length == 0) {
         MensajeError('La descripción no puede estar vacío');
         return;
-    }    
+    }
 
     MensajeConfirmar('¿Desea guardar la nueva controversia?',
         function () {
             MostrarLoading(true, 'Regitrando Controversia...');
 
             QueryAJAX('indraupc/registrarControversia',
-                   {
-                        dniCliente: dniCliente,
-                        codAdenda: codAdenda,
-                        desControversia: desControversia,
-                        numeroPaginas: numeroPaginas,
-                        numeroClausulas: numeroClausulas
-                   },
-                   function (resultado) {
+                {
+                    dniCliente: dniCliente,
+                    codAdenda: codAdenda,
+                    desControversia: desControversia,
+                    numeroPaginas: numeroPaginas,
+                    numeroClausulas: numeroClausulas
+                },
+                function (resultado) {
 
-                       if (resultado <= 0) {
-                           MostrarLoading(false);
-                           MensajeError('No se pudo registrar la controversia en el servidor');
-                           return;
-                       }
+                    if (resultado <= 0) {
+                        MostrarLoading(false);
+                        MensajeError('No se pudo registrar la controversia en el servidor');
+                        return;
+                    }
 
-                       MostrarLoading(false);
+                    MostrarLoading(false);
 
-                       MensajeOk('Controversia creada',
-                          'Se registró la Controversia correctamente',
-                          function () {
-                              $('#btnCancelarControversia').trigger('click');
-                              setTimeout(function () {
-                                  $('#btnBuscarControversiasModuloPrincipal').trigger('click');
-                              }, 1000)
-                          });
+                    MensajeOk('Controversia creada',
+                        'Se registró la Controversia correctamente',
+                        function () {
+                            $('#btnCancelarControversia').trigger('click');
+                            setTimeout(function () {
+                                $('#btnBuscarControversiasModuloPrincipal').trigger('click');
+                            }, 1000)
+                        });
 
-                   },
-                   function (error) {
-                       MostrarLoading(false);
-                       MensajeError('Problemas para conectarnos con el servicio');
-                   });
+                },
+                function (error) {
+                    MostrarLoading(false);
+                    MensajeError('Problemas para conectarnos con el servicio');
+                });
         });
 });
 
 function RegistrarAntecedentes(array, idAdenda, index) {
     if (index < array.length) {
         QueryAJAX('indraupc/registrarAncedente',
-                   {
-                       codigoAdenda: idAdenda,
-                       descripcion: array[index]
-                   },
-                   function (resultado) {
-                       console.log('Registro Antecedente: ', resultado);
+            {
+                codigoAdenda: idAdenda,
+                descripcion: array[index]
+            },
+            function (resultado) {
+                console.log('Registro Antecedente: ', resultado);
 
-                       index++;
-                       RegistrarAntecedentes(array, idAdenda, index);
-                   },
-                   function (error) {
-                       index++;
-                       RegistrarAntecedentes(array, idAdenda, index);
-                   });
+                index++;
+                RegistrarAntecedentes(array, idAdenda, index);
+            },
+            function (error) {
+                index++;
+                RegistrarAntecedentes(array, idAdenda, index);
+            });
     } else {
         array.length = 0;
 
@@ -651,7 +665,7 @@ $('#btnBuscarControversiasModuloPrincipal').off().on('click', function () {
             ReloadJQGRID('tablaClientesControversias', resultado);
         },
         function (error) {
-            alert('Error');    
+            alert('Error');
             MostrarLoading(false);
 
 
@@ -666,7 +680,7 @@ $('#btnConsultarControversia').off().on('click', function () {
         return;
     }
 
-    ConsultarControversia(registro.codControversia,registro.codFirmanteControversia, function () {
+    ConsultarControversia(registro.codControversia, registro.codFirmanteControversia, function () {
 
         $('#titleOpcion').html('CONSULTAR CONTROVERSIA');
         $('#btnGuardarControversia,#btnGuardarModificacionControversia,#btnGuardarEliminarControversia').hide();
@@ -685,7 +699,7 @@ $('#btnModificarControversia').off().on('click', function () {
         return;
     }
 
-    ConsultarControversia(registro.codControversia,registro.codFirmanteControversia, function () {
+    ConsultarControversia(registro.codControversia, registro.codFirmanteControversia, function () {
 
         $('#titleOpcion').html('MODIFICAR ADENDA');
         $('#btnGuardarControversia,#btnGuardarEliminarControversia').hide();
@@ -696,7 +710,7 @@ $('#btnModificarControversia').off().on('click', function () {
         $('div.card-tabs-bar a:not(:first)').show();
         $('#CarruselModuloControversia').carousel(1);
     });
-    
+
 });
 
 $('#btnEliminarControversia').off().on('click', function () {
@@ -708,7 +722,7 @@ $('#btnEliminarControversia').off().on('click', function () {
     }
 
     console.log(registro.codigoAdenda);
-    ConsultarControversia(registro.codControversia,registro.codFirmanteControversia, function () {
+    ConsultarControversia(registro.codControversia, registro.codFirmanteControversia, function () {
 
 
         $('#titleOpcion').html('ELIMINAR CONTROVERSIA');
@@ -724,10 +738,10 @@ $('#btnEliminarControversia').off().on('click', function () {
 
 
 $('#btnGuardarModificacionControversia').off().on('click', function () {
-    var iCodControversia = $('#txtNroControversiaControversia').val(),       
-       desControversia = $('#txtDescripcionControversia').val().trim(),
-       numeroPaginas = $('#txtNumeroPaginaControversia').val().trim(),
-       numeroClausulas = $('#txtNroClausulaControversia').val().trim();
+    var iCodControversia = $('#txtNroControversiaControversia').val(),
+        desControversia = $('#txtDescripcionControversia').val().trim(),
+        numeroPaginas = $('#txtNumeroPaginaControversia').val().trim(),
+        numeroClausulas = $('#txtNroClausulaControversia').val().trim();
 
     if (desControversia.length == 0) {
         MensajeError('La descripción no puede estar vacío');
@@ -743,42 +757,42 @@ $('#btnGuardarModificacionControversia').off().on('click', function () {
         MensajeError('Número de Cláusula debe ser solo números');
         return;
     }
-    
+
     MensajeConfirmar('¿Desea modificar la controversia?',
         function () {
             MostrarLoading(true, 'Modificando Controversia...');
 
             QueryAJAX('indraupc/modificarControversia',
-                   {
-                        codControversia: iCodControversia,
-                        desControversia: desControversia,
-                        numeroPaginas: numeroPaginas,
-                        numeroClausulas: numeroClausulas
-                   },
-                   function (resultado) {
+                {
+                    codControversia: iCodControversia,
+                    desControversia: desControversia,
+                    numeroPaginas: numeroPaginas,
+                    numeroClausulas: numeroClausulas
+                },
+                function (resultado) {
 
-                       if (resultado <= 0) {
-                           MostrarLoading(false);
-                           MensajeError('No se pudo modificar controversia en el servidor');
-                           return;
-                       }
+                    if (resultado <= 0) {
+                        MostrarLoading(false);
+                        MensajeError('No se pudo modificar controversia en el servidor');
+                        return;
+                    }
 
-                       MostrarLoading(false);
+                    MostrarLoading(false);
 
-                       MensajeOk('Controversia Modificada',
-                          'Se modificó la Controversia correctamente',
-                          function () {
-                              $('#btnCancelarControversia').trigger('click');
-                              setTimeout(function () {
-                                  $('#btnBuscarControversiasModuloPrincipal').trigger('click');
-                              }, 1000)
-                          });
+                    MensajeOk('Controversia Modificada',
+                        'Se modificó la Controversia correctamente',
+                        function () {
+                            $('#btnCancelarControversia').trigger('click');
+                            setTimeout(function () {
+                                $('#btnBuscarControversiasModuloPrincipal').trigger('click');
+                            }, 1000)
+                        });
 
-                   },
-                   function (error) {
-                       MostrarLoading(false);
-                       MensajeError('Problemas para conectarnos con el servicio');
-                   });
+                },
+                function (error) {
+                    MostrarLoading(false);
+                    MensajeError('Problemas para conectarnos con el servicio');
+                });
         });
 });
 
@@ -795,30 +809,30 @@ $('#btnGuardarEliminarControversia').off().on('click', function () {
             }*/
             //console.log(iCodControversia)
             QueryAJAX('indraupc/eliminarControversia',
-                  {
-                      codControversia: iCodControversia,
-                  },
-                  function (resultado) {
-                      MostrarLoading(false);
+                {
+                    codControversia: iCodControversia,
+                },
+                function (resultado) {
+                    MostrarLoading(false);
 
-                      //if (resultado != 1) {
-                    if (resultado <= 0) {    
-                          MensajeError('No se pudo Eliminar la Controversia');
-                          return;
-                      }
-                      MensajeOk('Controversia Eliminada',
-                          'Se eliminó la Controversia correctamente',
-                          function () {
-                              $('#btnCancelarControversia').trigger('click');
-                              setTimeout(function () {
-                                  $('#btnBuscarControversiasModuloPrincipal').trigger('click');
-                              }, 1000)
-                          });
-                  },
-                  function (error) {
-                      MostrarLoading(false);
-                      MensajeError('Problemas para conectarnos con el servicio');
-                  });
+                    //if (resultado != 1) {
+                    if (resultado <= 0) {
+                        MensajeError('No se pudo Eliminar la Controversia');
+                        return;
+                    }
+                    MensajeOk('Controversia Eliminada',
+                        'Se eliminó la Controversia correctamente',
+                        function () {
+                            $('#btnCancelarControversia').trigger('click');
+                            setTimeout(function () {
+                                $('#btnBuscarControversiasModuloPrincipal').trigger('click');
+                            }, 1000)
+                        });
+                },
+                function (error) {
+                    MostrarLoading(false);
+                    MensajeError('Problemas para conectarnos con el servicio');
+                });
         });
 });
 

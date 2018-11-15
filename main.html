@@ -14,7 +14,7 @@
     <!--JQUERY-UI -->
     <link href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
 
-    
+
     <!-- TOGGLES -->
     <link href="plugins/jquery-toggles/toggles-full.css" rel="stylesheet" />
 
@@ -246,7 +246,7 @@
     <!--JQUERY-UI  -->
     <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 
-    
+
     <!-- TOGGLES -->
     <script src="plugins/jquery-toggles/toggles.min.js"></script>
 
@@ -293,7 +293,7 @@
             $('#divContenido').load($(this).attr('page') + '?_c=' + GenerarStringAleatorio(15));
         });
 
-        $('#btnSolicitudCambios').on('click',function(){
+        $('#btnSolicitudCambios').on('click', function () {
             $('div.SubOption').removeClass('option-active');
             $(this).addClass('option-active');
             $('#divContenido').load($(this).attr('page') + '?_c=' + GenerarStringAleatorio(15));
@@ -371,6 +371,12 @@
                     { label: 'Nombre Adenda', name: 'nombreAdenda', index: 'nombreAdenda', align: 'left', width: 250, sortable: false, resizable: false },
                     {
                         label: 'Numero Solicitud', name: 'numeroSolicitud', index: 'numeroSolicitud', align: 'center', width: 130, sortable: false, resizable: false,
+                        formatter: function (cellvalue, options, rowObject) {
+                            return cellvalue == 0 ? '' : cellvalue;
+                        }
+                    },
+                    {
+                        label: 'Código Controversia', name: 'codigoControversia', index: 'codigoControversia', align: 'center', width: 130, sortable: false, resizable: false,
                         formatter: function (cellvalue, options, rowObject) {
                             return cellvalue == 0 ? '' : cellvalue;
                         }

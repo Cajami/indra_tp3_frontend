@@ -5,7 +5,7 @@
             <!-- PANTALLA PRINCIPAL -->
             <div class="container mt-3">
                 <div class="row">
-                    <div class="col-sm-8">
+                    <div class="col-sm-10">
                         <span class="etiqueta">
                             Cliente
                         </span>
@@ -20,12 +20,12 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-2">
+                    <!-- <div class="col-sm-2">
                         <span class="etiqueta">
                             Fecha Registro
                         </span>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control text-center" placeholder="  /    /" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control text-center" placeholder="  /    /" id="txtFechaRegistroSolicitudCambios">
 
                             <div class="input-group-append">
                                 <span class="input-group-text">
@@ -33,7 +33,7 @@
                                 </span>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="col-sm-2">
                         <br />
@@ -79,7 +79,7 @@
             </div>
 
         </div>
-        <div class="carousel-item">
+        <div class="carousel-item" style="overflow-y: auto;">
 
             <div class="container">
 
@@ -89,14 +89,40 @@
                     </div>
                 </div>
 
+                <div class="row mt-3 mb-3">
+                    <div class="col-sm-2">
+                        Nro. Contrato:
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control text-center" id="txtNroContratoSolicitudCambios">
+                    </div>
+                    <div class="col-sm-2">
+                        Nro. Adenda:
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control text-center" id="txtNroAdendaSolicitudCambios">
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-secondary" id="btnBuscarAdendaSolicitudCambios">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
 
-                <div class="row mt-3">
+                        <button class="btn btn-success float-right" id="btnBuscarContratoAdendaSolicitudCambios">
+                            <i class="fas fa-search"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
                     <div class="col-sm-2">
                         Fecha de Registro:
                     </div>
                     <div class="col-sm-3">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control text-center" placeholder="  /    /" aria-label="Recipient's username">
+                            <input type="text" class="form-control text-center" readonly placeholder="  /    /" id="txtFechaRegistroSolicitudCambios">
 
                             <div class="input-group-append">
                                 <span class="input-group-text">
@@ -110,34 +136,15 @@
                         Nro. Sol. de Cambios:
                     </div>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control text-center" readonly id="txtNroSolicitudCambios">
                     </div>
-                </div>
-                <hr>
 
-                <div class="row">
-                    <div class="col-sm-2">
-                        Nro. Contrato:
-                    </div>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="col-sm-2">
-                        Nro. Adenda:
-                    </div>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="col-sm-3">
-                        <button class="btn btn-secondary">
-                            <i class="fas fa-ellipsis-h"></i>
-                        </button>
+                        Controversia Asociada:
 
-                        <button class="btn btn-success float-right">
-                            <i class="fas fa-search"></i>
-                            Buscar
-                        </button>
+                        <div class="toggle toggle-modern" id="chkControversiaAsociada"></div>
                     </div>
+
                 </div>
 
                 <div class="row mt-3">
@@ -145,83 +152,82 @@
                         Nombre Contrato:
                     </div>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" readonly id="txtNombreContratoSolicitudCambios">
                     </div>
                     <div class="col-sm-2">
                         Nombre Adenda:
                     </div>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" readonly id="txtNombreAdendaSolicitudCambios">
                     </div>
                 </div>
 
-                <div class="row mt-3">
+                <div class="row mt-3 mb-3">
                     <div class="col-sm-2">
                         Razón Social / Cliente:
                     </div>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" readonly id="txtRazonSocialSolicitudCambios">
                     </div>
                     <div class="col-sm-1">
                         RUC/DNI
                     </div>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" readonly id="txtRucDniSolicitudCambios">
                     </div>
                 </div>
-
-                <div class="row mt-3">
-                    <div class="col-sm-12">
-                        <label for="chkTieneControversia" class="float-right">Tiene controversia Asociada</label>
-                        <input type="checkbox" class="float-right mt-2 mr-2" id="chkTieneControversia">
-                    </div>
-                </div>
-
-                <div class="row mt-3">
-                    <div class="col-sm-9">
-                        Cláusulas a modificar:
-                    </div>
-                </div>
-
+                <hr>
                 <div class="row mt-2">
                     <div class="col-sm-9">
                         <div class="row">
-                            <div class="col-sm-12" style="box-shadow: 0px 0px 3px #c7c3c3;">
-                                <table class="table">
+                            <!-- <div class="col-sm-12 mb-3" style="box-shadow: 0px 0px 3px #c7c3c3;"> -->
+                            <table class="table" id="tablaCausulasAModificar" style="box-shadow: 0px 0px 3px #c7c3c3;">
+                                <thead>
+                                    <tr class="bg-primary text-center">
+                                        <th>Cláusula</th>
+                                        <th>Módificar</th>
+                                        <th>Observación</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <td>Ancecedentes</td>
-                                        <td><input type="checkbox" style="width: 21px;height: 21px;"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Monto Contratado (Tipo Moneda y Monto Contractual</td>
-                                        <td><input type="checkbox" style="width: 21px;height: 21px;"></td>
+                                        <td class="text-center"><input type="checkbox" numeroClausula="1"  style="width: 21px;height: 21px;"></td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Cronograma de Entrega (Número y fechas de entrega)</td>
-                                        <td><input type="checkbox" style="width: 21px;height: 21px;"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Vigencia (Fecha Inicio y término de contrato)</td>
-                                        <td><input type="checkbox" style="width: 21px;height: 21px;"></td>
+                                        <td>Monto Contratado (Tipo Moneda y Monto Contractual)</td>
+                                        <td class="text-center"><input type="checkbox" numeroClausula="3" style="width: 21px;height: 21px;"></td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <td>Formas de Pago (Pago al Contado y Cuotas)</td>
-                                        <td><input type="checkbox" style="width: 21px;height: 21px;"></td>
+                                        <td class="text-center"><input type="checkbox"  numeroclausula="4" style="width: 21px;height: 21px;"></td>
+                                        <td></td>
                                     </tr>
-
-                                </table>
-                            </div>
+                                    <tr>
+                                        <td>Vigencia (Fecha Inicio y término de contrato)</td>
+                                        <td class="text-center"><input type="checkbox" numeroclausula="5" style="width: 21px;height: 21px;"></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cronograma de Entrega (Número y fechas de entrega)</td>
+                                        <td class="text-center"><input type="checkbox" numeroclausula="6" style="width: 21px;height: 21px;"></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- </div> -->
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="row">
                             <div class="col-sm-12 text-center">
-                                <button class="btn btn-lg btn-primary">
+                                <button class="btn btn-lg btn-primary" id="btnGuardarSolicitudCambios">
                                     <i class="far fa-save"></i>
                                     GUARDAR
                                 </button>
-                                <button class="btn btn-danger mt-5  " >
+                                <button class="btn btn-danger mt-5" id="btnCancelarSolicitudCambios">
                                     <i class="fas fa-ban"></i>
                                     Cancelar
                                 </button>
