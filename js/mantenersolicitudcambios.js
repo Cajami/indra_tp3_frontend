@@ -97,10 +97,22 @@ function GenerarGrillaSolicitudesCambios() {
         onSelectRow: function (rowid, iRow, iCol, e) {
             var registro = jQuery(this).jqGrid('getRowData', rowid);
 
-            if (registro.estadoAdenda == 'EN PROCESO')
-                $('#btnSeleccionar').prop('disabled', false);
-            else
-                $('#btnSeleccionar').prop('disabled', true);
+            $('#contenedorBotones button').prop('disabled', true);
+            switch (registro.estadoSolicitud) {
+                case 'RECHAZADO':
+                    $('#btnConsultarSolicitudCambios,#btnNuevoSolicitudCambios').prop('disabled', false);
+                    break;
+                case 'INICIADO':
+                    $('#contenedorBotones button').prop('disabled', false);
+                    break;
+                case 'APROBADO':
+                    $('#btnConsultarSolicitudCambios,#btnNuevoSolicitudCambios').prop('disabled', false);
+            }
+
+            // if (registro.estadoAdenda == 'EN PROCESO')
+            //     $('#btnSeleccionar').prop('disabled', false);
+            // else
+            //     $('#btnSeleccionar').prop('disabled', true);
         },
         onCellSelect: function (rowid, icol, cellcontent, e) {
         },
@@ -117,6 +129,7 @@ function GenerarGrillaSolicitudesCambios() {
 InitPageSolicitudCambios();
 
 $('#btnAbrirDialogoClienteBuscar').off().on('click', function () {
+    $('#btnSeleccionarClienteDialogo').attr('accion', 'principal');
     OpenDialogo('dialogoBuscarCliente', function () {
         $('#txtBuscarRucCliente').focus();
     }, undefined, function () {
@@ -171,8 +184,9 @@ $('#btnSeleccionarClienteDialogo').off().on('click', function () {
     }
     CloseDialogo('dialogoBuscarCliente');
 
+    debugger;
     if ($('#btnSeleccionarClienteDialogo').attr('accion') == 'principal') {
-        $('#txtClienteModuloPrincipalAdendas').val(registro.cliente).attr('iCodCliente', registro.codigoFirmante);
+        $('#txtClienteSolicitudCambios').val(registro.cliente).attr('iCodCliente', registro.codigoFirmante);
     } else {
         $('#txtBuscarRucClienteDialogo').val(registro.cliente);
         $('#hCodigoClienteDialogoContrato').val(registro.codigoFirmante);
@@ -242,8 +256,10 @@ $('#btnBuscarContratoDialogo').off().on('click', function () {
 });
 
 $('#btnBuscarSolicitudesCambios').off().on('click', function () {
-    var codigoCliente = $('#hCodigoFirmanteSeleccionadoModuloPrincipalSolicitudCambios').val(),
-        fechaRegistro = '1900-01-01';
+    var codigoCliente = $('#txtClienteSolicitudCambios').attr('icodcliente');
+
+    //) $('#hCodigoFirmanteSeleccionadoModuloPrincipalSolicitudCambios').val(),
+    fechaRegistro = '1900-01-01';
 
     if (typeof codigoCliente == 'undefined') {
         MensajeError('Debe seleccionar un Cliente');
@@ -278,33 +294,173 @@ $('#btnBuscarSolicitudesCambios').off().on('click', function () {
 });
 
 $('#btnNuevoSolicitudCambios').off().on('click', function () {
+    $('#contenedorControlesSolicitud input').val('');
+    $('#btnBuscarAdendaSolicitudCambios,#btnBuscarContratoAdendaSolicitudCambios').prop('disabled', false);
+    $('#tablaCausulasAModificar tbody tr input[type=checkbox]').prop('checked', false).trigger('change');
     $('#titleOpcion').html('NUEVA SOLICITUD DE CAMBIOS');
+    $('#btnModificarRegistroSolicitudCambios,#btnEliminarRegistroSolicitudCambios').hide();
+
     //$('div.card-tabs-bar a:not(:first)').show();
     $('#CarruselModuloSolicitudCambios').carousel(1);
 });
 
 $('#btnConsultarSolicitudCambios').off().on('click', function () {
 
+    var registro = GetRowSelectJqGrid('tablaSolicitudCambios');
+
+    if (registro == null) {
+        MensajeError('Debe seleccionar una Solicitud');
+        return;
+    }
+
+    recuperarDatosSolicitud(registro.codigoSolicitud, function () {
+        $('#titleOpcion').html('CONSULTAR SOLICITUD DE CAMBIO');
+        $(' #btnBuscarContratoAdendaSolicitudCambios,#btnBuscarAdendaSolicitudCambios').prop('disabled', true);
+        $('#btnGuardarSolicitudCambios').hide();
+        $('#btnModificarRegistroSolicitudCambios').hide();
+        $('#btnEliminarRegistroSolicitudCambios').hide();
+    });
+
+
 });
 
-$('#btnModificarSolicitudCambios').off().on('click', function () {
+function recuperarDatosSolicitud(codigoSolicitud, callBack) {
 
+    MostrarLoading(true, 'Recuperando  Solicitudes de Cambio, un momento por favor...');
+
+    QueryAJAX('indraupc/consultarSolicitudCambio',
+        {
+            codigoSolicitud: codigoSolicitud,
+        },
+        function (resultado) {
+            MostrarLoading(false);
+
+            if (resultado == null) {
+                MensajeError('Servidor devolvió SIN DATOS');
+                return;
+            }
+
+            $('#hcodigoSolicitud').val(resultado.contrato.codigoSolicitud);
+
+            $('#txtNroContratoSolicitudCambios').val(resultado.contrato.numeroContrato);
+            $('#txtNroAdendaSolicitudCambios').val(resultado.contrato.numeroAdenda).attr('iCodAdenda', resultado.contrato.codigoAdenda);
+            $('#txtFechaRegistroSolicitudCambios').val(resultado.contrato.fechaRegistro);
+            $('#txtNroSolicitudCambios').val(resultado.contrato.numeroSolicitud);
+            $('#txtNombreContratoSolicitudCambios').val(resultado.contrato.nombreContrato);
+            $('#txtNombreAdendaSolicitudCambios').val(resultado.contrato.nombreAdenda);
+            $('#txtRazonSocialSolicitudCambios').val(resultado.contrato.cliente);
+            $('#txtRucDniSolicitudCambios').val(resultado.contrato.rucDni);
+
+            if (resultado.contrato.codigoControversia > 0) {
+                $('#chkControversiaAsociada').data('toggles').toggle(true);
+            } else {
+                $('#chkControversiaAsociada').data('toggles').toggle(false);
+            }
+
+
+            for (var i = 0; i < resultado.clausula.length; i++) {
+                $('input[type="checkbox"][numeroclausula="' + resultado.clausula[i].numeroClausula + '"]').prop('checked', true).trigger('change', [resultado.clausula[i].detalle]);
+
+            }
+
+
+            $('#CarruselModuloSolicitudCambios').carousel(1);
+
+            callBack();
+        },
+        function (error) {
+            MostrarLoading(false);
+            MensajeError('Problemas para conectarnos al servicio web');
+        });
+
+}
+
+$('#btnModificarSolicitudCambios').off().on('click', function () {
+    var registro = GetRowSelectJqGrid('tablaSolicitudCambios');
+
+    if (registro == null) {
+        MensajeError('Debe seleccionar una Solicitud');
+        return;
+    }
+
+    recuperarDatosSolicitud(registro.codigoSolicitud, function () {
+        $('#titleOpcion').html('MODIFICAR SOLICITUD DE CAMBIO');
+        $(' #btnBuscarContratoAdendaSolicitudCambios,#btnBuscarAdendaSolicitudCambios').prop('disabled', true);
+        $('#btnGuardarSolicitudCambios').hide();
+        $('#btnEliminarRegistroSolicitudCambios').hide();
+        $('#btnModificarRegistroSolicitudCambios').show();
+
+    });
 });
 
 $('#btnAprobarSolicitudCambios').off().on('click', function () {
 
+    var registro = GetRowSelectJqGrid('tablaSolicitudCambios');
+
+    if (registro == null) {
+        MensajeError('Debe seleccionar una Solicitud');
+        return;
+    }
+
+    MensajeConfirmar('¿Está seguro que desea aprobar la solicitud de cambio?', function () {
+
+        MostrarLoading(true, 'Aprobando solicitud, un momento por favor');
+
+        QueryAJAX('indraupc/aprobarSolicitudCambio',
+            {
+                codigoSolicitud: registro.codigoSolicitud,
+            },
+            function (resultado) {
+                MostrarLoading(false);
+
+                if (resultado == null) {
+                    MensajeError('Servidor devolvió Sin Datos');
+                } else if (resultado <= 0)
+                    MensajeError('Error al aprobar solicitud');
+                else {
+                    MensajeOk('Solicitud de Cambios', 'Se aprobó solicitud de cambios');
+                    $('#btnBuscarSolicitudesCambios').trigger('click');
+                }
+            },
+            function (error) {
+                MostrarLoading(false);
+                MensajeError('Problemas para comunicarnos con el servicio web');
+            });
+    });
 });
 
 $('#btnEliminarSolicitudCambios').off().on('click', function () {
+    var registro = GetRowSelectJqGrid('tablaSolicitudCambios');
 
+    if (registro == null) {
+        MensajeError('Debe seleccionar una Solicitud');
+        return;
+    }
+
+    recuperarDatosSolicitud(registro.codigoSolicitud, function () {
+        $('#titleOpcion').html('ELIMINAR SOLICITUD DE CAMBIO');
+        $(' #btnBuscarContratoAdendaSolicitudCambios,#btnBuscarAdendaSolicitudCambios').prop('disabled', true);
+        $('#btnGuardarSolicitudCambios').hide();
+        $('#btnModificarRegistroSolicitudCambios').hide();
+        $('#btnEliminarRegistroSolicitudCambios').show();
+
+    });
 });
 
-$('#tablaCausulasAModificar tbody').off().on('change', 'input[type="checkbox"]', function () {
+$('#tablaCausulasAModificar tbody').off().on('change', 'input[type="checkbox"]', function (event, detalle) {
     var html = '';
     if ($(this).is(':checked') == true) {
         html = '<textarea class="form-control" rows="3" cols="1" style="height: 50px;margin-top: 5px;background-color: #f9f9e9;color: #1e62b9;min-width: 297px;"></textarea>';
     }
     $(this).parent().next().html(html);
+
+    if (html) {
+        if (detalle) {
+            $(this).parent().next().find('textarea').val(detalle);
+
+        }
+
+    }
 });
 
 $('#btnBuscarContratoAdendaSolicitudCambios').off().on('click', function () {
@@ -428,7 +584,7 @@ $('#btnGuardarSolicitudCambios').off().on('click', function () {
     });
 });
 
-function guardarClausulasRecursivo(index, data, codigoSolicitud, errores) {
+function guardarClausulasRecursivo(index, data, codigoSolicitud, errores, modificar) {
     if (index < data.length) {
 
         QueryAJAX('indraupc/registrarClausulaSolicitudCambios',
@@ -447,20 +603,26 @@ function guardarClausulasRecursivo(index, data, codigoSolicitud, errores) {
                 console.log('numero ID CLAUSULA:', resultado);
 
                 index++;
-                guardarClausulasRecursivo(index, data, codigoSolicitud, errores);
+                guardarClausulasRecursivo(index, data, codigoSolicitud, errores, modificar);
             },
             function (error) {
                 errores += 'No se pudo conectar con el servicio para  guardar la Cláusula ' + data[index].numeroClausula + '<br/>';
                 index++;
-                guardarClausulasRecursivo(index, data, codigoSolicitud, errores);
+                guardarClausulasRecursivo(index, data, codigoSolicitud, errores, modificar);
             });
     } else {
         MostrarLoading(false);
 
         if (errores)
             MensajeError('Se produjeron los siguientes errores:<br/>' + errores);
-        else
-            MensajeOk('Solicitud de Cambios', 'Se guardó la solicitud de cambios');
+        else {
+
+            if (modificar == undefined)
+                MensajeOk('Solicitud de Cambios', 'Se guardó la solicitud de cambios');
+            else
+                MensajeOk('Solicitud de Cambios', 'Se guardó modificación de la solicitud de cambios');
+
+        }
 
         $('#btnCancelarSolicitudCambios').trigger('click');
 
@@ -468,5 +630,91 @@ function guardarClausulasRecursivo(index, data, codigoSolicitud, errores) {
 }
 
 $('#btnCancelarSolicitudCambios').off().on('click', function () {
+    $('#hcodigoSolicitud').val('0');
     $('#CarruselModuloSolicitudCambios').carousel(0);
+});
+
+
+$('#btnModificarRegistroSolicitudCambios').off().on('click', function () {
+    MensajeConfirmar('¿Está seguro que desea modificar la solicitud de cambio?', function () {
+
+        MostrarLoading(true, 'Guardando cambios, un momento por favor');
+
+        var codigoSolicitud = $('#hcodigoSolicitud').val();
+
+
+        var arrayClausulas = [],
+            detalle = '',
+            sw = false;
+
+        $('#tablaCausulasAModificar tbody tr input[type="checkbox"]').each(function (index, control) {
+            if ($(control).is(':checked')) {
+                detalle = $(control).parent().next().find('textarea').val().trim();
+                if (!detalle) {
+                    sw = true;
+                    MensajeError('Debe agregar una observación a la cláusula ' + $(control).parent().prev().text());
+                    return false;
+                }
+                arrayClausulas.push({
+                    numeroClausula: $(control).attr('numeroclausula'),
+                    detalle: detalle
+                });
+            }
+        });
+
+        if (sw)
+            return;
+
+        if (arrayClausulas.length == 0) {
+            MensajeError('Debe selecionar alguna cláusula');
+            return;
+        }
+
+        QueryAJAX('indraupc/modificarSolicitudCambio',
+            {
+                codigoSolicitud: codigoSolicitud,
+            },
+            function (resultado) {
+                if (resultado == null) {
+                    MensajeError('Servidor devolvió Sin Datos');
+                } else if (resultado <= 0)
+                    MensajeError('Error al modificar solicitud');
+                else
+                    guardarClausulasRecursivo(0, arrayClausulas, codigoSolicitud, '', true);
+            },
+            function (error) {
+                MostrarLoading(false);
+                MensajeError('Problemas para comunicarnos con el servicio web');
+            });
+    });
+});
+
+$('#btnEliminarRegistroSolicitudCambios').off().on('click', function () {
+    MensajeConfirmar('¿Está seguro que desea eliminar la solicitud de cambio?', function () {
+
+        MostrarLoading(true, 'Eliminando solicitud, un momento por favor');
+
+        var codigoSolicitud = $('#hcodigoSolicitud').val();
+
+        QueryAJAX('indraupc/eliminarSolicitudCambio',
+            {
+                codigoSolicitud: codigoSolicitud,
+            },
+            function (resultado) {
+                MostrarLoading(false);
+
+                if (resultado == null) {
+                    MensajeError('Servidor devolvió Sin Datos');
+                } else if (resultado <= 0)
+                    MensajeError('Error al modificar solicitud');
+                else {
+                    MensajeOk('Solicitud de Cambios', 'Se eliminó solicitud de cambios');
+                    $('#btnCancelarSolicitudCambios').trigger('click');
+                }
+            },
+            function (error) {
+                MostrarLoading(false);
+                MensajeError('Problemas para comunicarnos con el servicio web');
+            });
+    });
 });

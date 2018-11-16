@@ -107,6 +107,8 @@ function GenerarGrillaClientesAdendas() {
 PageInitFirmas();
 
 $('#btnAbrirDialogoClienteBuscar').off().on('click', function () {
+    $('#btnSeleccionarClienteDialogo').attr('accion', 'principal');
+
     OpenDialogo('dialogoBuscarCliente', function () {
         $('#txtBuscarRucCliente').focus();
     }, undefined, function () {

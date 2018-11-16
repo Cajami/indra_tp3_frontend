@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" id="contenedorBotones">
                         <button class="btn btn-secondary float-right ml-2 btn-sm" id="btnEliminarSolicitudCambios">
                             <i class="far fa-trash-alt"></i>
                             Eliminar
@@ -79,9 +79,11 @@
             </div>
 
         </div>
-        <div class="carousel-item" style="overflow-y: auto;">
+        <div class="carousel-item" id="contenedorControlesSolicitud" style="overflow-y: auto;">
 
             <div class="container">
+
+                <input type="hidden" id="hcodigoSolicitud" value="0" />
 
                 <div class="row">
                     <div class="col-sm-12 font-weight-bold bg-light p-2 text-body" id="titleOpcion">
@@ -226,6 +228,14 @@
                                 <button class="btn btn-lg btn-primary" id="btnGuardarSolicitudCambios">
                                     <i class="far fa-save"></i>
                                     GUARDAR
+                                </button>
+                                <button class="btn btn-lg btn-success" id="btnModificarRegistroSolicitudCambios">
+                                    <i class="fas fa-pencil-alt"></i>
+                                    MODIFICAR
+                                </button>
+                                <button class="btn btn-lg btn-warning" id="btnEliminarRegistroSolicitudCambios">
+                                    <i class="far fa-trash-alt"></i>
+                                    ELIMINAR
                                 </button>
                                 <button class="btn btn-danger mt-5" id="btnCancelarSolicitudCambios">
                                     <i class="fas fa-ban"></i>

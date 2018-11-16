@@ -58,7 +58,6 @@ $('#btnNuevoControversia').off().on('click', function () {
     $('#CarruselModuloControversia').carousel(1);
     $('div.card-tabs-bar a:not(:first)').hide();
 
-<<<<<<< HEAD
     //$('#txtTipoDocumentoControversia').val('');
     $('#txtDescripcionControversia').val('').prop('disabled', false);
     $('#txtNumeroPaginaControversia').val(null).prop('disabled', false);
@@ -74,12 +73,6 @@ $('#btnNuevoControversia').off().on('click', function () {
     });
     
     
-=======
-    $('#txtDescripcionControversia').val('');
-    $('#txtNumeroPaginaControversia').val(null);
-    $('#txtNroClausulaControversia').val(null);
-
->>>>>>> 476b754fd3afc756d044d1ea12f9a3cb15c48299
 });
 
 
