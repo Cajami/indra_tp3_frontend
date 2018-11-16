@@ -58,10 +58,28 @@ $('#btnNuevoControversia').off().on('click', function () {
     $('#CarruselModuloControversia').carousel(1);
     $('div.card-tabs-bar a:not(:first)').hide();
 
+<<<<<<< HEAD
+    //$('#txtTipoDocumentoControversia').val('');
+    $('#txtDescripcionControversia').val('').prop('disabled', false);
+    $('#txtNumeroPaginaControversia').val(null).prop('disabled', false);
+    $('#txtNroClausulaControversia').val(null).prop('disabled', false);
+
+    $('#txtFechaRegistroControversia').off().on('keydown', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }).datetimepicker({
+        timepicker: false,   
+        value: new Date(),     
+        format: 'Y-m-d',
+    });
+    
+    
+=======
     $('#txtDescripcionControversia').val('');
     $('#txtNumeroPaginaControversia').val(null);
     $('#txtNroClausulaControversia').val(null);
 
+>>>>>>> 476b754fd3afc756d044d1ea12f9a3cb15c48299
 });
 
 
@@ -98,6 +116,9 @@ function ConsultarAdenda(iCodContrato, iCodAdenda, callBack, evento) {
                 callBack();
 
                 MostrarLoading(false);
+
+                $('#txtNroControversiaControversia').val(resultado[0].codControversia);
+
                 //$('#txtNombreContratoControversia').val(resultado.contrato.tipoContrato == 1 ? 'GENERAL' : 'SERVICIOS').attr('cTipocontrato', resultado.contrato.tipoContrato);                
                 $('#txtNombreContratoControversia').val(resultado[0].nombreContrato);
                 $('#txtNombreAdendaControversia').val(resultado[0].nombreAdenda);
@@ -105,6 +126,7 @@ function ConsultarAdenda(iCodContrato, iCodAdenda, callBack, evento) {
                 $('#txtRucDniControversia').val(resultado[0].rucFirmanteContrato);
 
 
+                $('#txtTipoDocumentoControversia').val('DNI');
                 $('#txtNumeroDocumentoControversia').val(resultado[0].dniFirmante);
                 $('#txtNombresApellidosControversia').val(resultado[0].nombreFirmante);
                 $('#txtTelefonoControversia').val(resultado[0].fonoFirmante);
@@ -220,6 +242,9 @@ function GenerarGrillaClientesControversias() {
                             break;
                         case 'APROBADO':
                             stylo = 'color:green;font-weight: bold;';
+                            break;
+                        case 'RECHAZADO':
+                            stylo = 'color:red;';
                             break;
                         default:
 
@@ -359,6 +384,8 @@ $('#btnSeleccionarContratoDialogo').off().on('click', function () {
         'iCodContrato': registro.codigoContrato,
         'nombreContrato': registro.nombreContrato
     });*/
+
+    console.log(registro)
     $('#txtNroContratoControversia').val(registro.numeroContrato).attr('iCodContrato', registro.codigoContrato);
     $('#txtNroAdendaControversia').val(registro.numeroAdenda).attr('iCodAdenda', registro.codigoAdenda);
     //$('#txtNroAdendaAdenda').val(registro.numeroAdenda.length == 0 ? 0 : registro.numeroAdenda).attr('iCodAdenda', registro.codigoAdenda);
@@ -556,6 +583,49 @@ $('#btnGuardarControversia').off().on('click', function () {
             MostrarLoading(true, 'Regitrando Controversia...');
 
             QueryAJAX('indraupc/registrarControversia',
+<<<<<<< HEAD
+                   {
+                        dniCliente: dniCliente,
+                        codAdenda: codAdenda,
+                        desControversia: desControversia,
+                        numeroPaginas: numeroPaginas,
+                        numeroClausulas: numeroClausulas
+                   },
+                   function (resultado) {
+
+                       if (resultado <= 0) {
+                           MostrarLoading(false);
+                           MensajeError('No se pudo registrar la controversia en el servidor');
+                           return;
+                       }
+
+                       MostrarLoading(false);
+
+                       if (resultado==1){
+                            MensajeError('Número de páginas no válida');
+                       }else if(resultado==2){
+                            MensajeError('Número de cláusula no válida');    
+                       }else if(resultado==3){
+                        MensajeError('Ya existe controversia para la adenda');    
+                        }else{
+                            MensajeOk('Controversia creada',
+                            'Se registró la Controversia correctamente',
+                            function () {
+                                $('#btnCancelarControversia').trigger('click');
+                                setTimeout(function () {
+                                    $('#btnBuscarControversiasModuloPrincipal').trigger('click');
+                                }, 1000)
+                            });
+                        }
+
+                       
+
+                   },
+                   function (error) {
+                       MostrarLoading(false);
+                       MensajeError('Problemas para conectarnos con el servicio');
+                   });
+=======
                 {
                     dniCliente: dniCliente,
                     codAdenda: codAdenda,
@@ -587,6 +657,7 @@ $('#btnGuardarControversia').off().on('click', function () {
                     MostrarLoading(false);
                     MensajeError('Problemas para conectarnos con el servicio');
                 });
+>>>>>>> 476b754fd3afc756d044d1ea12f9a3cb15c48299
         });
 });
 
@@ -625,28 +696,28 @@ function RegistrarAntecedentes(array, idAdenda, index) {
 }
 
 $('#btnBuscarControversiasModuloPrincipal').off().on('click', function () {
-    var fechaInicial = $('#txtFechaInicioModuloPrincipal').val().trim(),
-        fechaFinal = $('#txtFechaFinalModuloPrincipal').val().trim(),
+    var /*fechaInicial = $('#txtFechaInicioModuloPrincipal').val().trim(),
+        fechaFinal = $('#txtFechaFinalModuloPrincipal').val().trim(),*/
         nombreContrato = $('#txtNombreContratoModuloPrincipalControversia').val().trim(),
-        estadoControversia = 1;//$('#cboEstadoModuloPrincipalControversia').val().trim();
+        estadoControversia = $('#cboEstadoModuloPrincipalControversia').val();
 
     /*if (typeof codigoCliente == 'undefined') {
         MensajeError('Debe seleccionar un Cliente');
         return;
     }*/
 
-    if (fechaInicial.length == 0)
+    /*if (fechaInicial.length == 0)
         fechaInicial = '1900-01-01';
 
     if (fechaFinal.length == 0)
-        fechaFinal = '2020-01-01';
+        fechaFinal = '2020-01-01';*/
     MostrarLoading(true, 'Buscando Controversia, un momento por favor...');
 
 
     QueryAJAX('indraupc/buscarControversia',
         {
-            fechaIni: fechaInicial,
-            fechaFin: fechaFinal,
+            /*fechaIni: fechaInicial,
+            fechaFin: fechaFinal,*/
             estado: estadoControversia,
             nomContrato: nombreContrato
         },
@@ -688,6 +759,10 @@ $('#btnConsultarControversia').off().on('click', function () {
 
         $('div.card-tabs-bar a:not(:first)').show();
         $('#CarruselModuloControversia').carousel(1);
+
+        $('#txtDescripcionControversia').prop('disabled', true);
+        $('#txtNumeroPaginaControversia').prop('disabled', true);
+        $('#txtNroClausulaControversia').prop('disabled', true);
     });
 });
 
@@ -699,16 +774,35 @@ $('#btnModificarControversia').off().on('click', function () {
         return;
     }
 
+<<<<<<< HEAD
+    if (registro.estado == 'APROBADO') {
+        MensajeError('No se puede modificar la controversia, ya fue aprobada');
+        return;
+    }
+
+    if (registro.estado == 'RECHAZADO') {
+        MensajeError('No se puede modificar la controversia, ya fue rechazada');
+        return;
+    }
+
+    ConsultarControversia(registro.codControversia,registro.codFirmanteControversia, function () {
+=======
     ConsultarControversia(registro.codControversia, registro.codFirmanteControversia, function () {
+>>>>>>> 476b754fd3afc756d044d1ea12f9a3cb15c48299
 
         $('#titleOpcion').html('MODIFICAR ADENDA');
         $('#btnGuardarControversia,#btnGuardarEliminarControversia').hide();
         $('#btnGuardarModificacionControversia').show();
         $('#btnBuscarContratoAdenda,#btnBuscarDialogoContratoAdenda').hide();
 
+
         /*MOSTRAMOS EL DETALLE DEL CONTRATO BUSCADO*/
         $('div.card-tabs-bar a:not(:first)').show();
         $('#CarruselModuloControversia').carousel(1);
+
+        $('#txtDescripcionControversia').prop('disabled', false);
+        $('#txtNumeroPaginaControversia').prop('disabled', false);
+        $('#txtNroClausulaControversia').prop('disabled', false);
     });
 
 });
@@ -718,6 +812,16 @@ $('#btnEliminarControversia').off().on('click', function () {
 
     if (registro == null) {
         MensajeError('Debe seleccionar una Controversia');
+        return;
+    }
+
+    if (registro.estado == 'APROBADO') {
+        MensajeError('No se puede modificar la controversia, ya fue aprobada');
+        return;
+    }
+
+    if (registro.estado == 'RECHAZADO') {
+        MensajeError('No se puede modificar la controversia, ya fue rechazada');
         return;
     }
 
