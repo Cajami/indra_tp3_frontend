@@ -5,7 +5,7 @@
             <!-- PANTALLA PRINCIPAL -->
             <div class="container mt-3">
                 <div class="row">                    
-                    <div class="col-sm-2">
+                    <!--<div class="col-sm-2">
                         <span class="etiqueta">
                             Fecha Inicio:
                         </span>
@@ -16,8 +16,8 @@
                             Fecha Fin:
                         </span>
                         <input type="text" class="form-control" id="txtFechaFinalModuloPrincipal" />
-                    </div>
-                    <div class="col-sm-4">
+                    </div>-->
+                    <div class="col-sm-8">
                         <span class="etiqueta">
                             Nombre Contrato
                         </span>                        
@@ -29,7 +29,8 @@
                         </span>
                         <select class="form-control" id="cboEstadoModuloPrincipalControversia">
                             <option value="1">INICIADO</option>
-                            <option value="2">APROBADO</option>
+                            <option value="3">APROBADO</option>
+                            <option value="5">RECHAZADO</option>
                         </select>
                     </div>
                     <div class="col-sm-2">
@@ -178,8 +179,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-3">Tipo Documento:</label>
                                             <div class="col-sm-6">
-                                                <!--<select class="form-control" id="cboTipoDocumentoControversia"></select>-->
-                                                <input type="text" readonly class="form-control textoInput" id="txtTipoDocumentoControversia" value="DNI">
+                                                <input type="text" readonly class="form-control textoInput" id="txtTipoDocumentoControversia">
                                             </div>
                                         </div>
                                     </div>
