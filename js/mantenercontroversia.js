@@ -576,7 +576,6 @@ $('#btnGuardarControversia').off().on('click', function () {
             MostrarLoading(true, 'Regitrando Controversia...');
 
             QueryAJAX('indraupc/registrarControversia',
-<<<<<<< HEAD
                    {
                         dniCliente: dniCliente,
                         codAdenda: codAdenda,
@@ -618,39 +617,6 @@ $('#btnGuardarControversia').off().on('click', function () {
                        MostrarLoading(false);
                        MensajeError('Problemas para conectarnos con el servicio');
                    });
-=======
-                {
-                    dniCliente: dniCliente,
-                    codAdenda: codAdenda,
-                    desControversia: desControversia,
-                    numeroPaginas: numeroPaginas,
-                    numeroClausulas: numeroClausulas
-                },
-                function (resultado) {
-
-                    if (resultado <= 0) {
-                        MostrarLoading(false);
-                        MensajeError('No se pudo registrar la controversia en el servidor');
-                        return;
-                    }
-
-                    MostrarLoading(false);
-
-                    MensajeOk('Controversia creada',
-                        'Se registró la Controversia correctamente',
-                        function () {
-                            $('#btnCancelarControversia').trigger('click');
-                            setTimeout(function () {
-                                $('#btnBuscarControversiasModuloPrincipal').trigger('click');
-                            }, 1000)
-                        });
-
-                },
-                function (error) {
-                    MostrarLoading(false);
-                    MensajeError('Problemas para conectarnos con el servicio');
-                });
->>>>>>> 476b754fd3afc756d044d1ea12f9a3cb15c48299
         });
 });
 
@@ -767,7 +733,6 @@ $('#btnModificarControversia').off().on('click', function () {
         return;
     }
 
-<<<<<<< HEAD
     if (registro.estado == 'APROBADO') {
         MensajeError('No se puede modificar la controversia, ya fue aprobada');
         return;
@@ -779,9 +744,6 @@ $('#btnModificarControversia').off().on('click', function () {
     }
 
     ConsultarControversia(registro.codControversia,registro.codFirmanteControversia, function () {
-=======
-    ConsultarControversia(registro.codControversia, registro.codFirmanteControversia, function () {
->>>>>>> 476b754fd3afc756d044d1ea12f9a3cb15c48299
 
         $('#titleOpcion').html('MODIFICAR ADENDA');
         $('#btnGuardarControversia,#btnGuardarEliminarControversia').hide();

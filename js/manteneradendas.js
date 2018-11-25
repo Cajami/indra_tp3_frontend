@@ -1488,7 +1488,7 @@ $('#btnVistaPreviaAdenda').off().on('click', function () {
     var pFechaInicial = $('#txtFechaInicioNuevoContato').val().trim();// '01/01/2018';
     var pFechaFinal = $('#txtFechaFinalNuevoContato').val().trim();//'31/12/2018';
     var pDia = '01';
-    var pMes = 'Enero';
+    var pMes = 'Noviembre';
     var pAnio = '2018';
 
     //var array_antecedentes = [

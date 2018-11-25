@@ -1,4 +1,6 @@
-﻿/*FUNCION PARA ABRIR DIALOG BOOSTRAP*/
+﻿var codigoFirmanteGlobal = 0;
+
+/*FUNCION PARA ABRIR DIALOG BOOSTRAP*/
 function OpenDialogo(id, callBackOpen, callBackPorCerrar, callBackClose) {
     $('#' + id).off('shown.bs.modal hide.bs.modal hidden.bs.modal')
         .on('shown.bs.modal', function (e) {

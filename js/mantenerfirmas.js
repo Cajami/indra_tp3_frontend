@@ -1,5 +1,5 @@
-var iCodUsuarioLogeado = 102;//ERNESTO ADOLFO GUTIERREZ
-//var iCodUsuarioLogeado = 106;//PEDRO GABRIEL RAMOS INJANTE
+//var codigoFirmanteGlobal = 102;//ERNESTO ADOLFO GUTIERREZ
+//var codigoFirmanteGlobal = 106;//PEDRO GABRIEL RAMOS INJANTE
 var swFirmasCompletadas = false;
 
 function PageInitFirmas() {
@@ -146,7 +146,7 @@ $('#btnBuscarContratosAdendasFirmas').off().on('click', function (event, paramet
     QueryAJAX('indraupc/buscarFirmasAdendas',
         {
             codCliente: codigoCliente,
-            codUsuario: iCodUsuarioLogeado,
+            codUsuario: codigoFirmanteGlobal,
         },
         function (result) {
             MostrarLoading(false);
@@ -250,7 +250,7 @@ $('#btnSeleccionar').off().on('click', function () {
                             $('#contenedorFirmaApoderado').show();
                             totalFirmantes++;
 
-                            if (data.firmante[i].codigoFirmante == iCodUsuarioLogeado) {
+                            if (data.firmante[i].codigoFirmante == codigoFirmanteGlobal) {
                                 sw = true;
                             }
 
@@ -274,7 +274,7 @@ $('#btnSeleccionar').off().on('click', function () {
                             $('#contenedorFirmaGerente').show();
                             totalFirmantes++;
 
-                            if (data.firmante[i].codigoFirmante == iCodUsuarioLogeado) {
+                            if (data.firmante[i].codigoFirmante == codigoFirmanteGlobal) {
                                 sw = true;
                             }
                         } else {
@@ -335,7 +335,7 @@ $('#btnFirmarFirmaAdenda').off().on('click', function () {
         QueryAJAX('indraupc/firmarContratoAdenda',
             {
                 codAdenda: $('#txtNumeroAdendaFirma').attr('icodadenda'),
-                codUsuario: iCodUsuarioLogeado,
+                codUsuario: codigoFirmanteGlobal,
                 opcionCliente: $('#chkDniCliente').data('toggles').active ? 1 : 0
             },
             function (resultado) {
@@ -365,6 +365,8 @@ $('#btnFirmarFirmaAdenda').off().on('click', function () {
                             $('#btnGuardarFirmaAdenda').show().prop('disabled', false);
 
                             $('#divContenerInputsAdenda').find('div.card-tabs-bar a:eq(2)').removeClass('disabled');
+                        } else {
+                            $('#btnCancelarFirmaAdenda').trigger('click');
                         }
                     } else {
                         $('#btnCancelarFirmaAdenda').trigger('click');
@@ -378,6 +380,45 @@ $('#btnFirmarFirmaAdenda').off().on('click', function () {
                 MensajeError('Problemas para conectarnos con el servicio');
             });
     });
+});
+
+$('#btnVistaPreviaFirmaAdenda').off().on('click', function () {
+
+    return;
+    return;
+    return;
+    return;
+    
+    MostrarLoading(true, 'Recuperando Vista Previa...');
+
+    var codigoAdenda = $('#txtNumeroAdendaFirma').attr('icodadenda');
+
+
+    QueryAJAX('indraupc/ad_ConsultarAdenda',
+        {
+            codAdenda: codigoAdenda,
+        },
+        function (resultado) {
+            MostrarLoading(false);
+
+            if (resultado == null || !resultado) {
+                MostrarLoading(false);
+                MensajeError('Problemas con el servidor, devolvió NULL');
+                return;
+            }
+
+            if (resultado.contrato.nombreAdenda == null) {
+                MostrarLoading(false);
+                MensajeError('No se encontró el detalle de la adenda buscada');
+                return;
+            }
+
+
+        },
+        function (error) {
+            MostrarLoading(false);
+            MensajeError('Problemas para conectarnos con el servicio');
+        });
 });
 
 $('#btnGuardarFirmaAdenda').off().on('click', function () {
@@ -493,7 +534,7 @@ $('#btnGuardarObservacion').off().on('click', function () {
         QueryAJAX('indraupc/observarAdendaFirmar',
             {
                 codAdenda: $('#txtNumeroAdendaFirma').attr('icodadenda'),
-                codUsuario: iCodUsuarioLogeado,
+                codUsuario: codigoFirmanteGlobal,
                 observacion: observacion
             },
             function (resultado) {
