@@ -688,11 +688,16 @@ $('#btnBuscarControversiasModuloPrincipal').off().on('click', function () {
             }
 
             console.log(resultado);
-
-            for (var i = 0; i < resultado.length; i++)
+            if (resultado.length == 0){
+                MensajeError('No se encontró resultado de la controversia buscada');
+            }else{
+                for (var i = 0; i < resultado.length; i++)
                 resultado[i].IdRegistro = i + 1;
 
-            ReloadJQGRID('tablaClientesControversias', resultado);
+                ReloadJQGRID('tablaClientesControversias', resultado);
+            }
+
+            
         },
         function (error) {
             alert('Error');
@@ -742,6 +747,7 @@ $('#btnModificarControversia').off().on('click', function () {
         MensajeError('No se puede modificar la controversia, ya fue rechazada');
         return;
     }
+    
 
     ConsultarControversia(registro.codControversia,registro.codFirmanteControversia, function () {
 
@@ -808,12 +814,22 @@ $('#btnGuardarModificacionControversia').off().on('click', function () {
     }
 
     if (!$.isNumeric(numeroPaginas)) {
-        MensajeError('Número de Página debe ser solo números');
+        MensajeError('Número de páginas debe ser solo números');
+        return;
+    }
+    numeroPaginas = parseFloat(numeroPaginas)
+    if (numeroPaginas <= 0) {
+        MensajeError('Número de páginas no puede ser menor o igual a cero (0)');
         return;
     }
 
     if (!$.isNumeric(numeroClausulas)) {
-        MensajeError('Número de Cláusula debe ser solo números');
+        MensajeError('Número de cláusulas debe ser solo números');
+        return;
+    }
+    numeroClausulas = parseFloat(numeroClausulas)
+    if (numeroClausulas <= 0) {
+        MensajeError('Número de cláusulas no puede ser menor o igual a cero (0)');
         return;
     }
 
